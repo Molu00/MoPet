@@ -49,7 +49,9 @@
 							</div>
 							<div class="card-body">
 
+								<div style="padding: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
 								<c:out value="${page.content}"></c:out>
+								</div>
 							</div>
 							<div class="card-body">
 								<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
