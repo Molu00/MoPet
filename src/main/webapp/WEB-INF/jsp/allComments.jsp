@@ -80,22 +80,35 @@
 			<div class="row justify-content-center">
 				<div class="col-9">
 
-					<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							<li class="page-item"><a class="page-link" href="${contextRoot}/comments/all?p=${pageNumber}"
+								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							</a></li>
 
-						<c:choose>
-							<c:when test="${page.number != pageNumber-1}">
-								<a href="${contextRoot}/comments/all?p=${pageNumber}"><c:out
-										value="${pageNumber}" /></a>
-							</c:when>
-							<c:otherwise>
-								<c:out value="${pageNumber}" />
-							</c:otherwise>
-						</c:choose>
-						<c:if test="${pageNumber != page.totalPages}">
-		   |
-		  </c:if>
-					</c:forEach>
+							<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
 
+								<c:choose>
+									<c:when test="${page.number != pageNumber-1}">
+										<li class="page-item"><a class="page-link"
+											href="${contextRoot}/comments/all?p=${pageNumber}"><c:out
+													value="${pageNumber}" /></a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item"><a class="page-link"><c:out value="${pageNumber}" /></a></li>
+									</c:otherwise>
+								</c:choose>
+
+<%-- 								<c:if test="${pageNumber != page.totalPages}"> --%>
+<!-- 										| -->
+<%-- 								</c:if> --%>
+							</c:forEach>
+							<li class="page-item"><a class="page-link" href="#"
+								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+							</a></li>
+
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</div>
