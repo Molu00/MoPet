@@ -49,7 +49,7 @@
 							</div>
 							<div class="card-body">
 
-								<div style="padding: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+								<div style="padding: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;font-size:18px;">
 								<c:out value="${page.content}"></c:out>
 								</div>
 							</div>
