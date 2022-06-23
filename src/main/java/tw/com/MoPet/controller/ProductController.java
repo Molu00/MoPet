@@ -3,11 +3,8 @@ package tw.com.MoPet.controller;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,15 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import tw.com.MoPet.model.Category;
 import tw.com.MoPet.model.Company;
 import tw.com.MoPet.model.Product;
-import tw.com.MoPet.model.cart;
-import tw.com.MoPet.model.cartitems;
-import tw.com.MoPet.model.member;
 import tw.com.MoPet.service.CategoryService;
 import tw.com.MoPet.service.CompanyService;
 import tw.com.MoPet.service.ProductService;
-import tw.com.MoPet.service.cartService;
-import tw.com.MoPet.service.cartitemsService;
-import tw.com.MoPet.service.memberService;
 
 @Controller
 public class ProductController {
@@ -40,37 +31,6 @@ public class ProductController {
 	
 	@Autowired
 	private CompanyService companyService;
-	
-	@Autowired
-	private cartitemsService ciService;
-	
-	@Autowired
-	private cartService cService;
-	
-	@Autowired
-	private memberService mService;
-	
-	@PostMapping("add/cartItems/{id}")
-	public String addCartList(Model modelList,@PathVariable Integer id,HttpSession session) {
-		
-		//直接抓數值id去DB撈資料，如果照著欄位沒有撈到cart，新建cart
-		if(cService.findByMemberId(100)==null) {
-		cart newCart=new cart();
-		
-		member tempMember=mService.findById(100);
-		newCart.setFkMemberId(tempMember);
-		cService.insertCart(newCart);
-		}
-		//如果照著欄位有撈到資料，就直接把購物車抓出來
-		cart getCart=cService.findByMemberId(100);
-		
-		
-		cartitems items=new cartitems();
-		
-//		mvc.getModel().put("message", tempPro);
-
-		return "redirect:/all/products";
-	}
 	
 	@GetMapping("add/products")
 	public ModelAndView returnSelectList(ModelAndView mvc) {

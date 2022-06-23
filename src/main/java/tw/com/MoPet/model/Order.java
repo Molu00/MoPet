@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="order")
-public class order {
+public class Order {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +33,7 @@ public class order {
 	private Integer orderId;
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "orderId",cascade = CascadeType.ALL)
-	private Set<orderdetail> orderdetail=new LinkedHashSet<orderdetail>();
+	private Set<OrderDetail> orderdetail=new LinkedHashSet<OrderDetail>();
 	
 	@Column(name="orderTotal")
 	private Integer orderTotal;
@@ -53,11 +53,11 @@ public class order {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_payment_id")
-	private payment paymentId;
+	private Payment paymentId;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_shipping_id")
-	private shipping shippingId;
+	private Shipping shippingId;
 	
 	@Column(name="shippingStatus")
 	private boolean shippingStatus;
@@ -73,7 +73,7 @@ public class order {
 					}
 				}
 	
-	public order() {
+	public Order() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -109,19 +109,19 @@ public class order {
 		this.fkMemberId = fkMemberId;
 	}
 
-	public payment getPaymentId() {
+	public Payment getPaymentId() {
 		return paymentId;
 	}
 
-	public void setPaymentId(payment paymentId) {
+	public void setPaymentId(Payment paymentId) {
 		this.paymentId = paymentId;
 	}
 
-	public shipping getShippingId() {
+	public Shipping getShippingId() {
 		return shippingId;
 	}
 
-	public void setShippingId(shipping shippingId) {
+	public void setShippingId(Shipping shippingId) {
 		this.shippingId = shippingId;
 	}
 

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="payment")
-public class payment {
+public class Payment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class payment {
 	private Integer payId;
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "paymentId",cascade = CascadeType.ALL)
-	private Set<order> orderPayment=new LinkedHashSet<order>();
+	private Set<Order> orderPayment=new LinkedHashSet<Order>();
 	
 	@Column(name="payway")
 	private String paymentWay;
@@ -31,7 +31,7 @@ public class payment {
 	@Column(name="payprice")
 	private Integer paymentPrice;
 	
-	public payment() {
+	public Payment() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -59,11 +59,11 @@ public class payment {
 		this.paymentPrice = paymentPrice;
 	}
 
-	public Set<order> getOrderPayment() {
+	public Set<Order> getOrderPayment() {
 		return orderPayment;
 	}
 
-	public void setOrderPayment(Set<order> orderPayment) {
+	public void setOrderPayment(Set<Order> orderPayment) {
 		this.orderPayment = orderPayment;
 	}
 
