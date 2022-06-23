@@ -36,6 +36,9 @@ public class cart {
 	@JoinColumn(name="fk_member_id")
 	private member fkMemberId;
 	
+	@JoinColumn(name="cartStatus")
+	private boolean cartStatus;
+	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "cartid",cascade = CascadeType.ALL)
 	private Set<orderdetail> orderdetail=new LinkedHashSet<orderdetail>();
 	

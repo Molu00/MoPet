@@ -10,8 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import tw.com.MoPet.model.Product;
-
 @Entity
 @Table(name="cartItems")
 public class cartitems {
