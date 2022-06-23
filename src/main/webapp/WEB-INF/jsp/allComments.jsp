@@ -68,7 +68,8 @@
 									href="${contextRoot}/comments/delete?id=${page.id}"><button
 										class="btn btn-danger">刪除</button></a>
 							</div>
-							<br /> <br />
+							<br /> 
+							<br />
 							<!-- 							<div> -->
 							<!-- 							<br /> <br /> -->
 							<%-- 								<a href="${contextRoot}/comments/page?id=${page.id}"><button --%>
