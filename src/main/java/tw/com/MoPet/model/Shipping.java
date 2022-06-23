@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="shipping")
-public class shipping {
+public class Shipping {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class shipping {
 	private Integer shippingId;
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "shippingId",cascade = CascadeType.ALL)
-	private Set<order> orderShipping=new LinkedHashSet<order>();
+	private Set<Order> orderShipping=new LinkedHashSet<Order>();
 	
 	@Column(name="shippingway")
 	private String shippingWay;
@@ -32,7 +32,7 @@ public class shipping {
 	private Integer shippingPrice;
 
 	
-	public shipping() {
+	public Shipping() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -67,12 +67,12 @@ public class shipping {
 	}
 
 
-	public Set<order> getOrderShipping() {
+	public Set<Order> getOrderShipping() {
 		return orderShipping;
 	}
 
 
-	public void setOrderShipping(Set<order> orderShipping) {
+	public void setOrderShipping(Set<Order> orderShipping) {
 		this.orderShipping = orderShipping;
 	}
 

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="cartItems")
-public class cartitems {
+public class CartItems {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,13 +24,13 @@ public class cartitems {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_cart_id")
-	private cart cartId;
+	private Cart cartId;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_product_id")
 	private Product pId;
 
-	public cartitems() {
+	public CartItems() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -50,11 +50,11 @@ public class cartitems {
 		this.cartItemsAmount = cartItemsAmount;
 	}
 
-	public cart getCartId() {
+	public Cart getCartId() {
 		return cartId;
 	}
 
-	public void setCartId(cart cartId) {
+	public void setCartId(Cart cartId) {
 		this.cartId = cartId;
 	}
 
