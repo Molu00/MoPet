@@ -23,6 +23,12 @@ public class member {
 	@Column(name = "id")
 	private Integer id;
 
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "fkMemberId",cascade = CascadeType.ALL)
+	private Set<cart> cart=new LinkedHashSet<cart>();
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "fkMemberId",cascade = CascadeType.ALL)
+	private Set<order> order=new LinkedHashSet<order>();
+	
 	@Column(name = "member_email")
 	private String memberEmail;
 

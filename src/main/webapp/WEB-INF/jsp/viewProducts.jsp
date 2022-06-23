@@ -96,9 +96,8 @@
 								<c:choose>
 									<c:when test="${productList.number!= pages-1}">
 										<!-- 非當前頁面 -->
-										<li class="page-item"><a class="page-link"
-											href="${contextRoot}/all/products?p=${pages}"><c:out
-													value="${pages}" /></a></li>
+										<li class="page-item"><a class="page-link" href="${contextRoot}/all/products?p=${pages}">
+										<c:out value="${pages}" /></a></li>
 									</c:when>
 									<c:otherwise>
 										<!-- 當前頁面 -->
