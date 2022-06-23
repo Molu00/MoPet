@@ -30,7 +30,7 @@
 		class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom ">
 
 
-		<div class="container ">
+		<div class="container">
 
 			<c:forEach var="page" items="${page.content}">
 
@@ -48,9 +48,9 @@
 								</h1>
 							</div>
 							<div class="card-body">
-
-								<div style="padding: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;font-size:18px;">
-								<c:out value="${page.content}"></c:out>
+								<div
+									style="padding: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 18px;">
+									<c:out value="${page.content}"></c:out>
 								</div>
 							</div>
 							<div class="card-body">
@@ -66,13 +66,13 @@
 										class="btn btn-danger">刪除</button></a>
 							</div>
 							<div>
+							<br /> <br /><br /> <br />
 								<a href="${contextRoot}/comments/page?id=${page.id}"><button
-										class="btn btn-danger">內文</button></a>
+										class="btn btn-danger">內文</button></a> <br /> <br />
+
 							</div>
-							<br /> <br />
 
 						</div>
-
 
 					</div>
 				</div>
@@ -82,9 +82,10 @@
 
 					<nav aria-label="Page navigation example">
 						<ul class="pagination">
-							<li class="page-item"><a class="page-link" href="${contextRoot}/comments/all?p=${pageNumber}"
-								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-							</a></li>
+<!-- 							<li class="page-item"><a class="page-link" -->
+<%-- 								href="${contextRoot}/comments/all?p=${pageNumber}" --%>
+<!-- 								aria-label="Previous"> <span aria-hidden="true">&laquo;</span> -->
+<!-- 							</a></li> -->
 
 							<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
 
@@ -95,17 +96,18 @@
 													value="${pageNumber}" /></a></li>
 									</c:when>
 									<c:otherwise>
-										<li class="page-item"><a class="page-link"><c:out value="${pageNumber}" /></a></li>
+										<li class="page-item"><a class="page-link"><c:out
+													value="${pageNumber}" /></a></li>
 									</c:otherwise>
 								</c:choose>
 
-<%-- 								<c:if test="${pageNumber != page.totalPages}"> --%>
-<!-- 										| -->
-<%-- 								</c:if> --%>
+								<%-- 								<c:if test="${pageNumber != page.totalPages}"> --%>
+								<!-- 										| -->
+								<%-- 								</c:if> --%>
 							</c:forEach>
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-							</a></li>
+<!-- 							<li class="page-item"><a class="page-link" href="#" -->
+<!-- 								aria-label="Next"> <span aria-hidden="true">&raquo;</span> -->
+<!-- 							</a></li> -->
 
 						</ul>
 					</nav>
