@@ -24,10 +24,10 @@ public class member {
 	private Integer id;
 
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "fkMemberId",cascade = CascadeType.ALL)
-	private Set<cart> cart=new LinkedHashSet<cart>();
+	private Set<Cart> cart=new LinkedHashSet<Cart>();
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "fkMemberId",cascade = CascadeType.ALL)
-	private Set<order> order=new LinkedHashSet<order>();
+	private Set<Order> order=new LinkedHashSet<Order>();
 	
 	@Column(name = "member_email")
 	private String memberEmail;

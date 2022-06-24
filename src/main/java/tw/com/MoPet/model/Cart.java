@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="cart")
-public class cart {
+public class Cart {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,10 +40,10 @@ public class cart {
 	private boolean cartStatus;
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "cartid",cascade = CascadeType.ALL)
-	private Set<orderdetail> orderdetail=new LinkedHashSet<orderdetail>();
+	private Set<OrderDetail> orderdetail=new LinkedHashSet<OrderDetail>();
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "cartId",cascade = CascadeType.ALL)
-	private Set<cartitems> cartitems=new LinkedHashSet<cartitems>();
+	private Set<CartItems> cartitems=new LinkedHashSet<CartItems>();
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") // Spring MVC 用
@@ -59,7 +59,7 @@ public class cart {
 				}
 			}
 	
-	public cart() {
+	public Cart() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -87,12 +87,28 @@ public class cart {
 		this.cartAdded = cartAdded;
 	}
 
-	public Set<cartitems> getCartitems() {
+	public Set<CartItems> getCartitems() {
 		return cartitems;
 	}
 
-	public void setCartitems(Set<cartitems> cartitems) {
+	public void setCartitems(Set<CartItems> cartitems) {
 		this.cartitems = cartitems;
+	}
+
+	public boolean isCartStatus() {
+		return cartStatus;
+	}
+
+	public void setCartStatus(boolean cartStatus) {
+		this.cartStatus = cartStatus;
+	}
+
+	public Set<OrderDetail> getOrderdetail() {
+		return orderdetail;
+	}
+
+	public void setOrderdetail(Set<OrderDetail> orderdetail) {
+		this.orderdetail = orderdetail;
 	}
 
 }

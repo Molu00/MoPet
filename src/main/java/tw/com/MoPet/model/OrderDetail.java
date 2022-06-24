@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="orderDetail")
-public class orderdetail {
+public class OrderDetail {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,11 +30,11 @@ public class orderdetail {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_order_id")
-	private order orderId;
+	private Order orderId;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_cart_id")
-	private cart cartid;
+	private Cart cartid;
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") // Spring MVC 用
@@ -50,7 +50,7 @@ public class orderdetail {
 		}
 	}
 	
-	public orderdetail() {
+	public OrderDetail() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -62,19 +62,19 @@ public class orderdetail {
 		this.orderDetailId = orderDetailId;
 	}
 
-	public order getOrderId() {
+	public Order getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(order orderId) {
+	public void setOrderId(Order orderId) {
 		this.orderId = orderId;
 	}
 
-	public cart getCartid() {
+	public Cart getCartid() {
 		return cartid;
 	}
 
-	public void setCartid(cart cartid) {
+	public void setCartid(Cart cartid) {
 		this.cartid = cartid;
 	}
 

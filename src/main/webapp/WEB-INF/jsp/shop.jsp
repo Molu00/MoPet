@@ -17,7 +17,6 @@
       <p class="lead text-muted">歡迎來到Mopet商城，您可以在這裡找到數百種商品，總有一種適合您心愛的寵物</p>
     </div>
   </section>
-
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
@@ -29,7 +28,7 @@
               <p class="card-text"><c:out value="${allProduct.pName}" /></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="${contextRoot}/add/cartItems/${oneProduct.pId}"><button type="button" class="btn btn-sm btn-outline-secondary">加入購物車</button></a>
+                  <a href="${contextRoot}/add/cartItems/${allProduct.pId}"><button type="button" class="btn btn-sm btn-outline-secondary">加入購物車</button></a>
                   <button type="button" class="btn btn-sm btn-outline-secondary">商品詳細頁面</button>
                 </div>
                 <small class="text-muted"></small>
