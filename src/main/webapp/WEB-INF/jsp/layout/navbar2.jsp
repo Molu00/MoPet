@@ -13,7 +13,7 @@
 <meta name="generator" content="Hugo 0.88.1">
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
-<title>Dashboard Template · Bootstrap v4.6</title>
+<title></title>
 
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/4.6/examples/dashboard/">

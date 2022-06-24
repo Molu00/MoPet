@@ -77,14 +77,11 @@
 					</div>
 
 					<div class="input-group mb-3">
-						<input type="file" class="form-control" name="tempFile"
-							id="tempFile" onchange="preview()"> <label
-							class="input-group-text" for="inputGroupFile02">上傳</label>
+						<input type="file" class="form-control" name="tempFile" id="tempFile" onchange="preview()"> 
+						<label class="input-group-text" for="inputGroupFile02">上傳</label>
 					</div>
 					<div>
-						<img id="frame" class="rounded-sm" alt="productImg"
-							src="${contextRoot}/img/defaultimg.jpg" width="100px"
-							height="100px">
+						<img id="frame" class="rounded-sm" alt="productImg" src="${contextRoot}/img/defaultimg.jpg" width="100px" height="100px">
 					</div>
 					<div class="btn-group d-flex" role="group">
 						<input class="btn btn-primary" type="submit" value="送出資料" />
