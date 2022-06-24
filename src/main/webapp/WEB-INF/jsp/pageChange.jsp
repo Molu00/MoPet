@@ -38,6 +38,17 @@
 								<c:out value="${com.content}"></c:out>
 							</div>
 							<div class="card-body">
+							<c:choose>
+											<c:when test="${com.com_img !=null }">
+												<img alt="avatar" src="${com.com_img}" width="40%"
+													height="30%">
+											</c:when>
+											<c:otherwise>
+
+											</c:otherwise>
+										</c:choose>
+							</div>
+							<div class="card-body">
 								<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
 									value="${com.createondate}" />
 							</div>

@@ -38,7 +38,7 @@ public class Comments {
 	private String name;
 	
 	@Column(name = "com_img")
-	private String comimg;
+	private String com_img;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -60,6 +60,16 @@ public class Comments {
 			super();
 			this.id = id;
 		}
+
+	
+	
+	public String getCom_img() {
+		return com_img;
+	}
+
+	public void setCom_img(String com_img) {
+		this.com_img = com_img;
+	}
 
 	public Comments() {
 	}
@@ -104,14 +114,18 @@ public class Comments {
 		this.createondate = createondate;
 	}
 
-	public Comments(Integer id, String title, String content, String name, Date createondate, String comimg) {
+	public Comments(Integer id, String title, String content, String name, String com_img, Date createondate,
+			Set<Replies> replies) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.name = name;
+		this.com_img = com_img;
 		this.createondate = createondate;
-		this.comimg = comimg;
+		this.replies = replies;
 	}
+
+	
 
 }

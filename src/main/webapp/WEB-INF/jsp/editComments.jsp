@@ -28,7 +28,7 @@
 				<div class="card-header">請輸入</div>
 				<div class="card-body">
 
-					<form:form class="form" method="post" modelAttribute="commemt">
+					<form:form class="form" method="post" modelAttribute="commemt" enctype="multipart/form-data">
 
 						<form:input path="id" type="hidden" />
 						<form:input path="name" type="hidden" />
@@ -39,6 +39,9 @@
 						</div>
 						<div class="form-group">
 							<form:textarea path="content" class="form-control" />
+						</div>
+						<div class="form-group">
+							<input type="file" name="comimg" id="comimg" />
 						</div>
 
 

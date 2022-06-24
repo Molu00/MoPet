@@ -22,36 +22,42 @@
 	<div class="container text-center">
 		<h1>新增留言</h1>
 		<div class="row justify-content-center">
-<!-- 			<div class="col-9"> -->
-				<div class="card text-center"></div>
-				<div class="card-body">
+			<!-- 			<div class="col-9"> -->
+			<div class="card text-center"></div>
+			<div class="card-body">
 
-					<form:form class="form" method="post"
-						action="${contextRoot}/replies/add" modelAttribute="replies">
-
-
-						<div class="card-header ">內容</div>
-						<div class="form-group">
-							<form:textarea path="content" class="form-control" />
-						</div>
-						<div class="card-header">發文者</div>
-						<div class="form-group">
-							<form:textarea path="name" class="form-control" />
-						</div>
+				<form:form class="form" method="post"
+					action="${contextRoot}/replies/add" modelAttribute="replies"
+					enctype="multipart/form-data">
 
 
-						<input onclick="return confirm('新增成功')" type="submit"
-							name="submit" value="確定發布">
+					<div class="card-header ">內容</div>
+					<div class="form-group">
+						<form:textarea path="content" class="form-control" />
+					</div>
+					<div class="card-header">發文者</div>
+					<div class="form-group">
+						<form:textarea path="name" class="form-control" />
+					</div>
 
-					</form:form>
+					<div class="card-header">上傳圖片</div>
+					<div class="form-group">
+						<br> <input type="file" name="comimg" id="comimg" />
+					</div>
 
 
-				</div>
+					<input onclick="return confirm('新增成功')" type="submit" name="submit"
+						value="確定發布">
+
+				</form:form>
 
 
 			</div>
+
+
 		</div>
 	</div>
+</div>
 <!-- </div> -->
 
 
