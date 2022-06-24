@@ -10,12 +10,12 @@
 	<div
 		class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h1 class="h2">更新貼文</h1>
-<!-- 		<div class="btn-toolbar mb-2 mb-md-0"> -->
-<%-- 			<a href="${contextRoot}/employee"><button type="button" --%>
-<!-- 					class="btn btn-sm btn-outline-secondary"> -->
-<!-- 					<span data-feather="calendar"></span> 新增貼文 -->
-<!-- 				</button></a> -->
-<!-- 		</div> -->
+		<!-- 		<div class="btn-toolbar mb-2 mb-md-0"> -->
+		<%-- 			<a href="${contextRoot}/employee"><button type="button" --%>
+		<!-- 					class="btn btn-sm btn-outline-secondary"> -->
+		<!-- 					<span data-feather="calendar"></span> 新增貼文 -->
+		<!-- 				</button></a> -->
+		<!-- 		</div> -->
 	</div>
 </main>
 <div
@@ -28,7 +28,8 @@
 				<div class="card-header">請輸入</div>
 				<div class="card-body">
 
-					<form:form class="form" method="post" modelAttribute="commemt" enctype="multipart/form-data">
+					<form:form class="form" method="post" modelAttribute="commemt"
+						enctype="multipart/form-data">
 
 						<form:input path="id" type="hidden" />
 						<form:input path="name" type="hidden" />
@@ -41,13 +42,33 @@
 							<form:textarea path="content" class="form-control" />
 						</div>
 						<div class="form-group">
-							<input type="file" name="comimg" id="comimg" />
+							<div id="upload"></div>
+							<input type="file" name="comimg" id="comimg" width="40%"
+													height="35%"/>
 						</div>
 
 
 						<input type="submit" name="submit" value="更新">
 
 					</form:form>
+					<script type="text/javascript">
+						$(function() {
+
+							function preView(preDIV) {
+								var files = preDIV.files;
+								for (var i = 0; i < files.length; i++) {
+									var data = URL.createObjectURL(files[i]);
+									$('<img class="img-item" src="'+data+'" />')
+											.appendTo($("#upload"));
+								}
+							}
+
+							$(':file').change(function() {
+								console.log(this);
+								preView(this);
+							});
+						});
+					</script>
 
 				</div>
 			</div>

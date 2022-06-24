@@ -32,8 +32,8 @@ public class RepliesService {
 	}
 	
 	//取得留言數
-	public Integer countNumber(Integer id) {
-		return rDao.countMessage(id);
+	public Integer countReplies(Integer id) {
+		return rDao.countReplies(id);
 	}
 	
 	//找FK

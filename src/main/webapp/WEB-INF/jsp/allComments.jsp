@@ -40,6 +40,11 @@ cursor:pointer
 
 			<c:forEach var="page" items="${page.content}">
 
+<form:form modelAttribute="count">
+<c:out value="${count.count}"></c:out>
+</form:form>
+
+
 
 				<div class="row justify-content-center ">
 					<div class="col-9">
@@ -47,10 +52,9 @@ cursor:pointer
 							<div class="myMOUSE"
 								onclick="window.open('${contextRoot}/comments/page?id=${page.id}')">
 								<div class="card-header text-white bg-dark ">
-
 									<c:out value="${page.name}"></c:out>
 								</div>
-
+								
 								<div class="card-body">
 									<h1 class="display-5">
 										<c:out value="${page.title}"></c:out>
@@ -83,6 +87,7 @@ cursor:pointer
 									<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
 										value="${page.createondate}" />
 								</div>
+								
 							</div>
 							<div class="edit-link">
 								<a href="${contextRoot}/comments/edit?id=${page.id}"><button
