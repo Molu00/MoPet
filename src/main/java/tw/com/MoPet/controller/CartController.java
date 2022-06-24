@@ -37,24 +37,20 @@ public class CartController {
 	
 	@GetMapping("add/cartItems/{id}")
 	public String addCartList(@PathVariable Integer id,HttpSession session) {
-		System.out.println("有走進來嗎？？？");
-		
-//		Integer getCartId=cService.findByMemberId(100);
-//		System.out.println("=======================CartId :"+getCartId);
 		
 		try {
-			Optional<Cart> cart=cService.findByMemberId(155);
+			//抓購物車
+			Optional<Cart> cart=cService.findByMemberId(100);
+			
 //			System.out.println("=======================CartId :"+cart);
 			//先用memberId撈購物車出來
-			
 			Cart cart2 = null;
 			//如果照著欄位沒有撈到cart，新建cart
 			if(cart.isEmpty()){
-				
 			Cart newCart=new Cart();
 			
 			System.out.println("======================我想想這邊究竟該怎麼辦");
-			member tempMember=mService.findById(151);
+			member tempMember=mService.findById(100);
 			System.out.println(tempMember );
 			if(tempMember!=null) {
 			newCart.setFkMemberId(tempMember);
