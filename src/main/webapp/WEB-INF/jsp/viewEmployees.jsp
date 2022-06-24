@@ -40,11 +40,11 @@
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
-						<th scope="col">Avatar</th>
-						<th scope="col">Name</th>
-						<th scope="col">Account</th>
-						<th scope="col">Phone</th>
-						<th scope="col">StartDate</th>
+						<th scope="col">頭像</th>
+						<th scope="col">暱稱</th>
+						<th scope="col">Email帳號</th>
+						<th scope="col">聯繫方式</th>
+						<th scope="col">到職日</th>
 						<th scope="col">角色</th>
 						<th scope="col">編輯</th>
 						<th scope="col">刪除</th>
@@ -60,8 +60,8 @@
 									value="${employee.empEmail}" />
 							</th>
 							<td><c:out value="${employee.empTel}" /></td>
-							<td style="width: 200px"><c:out
-									value="${employee.empStartDate}" /></td>
+							<td style="width: 125px"><fmt:formatDate
+									pattern="yyyy/MM/dd " value="${employee.empStartDate}" /></td>
 							<td><c:out value="${employee.empRole}" /></td>
 							<td><a href="${contextRoot}/employee/edit/${employee.empId}"><button
 										class="btn btn-info">編輯</button></a></td>
@@ -73,31 +73,28 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</div>
-	</div>
+			<div class="row justify-content-center">
 
-	<div class="row justify-content-center">
+				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
 
-		<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
+					<c:choose>
+						<c:when test="${page.number != pageNumber-1}">
+							<a href="${contextRoot}/employees/all?p=${pageNumber}"><c:out
+									value="${pageNumber}" /></a>
+						</c:when>
 
-			<c:choose>
-				<c:when test="${page.number != pageNumber-1}">
-					<a href="${contextRoot}/employees/all?p=${pageNumber}"><c:out
-							value="${pageNumber}" /></a>
-				</c:when>
+						<c:otherwise>
+							<c:out value="${pageNumber}" />
+						</c:otherwise>
+					</c:choose>
 
-				<c:otherwise>
-					<c:out value="${pageNumber}" />
-				</c:otherwise>
-			</c:choose>
-
-			<c:if test="${pageNumber != page.totalPages}">
+					<c:if test="${pageNumber != page.totalPages}">
    |
    </c:if>
 
-		</c:forEach>
+				</c:forEach>
+			</div>
+		</div>
 	</div>
-
-
 </body>
 </html>

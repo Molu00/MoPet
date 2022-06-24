@@ -32,6 +32,9 @@ public class Replies {
 
 	@Column(name = "content")
 	private String content;
+	
+	@Column(name = "rep_img")
+	private String repimg;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -57,6 +60,14 @@ public class Replies {
 	}
 
 	
+
+	public String getRepimg() {
+		return repimg;
+	}
+
+	public void setRepimg(String repimg) {
+		this.repimg = repimg;
+	}
 
 	public Integer getId() {
 		return id;
@@ -100,13 +111,18 @@ public class Replies {
 		this.fk_c_id = fk_c_id;
 	}
 
-	public Replies(int id, String name, String content, Date createondate, int fk_c_id) {
+	public Replies(Integer id, String name, String content, String repimg, Date createondate, Integer fk_c_id,
+			Comments comments) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.content = content;
+		this.repimg = repimg;
 		this.createondate = createondate;
 		this.fk_c_id = fk_c_id;
+		this.comments = comments;
 	}
+
+	
 
 }

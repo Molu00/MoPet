@@ -14,7 +14,6 @@
 <title>All Members</title>
 </head>
 <body>
-<h2>test</h2>
 	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 		<div
 			class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -42,11 +41,11 @@
 				<table class="table">
 					<thead class="thead-dark">
 						<tr>
-							<th scope="col">Avatar</th>
-							<th scope="col">Name</th>
-							<th scope="col">Account</th>
-							<th scope="col">Phone</th>
-							<th scope="col">Address</th>
+							<th scope="col">頭像</th>
+							<th scope="col">暱稱</th>
+							<th scope="col">Email帳號</th>
+							<th scope="col">聯繫方式</th>
+							<th scope="col">地址</th>
 							<th scope="col">編輯</th>
 							<th scope="col">刪除</th>
 						</tr>
