@@ -29,83 +29,70 @@
 	<div
 		class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom">
 		<div class="container">
-			<div>
 
-				<form class="d-flex" role="search">
-					<input class="form-control me-2" type="search" placeholder="輸入姓名尋找"
-						aria-label="Search">
-					<button class="btn btn-dark" type="submit">Search</button>
-				</form>
+			<form class="d-flex" role="search">
+				<input class="form-control me-2" type="search" placeholder="輸入姓名尋找"
+					aria-label="Search">
+				<button class="btn btn-dark" type="submit">Search</button>
+			</form>
 
-				<br />
-				<table class="table">
-					<thead class="thead-dark">
+			<br />
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">頭像</th>
+						<th scope="col">暱稱</th>
+						<th scope="col">Email帳號</th>
+						<th scope="col">聯繫方式</th>
+						<th scope="col">到職日</th>
+						<th scope="col">角色</th>
+						<th scope="col">編輯</th>
+						<th scope="col">刪除</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="employee" items="${page.content}">
 						<tr>
-							<th scope="col">頭像</th>
-							<th scope="col">暱稱</th>
-							<th scope="col">Email帳號</th>
-							<th scope="col">聯繫方式</th>
-							<th scope="col">到職日</th>
-							<th scope="col">角色</th>
-							<th scope="col">編輯</th>
-							<th scope="col">刪除</th>
+							<td style="width: 100px"><img alt="avatar"
+								src="${employee.empProfile}" width="50%" height="50%"></td>
+							<td><c:out value="${employee.empName}" /></td>
+							<td scope="row" style="width: 50px"><c:out
+									value="${employee.empEmail}" />
+							</th>
+							<td><c:out value="${employee.empTel}" /></td>
+							<td style="width: 125px"><fmt:formatDate
+									pattern="yyyy/MM/dd " value="${employee.empStartDate}" /></td>
+							<td><c:out value="${employee.empRole}" /></td>
+							<td><a href="${contextRoot}/employee/edit/${employee.empId}"><button
+										class="btn btn-info">編輯</button></a></td>
+							<td><a onclick="return confirm('真的要刪除嗎')"
+								href="${contextRoot}/employee/delete/${employee.empId}"><button
+										class="btn btn-danger">刪除</button></a></td>
+
 						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="employee" items="${page.content}">
-							<tr>
-								<td style="width: 100px"><img alt="avatar"
-									src="${employee.empProfile}" width="50%" height="50%"></td>
-								<td><c:out value="${employee.empName}" /></td>
-								<td scope="row" style="width: 50px"><c:out
-										value="${employee.empEmail}" />
-								</th>
-								<td><c:out value="${employee.empTel}" /></td>
-								<td style="width: 125px"><fmt:formatDate
-										pattern="yyyy/MM/dd " value="${employee.empStartDate}" /></td>
-								<td><c:out value="${employee.empRole}" /></td>
-								<td><a
-									href="${contextRoot}/employee/edit/${employee.empId}"><button
-											class="btn btn-info">編輯</button></a></td>
-								<td><a onclick="return confirm('真的要刪除嗎')"
-									href="${contextRoot}/employee/delete/${employee.empId}"><button
-											class="btn btn-danger">刪除</button></a></td>
+					</c:forEach>
+				</tbody>
+			</table>
+			<div class="row justify-content-center">
 
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<nav aria-label="...">
-					<div class="row justify-content-center">
-						<div class="col-9">
-							<ul class="pagination">
-								<!-- 			<li class="page-item"><a class="page-link disabled">Previous</a></li> -->
-								<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
+				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
 
-									<c:choose>
-										<c:when test="${page.number != pageNumber-1}">
-											<li class="page-item"><a class="page-link"
-												href="${contextRoot}/employees/all?p=${pageNumber}"><c:out
-														value="${pageNumber}" /></a></li>
-										</c:when>
+					<c:choose>
+						<c:when test="${page.number != pageNumber-1}">
+							<a href="${contextRoot}/employees/all?p=${pageNumber}"><c:out
+									value="${pageNumber}" /></a>
+						</c:when>
 
-										<c:otherwise>
-											<li class="page-item disabled"><a class="page-link">
-													<c:out value="${pageNumber}" />
-										</c:otherwise>
-									</c:choose>
+						<c:otherwise>
+							<c:out value="${pageNumber}" />
+						</c:otherwise>
+					</c:choose>
 
-									<%-- 			<c:if test="${pageNumber != page.totalPages}"> --%>
-									<!--    | -->
-									<%--    </c:if> --%>
+					<c:if test="${pageNumber != page.totalPages}">
+   |
+   </c:if>
 
-								</c:forEach>
-								<!-- 				<li class="page-item"><a class="page-link disabled">Next</a></li> -->
-							</ul>
-						</div>
-					</div>
-				</nav>
-
+				</c:forEach>
 			</div>
 		</div>
 	</div>
