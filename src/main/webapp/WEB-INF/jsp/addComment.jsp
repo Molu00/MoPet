@@ -27,7 +27,7 @@
 				<div class="card-body">
 
 					<form:form class="form" method="post"
-						action="${contextRoot}/comments/add" modelAttribute="comments">
+						action="${contextRoot}/comments/add" modelAttribute="comments" enctype="multipart/form-data">
 
 						<div class="card-header">標題</div>
 						<div class="form-group">
@@ -40,6 +40,11 @@
 						<div class="card-header">發文者</div>
 						<div class="form-group">
 							<form:textarea path="name" class="form-control" />
+						</div>
+						
+						<div class="card-header">上傳圖片</div>
+						<div class="form-group"><br>
+							<input type="file" name="comimg" id="comimg" />
 						</div>
 
 

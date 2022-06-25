@@ -7,9 +7,15 @@
 <jsp:include page="layout/navbar2.jsp" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
+
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.myMOUSE{
+cursor:pointer
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -34,17 +40,21 @@
 
 			<c:forEach var="page" items="${page.content}">
 
+<form:form modelAttribute="count">
+<c:out value="${count.count}"></c:out>
+</form:form>
+
+
 
 				<div class="row justify-content-center ">
 					<div class="col-9">
 						<div class="card text-center ">
-							<div
+							<div class="myMOUSE"
 								onclick="window.open('${contextRoot}/comments/page?id=${page.id}')">
 								<div class="card-header text-white bg-dark ">
-
 									<c:out value="${page.name}"></c:out>
 								</div>
-
+								
 								<div class="card-body">
 									<h1 class="display-5">
 										<c:out value="${page.title}"></c:out>
@@ -56,10 +66,28 @@
 										<c:out value="${page.content}"></c:out>
 									</div>
 								</div>
+								
+								<div class="card-body">
+										<h1 class="display-5">
+											<%-- 										<img alt="avatar" src="${page.com_img}" width="50%" --%>
+											<!-- 											height="50%"> -->
+										</h1>
+										<c:choose>
+											<c:when test="${page.com_img !=null }">
+												<img alt="avatar" src="${page.com_img}" width="40%"
+													height="35%">
+											</c:when>
+											<c:otherwise>
+
+											</c:otherwise>
+										</c:choose>
+									</div>
+								
 								<div class="card-body">
 									<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
 										value="${page.createondate}" />
 								</div>
+								
 							</div>
 							<div class="edit-link">
 								<a href="${contextRoot}/comments/edit?id=${page.id}"><button

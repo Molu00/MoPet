@@ -1,5 +1,7 @@
 package tw.com.MoPet.controller;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -9,9 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import tw.com.MoPet.model.Comments;
 import tw.com.MoPet.service.CommentsService;
@@ -34,7 +38,13 @@ public class CommentsController {
 	}
 	
 	@PostMapping("comments/add") //post送出資料
-	public String addComment(@ModelAttribute("comments") Comments comments,Model model) {
+	public String addComment(@ModelAttribute("comments") Comments comments,Model model,@RequestParam("comimg") MultipartFile file) throws IOException {
+		
+		String temp = new String(Base64.getEncoder().encode(file.getBytes()));
+		String profile = "data:image/png;base64," + temp;
+		
+		comments.setCom_img(profile);
+		
 		cService.insertComment(comments);
 		
 		Comments newcomment = new Comments();
@@ -58,7 +68,12 @@ public class CommentsController {
 	}
 	
 	@PostMapping("comments/edit")
-	public String postEditComments(@ModelAttribute(name="comment") Comments comment) {
+	public String postEditComments(@ModelAttribute(name="comment") Comments comment,@RequestParam("comimg") MultipartFile file) throws IOException {
+		
+		String temp = new String(Base64.getEncoder().encode(file.getBytes()));
+		String profile = "data:image/png;base64," + temp;
+		
+		comment.setCom_img(profile);
 		
 		//取得現在時間
 		   Date now = Calendar.getInstance().getTime();
@@ -78,7 +93,14 @@ public class CommentsController {
 		return "redirect:/comments/all";
 	}
 	
-	
+//	@GetMapping(path = "replies/count")
+//	public String countReplies(@RequestParam("fk_c_id") Integer id) {
+//
+//		Integer count = rService.countReplies(id);
+//		System.out.println(count);
+//
+//		return "allComments";
+//	}
 	
 
 	

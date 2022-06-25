@@ -14,7 +14,7 @@ public interface RepliesRepository extends JpaRepository<Replies,Integer>{
 	public Replies findFirstByOrderByCreateondateDesc();
 	
 	@Query(value="select count(*) from Replies where fk_c_id=:id",nativeQuery=true)
-	public Integer countMessage(Integer id);
+	public Integer countReplies(Integer id);
 
 	@Query(value="select * from Replies where fk_c_id=:id",nativeQuery=true)
 	public List<Replies> findByFFk(Integer id);
