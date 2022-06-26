@@ -17,6 +17,8 @@
       <p class="lead text-muted">歡迎來到Mopet商城，您可以在這裡找到數百種商品，總有一種適合您心愛的寵物</p>
     </div>
   </section>
+  <a href="${contextRoot}/into/cart"><button type="button"
+					class="btn btn-sm btn-outline-secondary">將購物車明細暫放這個位置</button></a>			
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">

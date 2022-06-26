@@ -20,8 +20,7 @@
 		</div>
 	</div>
 </main>
-<div
-	class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom">
+<div class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom">
 	<div class="container">
 		<div>
 			<h2 align="center"></h2>
@@ -52,8 +51,7 @@
 					<c:forEach var="allProduct" items="${productList.content}">
 						<tr>
 							<th scope="row"><c:out value="${allProduct.pId}" /></th>
-							<td><img class="rounded-sm" alt="productImg"
-								src="${allProduct.pImg}" width="80px" height="80px"></td>
+							<td><img class="rounded-sm" alt="productImg" src="${allProduct.pImg}" width="80px" height="80px"></td>
 							<td><c:out value="${allProduct.pName}" /></td>
 							<td><c:out value="${allProduct.companyid.getCompany()}" /></td>
 							<td><c:out value="${allProduct.catid.getCategoryName()}" /></td>
