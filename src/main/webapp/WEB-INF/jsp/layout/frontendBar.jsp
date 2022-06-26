@@ -81,6 +81,5 @@ img.card-img {
 		</div>
 	</nav>
 
-
 </body>
 </html>

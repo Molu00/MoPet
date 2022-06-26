@@ -1,5 +1,8 @@
 package tw.com.MoPet.model;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,9 +32,8 @@ public class CartItems {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_product_id")
 	private Product pId;
-
+	
 	public CartItems() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Integer getCartItemsId() {
