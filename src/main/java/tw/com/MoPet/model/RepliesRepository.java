@@ -22,7 +22,4 @@ public interface RepliesRepository extends JpaRepository<Replies,Integer>{
 	@Query(value="select fk_c_id from Replies where id=:id", nativeQuery=true)
 	public Integer findFKID(Integer id);
 	
-	
-
-
 }

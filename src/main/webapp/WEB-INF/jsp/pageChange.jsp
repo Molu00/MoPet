@@ -48,6 +48,7 @@
 											</c:otherwise>
 										</c:choose>
 							</div>
+										<span>留言數<c:out value="${count}"></c:out></span>
 							<div class="card-body">
 								<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
 									value="${com.createondate}" />
