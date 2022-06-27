@@ -62,6 +62,7 @@ public class Member {
 		if (temp != null) {
 			m.addAttribute("user", temp.getMemberEmail());
 			session.setAttribute("loginOK", temp2);
+			session.setAttribute("cart_ID", temp2.getId());
 			return "redirect:/members/all";
 		}
 		errors.put("msg", "UserEmail or UserPwd is not correct.");
