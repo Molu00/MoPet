@@ -40,7 +40,8 @@ public class Member {
 	}
 
 	@PostMapping(path = "checklogin.controller")
-	public String login(@RequestParam("userEmail") String user, @RequestParam("userPwd") String pwd, Model m, HttpSession session) {
+	public String login(@RequestParam("userEmail") String user, @RequestParam("userPwd") String pwd, Model m,
+			HttpSession session) {
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
 
@@ -55,10 +56,12 @@ public class Member {
 		}
 
 		member temp = mService.checkLogin(user, pwd);
+		member temp2 = mService.findByAccount(user);
+		System.out.println(temp2.getId());
 
 		if (temp != null) {
 			m.addAttribute("user", temp.getMemberEmail());
-			session.setAttribute("loginOK", temp);
+			session.setAttribute("loginOK", temp2);
 			return "redirect:/members/all";
 		}
 		errors.put("msg", "UserEmail or UserPwd is not correct.");
