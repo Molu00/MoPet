@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,7 +29,6 @@ import tw.com.MoPet.model.member;
 import tw.com.MoPet.service.memberService;
 
 @Controller
-@SessionAttributes(names = { "LoginOK" })
 public class Member {
 
 	@Autowired
@@ -40,7 +40,7 @@ public class Member {
 	}
 
 	@PostMapping(path = "checklogin.controller")
-	public String login(@RequestParam("userEmail") String user, @RequestParam("userPwd") String pwd, Model m) {
+	public String login(@RequestParam("userEmail") String user, @RequestParam("userPwd") String pwd, Model m, HttpSession session) {
 		Map<String, String> errors = new HashMap<String, String>();
 		m.addAttribute("errors", errors);
 
@@ -58,7 +58,7 @@ public class Member {
 
 		if (temp != null) {
 			m.addAttribute("user", temp.getMemberEmail());
-			m.addAttribute("LoginOK", temp);
+			session.setAttribute("loginOK", temp);
 			return "redirect:/members/all";
 		}
 		errors.put("msg", "UserEmail or UserPwd is not correct.");
