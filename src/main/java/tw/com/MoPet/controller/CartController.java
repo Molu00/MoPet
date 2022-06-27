@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,34 +35,40 @@ public class CartController {
 	@Autowired
 	private memberService mService;
 
+	@GetMapping("delete/cartItem/{id}")
+	public void deleteItems(@PathVariable Integer id, HttpSession session) {
+		Optional<Cart> cart = cService.findByMemberId(100);
+		ciService.deleteItemByTwoKeys(id, cart.get().getCartId());
+	}
+	
 	@GetMapping("add/cartItems/{id}")
 	public String addCartList(@PathVariable Integer id, HttpSession session) {
-
-		// memberId撈購物車出來
-
+		
 		Optional<Cart> cart = cService.findByMemberId(100);
-
-		// 先創個null的車車，等等會用到它
 		Cart tempCart = null;
 
 		if (!cart.isEmpty() && cart.get().isCartStatus() == false) {
-			System.out.println("有從memberid抓到購物車車 cart Id: " + cart.get().getCartId());
-			System.out.println("購物車的狀態是false: " + cart.get().isCartStatus());
-			// new一個items
-			CartItems items = new CartItems();
-			// 抓商品
-			Product getProduct = pService.getById(id);
+			CartItems item=ciService.findItemByTwoKeys(id, cart.get().getCartId());
+			if(item!=null) {
+				item.setCartItemsAmount(item.getCartItemsAmount()+1);
+				ciService.insertCartItems(item);
+			}
+			else {
+				// new一個items
+				CartItems items = new CartItems();
+				// 抓商品
+				Product getProduct = pService.getById(id);
 
-			// 抓到商品了！
-			if (getProduct != null) {
-				System.out.println("究竟商品有沒有抓到");
-				// 塞值囉！
-				items.setpId(getProduct);
-				items.setCartId(cart.get());
-				// 數量都先1
-				items.setCartItemsAmount(2);
-				// insert資料進清單裡！
-				ciService.insertCartItems(items);
+				if (getProduct != null) {
+					System.out.println("究竟商品有沒有抓到");
+					// 塞值囉！
+					items.setpId(getProduct);
+					items.setCartId(cart.get());
+					// 數量都先1
+					items.setCartItemsAmount(1);
+					// insert資料進清單裡！
+					ciService.insertCartItems(items);
+				}
 			}
 		}
 
@@ -90,7 +95,7 @@ public class CartController {
 				items.setpId(getProduct);
 				items.setCartId(tempCart);
 				// 數量都先1
-				items.setCartItemsAmount(2);
+				items.setCartItemsAmount(1);
 				// insert資料進清單裡！
 				ciService.insertCartItems(items);
 			}
@@ -99,29 +104,17 @@ public class CartController {
 	}
 
 	@GetMapping("into/cart")
-	public ModelAndView seeCart(ModelAndView mvc, HttpSession session) {
+	public ModelAndView seeCartItems(ModelAndView mvc, HttpSession session) {
 		Optional<Cart> cart = cService.findByMemberId(100);
-		// 先創個null的車車，等等會用到它
-		
 		if (cart.isEmpty() || cart.get().isCartStatus() == true) {
-			String emptyStr="尚未購入任何商品";
-			mvc.getModel().put("emptyStr",emptyStr);
-			mvc.setViewName("cartItems");
+			mvc.setViewName("cartItemsEmpty");
 		}
-
 		if (!cart.isEmpty() && cart.get().isCartStatus() == false) {
 			System.out.println("有從memberid抓到購物車車 cart Id: " + cart.get().getCartId());
-			List<CartItems> list=ciService.findGourpById(8);
-//			List<CartItems> itemsList=ciService.findGourpById(cart.get().getCartId());
-			for(Object x:list) {
-				System.out.println("======================內容嗎"+x);
-			}
-//			System.out.println("========================================================"+list);
-			
-//			mvc.getModel().put("productList",itemsList);
+			List<CartItems> productList=ciService.findItemByCart(cart.get().getCartId());
+			mvc.getModel().put("productList",productList);
 			mvc.setViewName("cartItems");
-		}
-		
+			}
 		return mvc;
 	}
 }
