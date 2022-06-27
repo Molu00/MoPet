@@ -100,4 +100,8 @@ public class memberService {
 		
 	}
 	
+	public member findByAccount(String email) {
+		return memDao.findByAccount(email);
+	}
+	
 }

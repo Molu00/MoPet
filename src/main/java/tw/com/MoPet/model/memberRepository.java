@@ -9,4 +9,7 @@ public interface memberRepository extends JpaRepository<member, Integer> {
 
 	@Query("from member where memberEmail=:memEmail and memberPwd=:memPwd")
 	public member findByNameAndPwd(String memEmail, String memPwd);
+	
+	@Query("Select* from member where member_email:email")
+	public member findByAccount(String email);
 }
