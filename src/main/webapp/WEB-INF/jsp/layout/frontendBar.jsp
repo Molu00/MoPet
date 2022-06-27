@@ -34,8 +34,8 @@
 }
 
 img.card-img {
-	width: 130%;
-	height: 270px;
+	width: 100%;
+	height: 200px;
 	object-fit: cover;
 }
 </style>
@@ -80,7 +80,6 @@ img.card-img {
 			</form>
 		</div>
 	</nav>
-
 
 </body>
 </html>

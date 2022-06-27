@@ -15,4 +15,5 @@ public interface cartRepository extends JpaRepository<Cart, Integer> {
 	
 	@Query(value = "select * from Cart a where a.fk_member_id = ?1", nativeQuery=true)
 	public Optional<Cart> testMember(Integer id);
+	
 }

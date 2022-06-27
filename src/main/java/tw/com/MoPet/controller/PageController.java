@@ -115,6 +115,11 @@ public class PageController {
 			return "index";
 		}
 		
+		@GetMapping("/testIndex")
+		public String testIndex() {
+			return "testIndex";
+		}
+		
 		@GetMapping("backend")
 		public String backend() {
 			return "background";
