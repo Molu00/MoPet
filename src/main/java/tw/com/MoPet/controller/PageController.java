@@ -159,5 +159,10 @@ public class PageController {
 			mvc.setViewName("viewProducts");
 			return mvc;
 		}
+		
+		@GetMapping("cart/ItemsEmpty")
+		public String cartItemEmpty() {
+			return "cartItemsEmpty";
+		}
 	
 }
