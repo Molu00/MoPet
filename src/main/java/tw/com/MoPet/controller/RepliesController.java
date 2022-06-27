@@ -47,6 +47,7 @@ public class RepliesController {
 
 	@PostMapping("replies/add") // post送出資料
 	public String addReplies(@ModelAttribute("replies") Replies replies, Model model) {
+		
 		rService.insertReplies(replies);
 
 		Replies newReplies = new Replies();
