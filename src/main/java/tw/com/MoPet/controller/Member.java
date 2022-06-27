@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,7 +155,7 @@ public class Member {
 
 	@GetMapping("members/all")
 	public ModelAndView viewMessages(ModelAndView mav,
-			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber) {
+			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber, HttpSession session) {
 		Page<member> page = mService.findByPage(pageNumber);
 		Object m = mav.getModel().get("LoginOK");
 		if (m == null) {
@@ -168,8 +169,9 @@ public class Member {
 	}
 
 	@GetMapping("/logout")
-	public String toLogout(SessionStatus status) {
-		status.setComplete();
+	public String toLogout(HttpSession session) {
+		session.removeAttribute("loginOK");
+		session.removeAttribute("cart_ID");
 		return "login";
 	}
 }
