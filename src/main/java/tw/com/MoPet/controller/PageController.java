@@ -26,6 +26,9 @@ public class PageController {
 	@Autowired
 	public RepliesService rService;
 	
+//	@Autowired
+//	public comments_count comments_count;
+	
 //	@GetMapping("/")
 //	public String index() {
 //		return"index";
@@ -65,8 +68,17 @@ public class PageController {
 	//取的分頁
 		@GetMapping("comments/all")
 		public String viewtext(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model) {
+			
 			Page<Comments> page = cService.findByPage(pageNumber);
 			
+			
+//			for(Comments comments:page) {
+//				
+//				comments.setCount(rService.countReplies(comments.getId()));
+//				comments_count.setCom(comments);
+//				comments_count.setCom(comments);
+//			}
+//			
 			model.addAttribute("page", page);
 			
 			return "allComments";
@@ -86,11 +98,13 @@ public class PageController {
 			
 			Comments com = cService.findById(id);
 			List<Replies> fk = rService.findByFk(id);
+			Integer count = rService.countReplies(id);
 			
 //			System.out.println(fk);
 			
 			model.addAttribute("com", com);
 			model.addAttribute("fk", fk);
+			model.addAttribute("count", count);
 					
 			return "pageChange";
 			

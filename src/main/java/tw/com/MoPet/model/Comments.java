@@ -48,6 +48,8 @@ public class Comments {
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="comments",cascade=CascadeType.ALL)
 	private Set<Replies> replies = new LinkedHashSet<Replies>();
 
+//	private Integer count;
+	
 	//檢查是否有時間，如果沒有時間依照現在時間產生
 		@PrePersist   //helper function 在物件轉換成Persistent狀態之前，做此方法
 		public void onTiome() {
@@ -60,9 +62,15 @@ public class Comments {
 			super();
 			this.id = id;
 		}
+	
+//	public Integer getCount() {
+//		return count;
+//	}
+//
+//	public void setCount(Integer count) {
+//		this.count = count;
+//	}
 
-	
-	
 	public String getCom_img() {
 		return com_img;
 	}
