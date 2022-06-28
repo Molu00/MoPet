@@ -128,7 +128,7 @@ public class Member {
 	@PostMapping(path = "member/edit")
 	public String editMember(@RequestParam("id") Integer id, @RequestParam("email") String user,
 			@RequestParam("nickName") String name, @RequestParam("phonenNumber") String phone,
-			@RequestParam("shippingAddress") String address, @RequestParam("profile") MultipartFile file)
+			@RequestParam("shippingAddress") String address, @RequestParam("profile") MultipartFile file, @RequestParam("gender") String gender,@RequestParam("birth")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date birth)
 			throws IOException {
 
 		member temp = mService.findById(id);
@@ -143,6 +143,8 @@ public class Member {
 		temp.setMemberName(name);
 		temp.setMemberTel(phone);
 		temp.setMemberAddress(address);
+		temp.setMemberGender(gender);
+		temp.setMemberBirth(birth);
 		mService.insert(temp);
 		return "redirect:/members/all";
 	}

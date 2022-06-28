@@ -35,25 +35,62 @@ public class CartController {
 	@Autowired
 	private memberService mService;
 
-	@GetMapping("delete/cartItem/{id}")
-	public void deleteItems(@PathVariable Integer id, HttpSession session) {
-		Optional<Cart> cart = cService.findByMemberId(100);
-		ciService.deleteItemByTwoKeys(id, cart.get().getCartId());
+	@GetMapping("minus/cartItem/{id}")
+	public String minusItems(@PathVariable Integer id, HttpSession session) {
+		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
+		Optional<Cart> cart = cService.findByMemberId(memId);
+		Integer cartId = cart.get().getCartId().intValue();
+
+		CartItems item = ciService.findItemByTwoKeys(id, cartId);
+		item.setCartItemsAmount(item.getCartItemsAmount() - 1);
+
+		if (item.getCartItemsAmount() != 0) {
+			ciService.insertCartItems(item);
+		} else {
+			ciService.deleteItem(item.getCartItemsId());
+		}
+		return "redirect:/into/cart";
 	}
-	
+
+	@GetMapping("add/cartItem/{id}")
+	public String addItems(@PathVariable Integer id, HttpSession session) {
+		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
+		Optional<Cart> cart = cService.findByMemberId(memId);
+
+		Integer cartId = cart.get().getCartId().intValue();
+		CartItems item = ciService.findItemByTwoKeys(id, cartId);
+		item.setCartItemsAmount(item.getCartItemsAmount() + 1);
+		ciService.insertCartItems(item);
+
+		return "redirect:/into/cart";
+	}
+
+	@GetMapping("delete/cartItem/{id}")
+	public String deleteItems(@PathVariable Integer id, HttpSession session) {
+		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
+		Optional<Cart> cart = cService.findByMemberId(memId);
+		Integer cartId = cart.get().getCartId().intValue();
+
+		CartItems items = ciService.findItemByTwoKeys(id, cartId);
+
+		ciService.deleteItem(items.getCartItemsId());
+
+//		ciService.deleteItemByTwoKeys(id,cartId);
+		return "redirect:/into/cart";
+	}
+
 	@GetMapping("add/cartItems/{id}")
 	public String addCartList(@PathVariable Integer id, HttpSession session) {
-		
-		Optional<Cart> cart = cService.findByMemberId(100);
+		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
+		Optional<Cart> cart = cService.findByMemberId(memId);
 		Cart tempCart = null;
 
 		if (!cart.isEmpty() && cart.get().isCartStatus() == false) {
-			CartItems item=ciService.findItemByTwoKeys(id, cart.get().getCartId());
-			if(item!=null) {
-				item.setCartItemsAmount(item.getCartItemsAmount()+1);
+			CartItems item = ciService.findItemByTwoKeys(id, cart.get().getCartId());
+			if (item != null) {
+				item.setCartItemsAmount(item.getCartItemsAmount() + 1);
 				ciService.insertCartItems(item);
-			}
-			else {
+			} else {
 				// new一個items
 				CartItems items = new CartItems();
 				// 抓商品
@@ -77,7 +114,7 @@ public class CartController {
 			System.out.println("靠著memberid沒有抓到購到購物車，cart: " + cart.isEmpty());
 			// 建立一個新車車，從memberService裡撈member資料出來
 			Cart newCart = new Cart();
-			member tempMember = mService.findById(100);
+			member tempMember = mService.findById(memId);
 
 			// 如果member有資料，新車車塞member的值
 			if (tempMember != null) {
@@ -105,16 +142,28 @@ public class CartController {
 
 	@GetMapping("into/cart")
 	public ModelAndView seeCartItems(ModelAndView mvc, HttpSession session) {
-		Optional<Cart> cart = cService.findByMemberId(100);
-		if (cart.isEmpty() || cart.get().isCartStatus() == true) {
+		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
+		Optional<Cart> cart = cService.findByMemberId(memId);
+
+		if (cart.isEmpty()) {
 			mvc.setViewName("cartItemsEmpty");
 		}
-		if (!cart.isEmpty() && cart.get().isCartStatus() == false) {
-			System.out.println("有從memberid抓到購物車車 cart Id: " + cart.get().getCartId());
-			List<CartItems> productList=ciService.findItemByCart(cart.get().getCartId());
-			mvc.getModel().put("productList",productList);
-			mvc.setViewName("cartItems");
+
+		else {
+			
+			List<CartItems> cartList = ciService.findItemByCart(cart.get().getCartId());
+			
+			if (cartList.isEmpty() || cart.get().isCartStatus() == true) {
+				mvc.setViewName("cartItemsEmpty");
 			}
+			if (!cart.isEmpty() && cart.get().isCartStatus() == false) {
+				System.out.println("有從memberid抓到購物車車 cart Id: " + cart.get().getCartId());
+				List<CartItems> productList = ciService.findItemByCart(cart.get().getCartId());
+				mvc.getModel().put("productList", productList);
+				mvc.setViewName("cartItems");
+			}
+		}
+
 		return mvc;
 	}
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import tw.com.MoPet.model.Cart;
+import tw.com.MoPet.model.Product;
 import tw.com.MoPet.model.cartRepository;
 import tw.com.MoPet.model.member;
 
@@ -31,5 +32,10 @@ public class CartService {
 	
 	public Optional<Cart> findByMemberId(Integer id) {
 		return cartDao.testMember(id);
+//		if(option.isPresent()) {
+//		return option.get();
+//			}
+//		return null;
+//		return cartDao.testMember(id);
 	}
 }

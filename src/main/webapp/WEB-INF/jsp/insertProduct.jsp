@@ -3,6 +3,10 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:if test="${empty loginOK}">
+    <c:set var='target' value='${pageContext.request.requestURI}' scope='session' />
+    <c:redirect url="/login"/>
+</c:if>
 <jsp:include page="layout/navbar2.jsp" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <script>
@@ -88,8 +92,7 @@
 					</div>
 				</form:form>
 				<div class="btn-group d-flex" role="group">
-					<button id="autokeyin" class="btn btn-light" type="submit">Auto
-						keyin</button>
+					<button id="autokeyin" class="btn btn-light" type="submit">Auto keyin</button>
 				</div>
 
 			</div>
