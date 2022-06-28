@@ -73,10 +73,17 @@ public class CommentsController {
 	@PostMapping("comments/edit")
 	public String postEditComments(@ModelAttribute(name="comment") Comments comment,@RequestParam("comimg") MultipartFile file) throws IOException {
 		
+		if (file.isEmpty()) {
+			comment.getId();
+			Comments com=cService.findById(comment.getId());
+			comment.setCom_img(com.getCom_img());
+		}
+		else {
 		String temp = new String(Base64.getEncoder().encode(file.getBytes()));
 		String profile = "data:image/png;base64," + temp;
 		
 		comment.setCom_img(profile);
+		}
 		
 		//取得現在時間
 		   Date now = Calendar.getInstance().getTime();
