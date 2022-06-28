@@ -92,8 +92,7 @@
 					</div>
 				</form:form>
 				<div class="btn-group d-flex" role="group">
-					<button id="autokeyin" class="btn btn-light" type="submit">Auto
-						keyin</button>
+					<button id="autokeyin" class="btn btn-light" type="submit">Auto keyin</button>
 				</div>
 
 			</div>

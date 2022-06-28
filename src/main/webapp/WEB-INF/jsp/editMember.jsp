@@ -49,7 +49,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="inputgender">性別</label> <select name="gender" value="${member.memberGender}">
+						<label for="inputgender">性別</label> <select name="gender" value=${member.memberGender}>
 							<option value="男">男</option>
 							<option value="女">女</option>
 						</select>

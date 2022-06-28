@@ -40,7 +40,7 @@ public class Member {
 		return "login";
 	}
 
-	@PostMapping(path = "checklogin.controller")
+	@GetMapping(path = "checklogin.controller")
 	public String login(@RequestParam("userEmail") String user, @RequestParam("userPwd") String pwd, Model m,
 			HttpSession session) {
 		Map<String, String> errors = new HashMap<String, String>();
@@ -59,6 +59,10 @@ public class Member {
 		member temp = mService.checkLogin(user, pwd);
 		member temp2 = mService.findByAccount(user);
 		System.out.println(temp2.getId());
+//		Object com=session.getAttribute("loginOK");
+//		if (session.getAttribute("loginOK")== null) {
+//			return "login";
+//		}
 
 		if (temp != null) {
 			m.addAttribute("user", temp.getMemberEmail());
@@ -128,7 +132,7 @@ public class Member {
 	@PostMapping(path = "member/edit")
 	public String editMember(@RequestParam("id") Integer id, @RequestParam("email") String user,
 			@RequestParam("nickName") String name, @RequestParam("phonenNumber") String phone,
-			@RequestParam("shippingAddress") String address, @RequestParam("profile") MultipartFile file)
+			@RequestParam("shippingAddress") String address, @RequestParam("profile") MultipartFile file, @RequestParam("gender") String gender,@RequestParam("birth")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date birth)
 			throws IOException {
 
 		member temp = mService.findById(id);
@@ -143,6 +147,8 @@ public class Member {
 		temp.setMemberName(name);
 		temp.setMemberTel(phone);
 		temp.setMemberAddress(address);
+		temp.setMemberGender(gender);
+		temp.setMemberBirth(birth);
 		mService.insert(temp);
 		return "redirect:/members/all";
 	}
