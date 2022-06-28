@@ -14,28 +14,28 @@ import tw.com.MoPet.service.memberService;
 
 @Controller
 public class OrderController {
-//	
-//	@Autowired
-//	private ProductService pService;
-//
-//	@Autowired
-//	private CartitemsService ciService;
-//
-//	@Autowired
-//	private CartService cService;
-//
-//	@Autowired
-//	private memberService mService;
-//	
-//	@GetMapping("checkIntoOrder")
-//	public ModelAndView CheckOrder(HttpSession session) {
-//		Integer memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
-//		//用id抓購物車，先判定status是否已結帳
-//		//抓出status為否的明細
-//		//
-//		
-//		
-//		
-//	}
+	
+	@Autowired
+	private ProductService pService;
+
+	@Autowired
+	private CartitemsService ciService;
+
+	@Autowired
+	private CartService cService;
+
+	@Autowired
+	private memberService mService;
+	
+	@GetMapping("checkIntoOrder")
+	public void CheckOrder(HttpSession session) {
+		Integer memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
+		//用id抓購物車，先判定status是否已結帳
+		//抓出status為否的明細
+		//
+		
+		
+		
+	}
 
 }
