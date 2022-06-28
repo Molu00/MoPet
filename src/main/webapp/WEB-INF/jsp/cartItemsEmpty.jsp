@@ -25,7 +25,6 @@
       <p>歡迎進商城購入您需要的商品</p>
     </div>
   </div>
-
   <div class="container">
     <!-- Example row of columns -->
     <div >

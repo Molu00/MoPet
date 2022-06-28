@@ -33,7 +33,6 @@ $(function(){
 </head>
 <body>
 <main role="main">
-
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
@@ -57,6 +56,7 @@ $(function(){
 					</tr>
 				</thead>
 				<tbody>
+				<form:form method="POST" action="${contextRoot}/checkAllInOrder" modelAttribute="Order">
 					<c:forEach var="allProduct" items="${productList}">
 						<tr>
 							<td class="col-1"><a href="${contextRoot}/delete/cartItem/${allProduct.pId.getpId()}"><button class="btn btn-warning">X</button></a></td>
@@ -73,11 +73,13 @@ $(function(){
 							<td><div>${allProduct.cartItemsAmount*allProduct.pId.getpPrice()}</div></td>
 						</tr>
 					</c:forEach>
+					</form:form>
 				</tbody>
 			</table>
     <hr>
 		<div class="btn-toolbar mb-2 mb-md-0">
-		  <a href="#"><button type="button" class="btn btn-secondary">下一步</button></a>
+		<a href="${contextRoot}/shop/products"><button type="button" class="btn btn-secondary mg-1">返回商城</button></a>
+		  <a href="#"><button type="submit" class="btn btn-secondary">下一步</button></a>
 		  </div>
   </div> <!-- /container -->
   </div>
