@@ -59,6 +59,10 @@ public class Member {
 		member temp = mService.checkLogin(user, pwd);
 		member temp2 = mService.findByAccount(user);
 		System.out.println(temp2.getId());
+//		Object com=session.getAttribute("loginOK");
+//		if (session.getAttribute("loginOK")== null) {
+//			return "login";
+//		}
 
 		if (temp != null) {
 			m.addAttribute("user", temp.getMemberEmail());

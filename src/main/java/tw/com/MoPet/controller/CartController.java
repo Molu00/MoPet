@@ -37,6 +37,13 @@ public class CartController {
 
 	@GetMapping("minus/cartItem/{id}")
 	public String minusItems(@PathVariable Integer id, HttpSession session) {
+		
+		if (session.getAttribute("loginOK") == null) {
+			String prePage="redirect:/into/cart";
+			session.setAttribute("PrePage", prePage);
+			return "redirect:/login";
+			
+		}else {
 		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
 		Optional<Cart> cart = cService.findByMemberId(memId);
 		Integer cartId = cart.get().getCartId().intValue();
@@ -51,9 +58,15 @@ public class CartController {
 		}
 		return "redirect:/into/cart";
 	}
+		}
 
 	@GetMapping("add/cartItem/{id}")
 	public String addItems(@PathVariable Integer id, HttpSession session) {
+		if (session.getAttribute("loginOK") == null) {
+			String prePage="redirect:/into/cart";
+			session.setAttribute("PrePage", prePage);
+			return "redirect:/login";
+		}else {
 		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
 		Optional<Cart> cart = cService.findByMemberId(memId);
 
@@ -63,10 +76,16 @@ public class CartController {
 		ciService.insertCartItems(item);
 
 		return "redirect:/into/cart";
+		}
 	}
 
 	@GetMapping("delete/cartItem/{id}")
 	public String deleteItems(@PathVariable Integer id, HttpSession session) {
+		if (session.getAttribute("loginOK") == null) {
+			String prePage="redirect:/into/cart";
+			session.setAttribute("PrePage", prePage);
+			return "redirect:/login";
+		}else {
 		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
 		Optional<Cart> cart = cService.findByMemberId(memId);
 		Integer cartId = cart.get().getCartId().intValue();
@@ -78,92 +97,105 @@ public class CartController {
 //		ciService.deleteItemByTwoKeys(id,cartId);
 		return "redirect:/into/cart";
 	}
+	}
 
 	@GetMapping("add/cartItems/{id}")
 	public String addCartList(@PathVariable Integer id, HttpSession session) {
-		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
-		Optional<Cart> cart = cService.findByMemberId(memId);
-		Cart tempCart = null;
 
-		if (!cart.isEmpty() && cart.get().isCartStatus() == false) {
-			CartItems item = ciService.findItemByTwoKeys(id, cart.get().getCartId());
-			if (item != null) {
-				item.setCartItemsAmount(item.getCartItemsAmount() + 1);
-				ciService.insertCartItems(item);
-			} else {
-				// new一個items
-				CartItems items = new CartItems();
-				// 抓商品
-				Product getProduct = pService.getById(id);
+		if (session.getAttribute("loginOK") == null) {
+			String prePage="redirect:/shop/products";
+			session.setAttribute("PrePage", prePage);
+			return "redirect:/login";
+		}
 
-				if (getProduct != null) {
-					System.out.println("究竟商品有沒有抓到");
+		else {
+			int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
+			Optional<Cart> cart = cService.findByMemberId(memId);
+			Cart tempCart = null;
+
+			if (!cart.isEmpty() && cart.get().isCartStatus() == false) {
+				CartItems item = ciService.findItemByTwoKeys(id, cart.get().getCartId());
+				if (item != null) {
+					item.setCartItemsAmount(item.getCartItemsAmount() + 1);
+					ciService.insertCartItems(item);
+				} else {
+					// new一個items
+					CartItems items = new CartItems();
+					// 抓商品
+					Product getProduct = pService.getById(id);
+
+					if (getProduct != null) {
+						System.out.println("究竟商品有沒有抓到");
+						// 塞值囉！
+						items.setpId(getProduct);
+						items.setCartId(cart.get());
+						// 數量都先1
+						items.setCartItemsAmount(1);
+						// insert資料進清單裡！
+						ciService.insertCartItems(items);
+					}
+				}
+			}
+
+			// 如果照著欄位沒有撈到車車
+			if (cart.isEmpty() || cart.get().isCartStatus() == true) {
+				System.out.println("靠著memberid沒有抓到購到購物車，cart: " + cart.isEmpty());
+				// 建立一個新車車，從memberService裡撈member資料出來
+				Cart newCart = new Cart();
+				member tempMember = mService.findById(memId);
+
+				// 如果member有資料，新車車塞member的值
+				if (tempMember != null) {
+					newCart.setFkMemberId(tempMember);
+					// 存進新車車裡，回傳到最初建立的null車車
+					tempCart = cService.insertCart(newCart);
+
+					// 有車車了
+					// 車車的status如果是false，代表訂單還沒成立
+					// new一個items
+					CartItems items = new CartItems();
+					Product getProduct = pService.getById(id);
+
 					// 塞值囉！
 					items.setpId(getProduct);
-					items.setCartId(cart.get());
+					items.setCartId(tempCart);
 					// 數量都先1
 					items.setCartItemsAmount(1);
 					// insert資料進清單裡！
 					ciService.insertCartItems(items);
 				}
 			}
+			return "redirect:/shop/products";
 		}
 
-		// 如果照著欄位沒有撈到車車
-		if (cart.isEmpty() || cart.get().isCartStatus() == true) {
-			System.out.println("靠著memberid沒有抓到購到購物車，cart: " + cart.isEmpty());
-			// 建立一個新車車，從memberService裡撈member資料出來
-			Cart newCart = new Cart();
-			member tempMember = mService.findById(memId);
-
-			// 如果member有資料，新車車塞member的值
-			if (tempMember != null) {
-				newCart.setFkMemberId(tempMember);
-				// 存進新車車裡，回傳到最初建立的null車車
-				tempCart = cService.insertCart(newCart);
-
-				// 有車車了
-				// 車車的status如果是false，代表訂單還沒成立
-				// new一個items
-				CartItems items = new CartItems();
-				Product getProduct = pService.getById(id);
-
-				// 塞值囉！
-				items.setpId(getProduct);
-				items.setCartId(tempCart);
-				// 數量都先1
-				items.setCartItemsAmount(1);
-				// insert資料進清單裡！
-				ciService.insertCartItems(items);
-			}
-		}
-		return "redirect:/shop/products";
 	}
 
 	@GetMapping("into/cart")
 	public ModelAndView seeCartItems(ModelAndView mvc, HttpSession session) {
-		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
-		Optional<Cart> cart = cService.findByMemberId(memId);
 
-		if (cart.isEmpty()) {
-			mvc.setViewName("cartItemsEmpty");
-		}
+		if (session.getAttribute("loginOK") == null) {
+			String prePage="redirect:/into/cart";
+			session.setAttribute("PrePage", prePage);
+			mvc.setViewName("redirect:/login");
+		} else {
+			int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
+			Optional<Cart> cart = cService.findByMemberId(memId);
 
-		else {
-			
-			List<CartItems> cartList = ciService.findItemByCart(cart.get().getCartId());
-			
-			if (cartList.isEmpty() || cart.get().isCartStatus() == true) {
+			if (cart.isEmpty()) {
 				mvc.setViewName("cartItemsEmpty");
 			}
-			if (!cart.isEmpty() && cart.get().isCartStatus() == false) {
-				System.out.println("有從memberid抓到購物車車 cart Id: " + cart.get().getCartId());
-				List<CartItems> productList = ciService.findItemByCart(cart.get().getCartId());
-				mvc.getModel().put("productList", productList);
-				mvc.setViewName("cartItems");
+			else {
+				List<CartItems> cartList = ciService.findItemByCart(cart.get().getCartId());
+				if (cartList.isEmpty() || cart.get().isCartStatus() == true) {
+					mvc.setViewName("cartItemsEmpty");
+				} else if (!cart.isEmpty() && cart.get().isCartStatus() == false) {
+					System.out.println("有從memberid抓到購物車車 cart Id: " + cart.get().getCartId());
+					List<CartItems> productList = ciService.findItemByCart(cart.get().getCartId());
+					mvc.getModel().put("productList", productList);
+					mvc.setViewName("cartItems");
+				}
 			}
 		}
-
 		return mvc;
 	}
 }
