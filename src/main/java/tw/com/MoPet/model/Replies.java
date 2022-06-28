@@ -32,9 +32,9 @@ public class Replies {
 
 	@Column(name = "content")
 	private String content;
-	
+
 	@Column(name = "rep_img")
-	private String repimg;
+	private String rep_img;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -45,28 +45,26 @@ public class Replies {
 	@Column(name = "fk_c_id")
 	private Integer fk_c_id;
 
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="fk_c_id")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "fk_c_id")
 	private Comments comments;
-	
+
 	@PrePersist
 	public void onTiome() {
-		if(createondate == null) {
+		if (createondate == null) {
 			this.createondate = new Date();
 		}
 	}
-	
+
 	public Replies() {
 	}
 
-	
-
-	public String getRepimg() {
-		return repimg;
+	public String getRep_img() {
+		return rep_img;
 	}
 
-	public void setRepimg(String repimg) {
-		this.repimg = repimg;
+	public void setRep_img(String rep_img) {
+		this.rep_img = rep_img;
 	}
 
 	public Integer getId() {
@@ -101,8 +99,6 @@ public class Replies {
 		this.createondate = createondate;
 	}
 
-	
-
 	public Integer getFk_c_id() {
 		return fk_c_id;
 	}
@@ -111,18 +107,24 @@ public class Replies {
 		this.fk_c_id = fk_c_id;
 	}
 
-	public Replies(Integer id, String name, String content, String repimg, Date createondate, Integer fk_c_id,
+	public Replies(Integer id, String name, String content, String rep_img, Date createondate, Integer fk_c_id,
 			Comments comments) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.content = content;
-		this.repimg = repimg;
+		this.rep_img = rep_img;
 		this.createondate = createondate;
 		this.fk_c_id = fk_c_id;
 		this.comments = comments;
 	}
 
-	
+	public Comments getComments() {
+		return comments;
+	}
+
+	public void setComments(Comments comments) {
+		this.comments = comments;
+	}
 
 }

@@ -110,8 +110,10 @@
 				|| document
 						.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')
 	</script>
-	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
+	
+	<script src="${contextRoot}/js/popper.min.js"></script>
+	
+	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>

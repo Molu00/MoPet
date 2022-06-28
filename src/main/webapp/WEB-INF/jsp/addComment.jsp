@@ -52,7 +52,7 @@
 						</div>
 
 
-						<input onclick="return confirm('新增成功')" type="submit"
+						<input onclick="return confirm('確認發布?')" type="submit"
 							name="submit" value="確定發布">
 
 					</form:form>

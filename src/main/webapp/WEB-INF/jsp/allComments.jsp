@@ -4,8 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:if test="${empty loginOK}">
-    <c:set var='target' value='${pageContext.request.requestURI}' scope='session' />
-    <c:redirect url="/login"/>
+	<c:set var='target' value='${pageContext.request.requestURI}'
+		scope='session' />
+	<c:redirect url="/login" />
 </c:if>
 <jsp:include page="layout/navbar2.jsp" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
@@ -15,8 +16,23 @@
 <html>
 <head>
 <style type="text/css">
-.myMOUSE{
-cursor:pointer
+.myMOUSE {
+	cursor: pointer
+}
+
+.back-to-top {
+	display: none;
+	position: fixed;
+	bottom: 20px;
+	right: 30px;
+	z-index: 99;
+	border: 1px solid #5cb85c;
+	outline: none;
+	background-color: #fff;
+	color: #5cb85c;
+	cursor: pointer;
+	padding: 10px 15px 15px 15px;
+	border-radius: 10px;
 }
 </style>
 <meta charset="UTF-8">
@@ -41,11 +57,45 @@ cursor:pointer
 
 		<div class="container">
 
+			<button class="js-back-to-top back-to-top" title="回到頭部">&#65085;</button>
+
+			<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+			<script>
+				$(function() {
+					var $win = $(window);
+					var $backToTop = $('.js-back-to-top');
+					$win.scroll(function() {
+						if ($win.scrollTop() > 600) {
+							$backToTop.show();
+						} else {
+							$backToTop.hide();
+						}
+					});
+					$backToTop.click(function() {
+						$('html, body').animate({
+							scrollTop : 0
+						}, 200);
+					});
+				});
+			</script>
+			
+			<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button"
+					id="dropdownMenuButton" data-toggle="dropdown"
+					aria-expanded="false">篩選</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="#">最新</a> <a
+						class="dropdown-item" href="#">最舊</a> <a
+						class="dropdown-item" href="#">最熱門</a>
+				</div>
+			</div>
+
 			<c:forEach var="page" items="${page.content}">
 
-<form:form modelAttribute="count">
-<c:out value="${count.count}"></c:out>
-</form:form>
+				<form:form modelAttribute="count">
+					<c:out value="${count.count}"></c:out>
+				</form:form>
 
 
 
@@ -57,7 +107,7 @@ cursor:pointer
 								<div class="card-header text-white bg-dark ">
 									<c:out value="${page.name}"></c:out>
 								</div>
-								
+
 								<div class="card-body">
 									<h1 class="display-5">
 										<c:out value="${page.title}"></c:out>
@@ -69,28 +119,30 @@ cursor:pointer
 										<c:out value="${page.content}"></c:out>
 									</div>
 								</div>
-								
-								<div class="card-body">
-										<h1 class="display-5">
-											<%-- 										<img alt="avatar" src="${page.com_img}" width="50%" --%>
-											<!-- 											height="50%"> -->
-										</h1>
-										<c:choose>
-											<c:when test="${page.com_img !=null }">
-												<img alt="avatar" src="${page.com_img}" width="40%"
-													height="35%">
-											</c:when>
-											<c:otherwise>
 
-											</c:otherwise>
-										</c:choose>
-									</div>
-								
+								<div class="card-body">
+									<h1 class="display-5">
+										<%-- 										<img alt="avatar" src="${page.com_img}" width="50%" --%>
+										<!-- 											height="50%"> -->
+									</h1>
+									<c:choose>
+										<c:when test="${page.com_img !=null }">
+											<img alt="avatar" src="${page.com_img}" width="40%"
+												height="35%">
+										</c:when>
+										<c:otherwise>
+
+										</c:otherwise>
+									</c:choose>
+								</div>
+								<span>留言數 <c:out value="${count}"></c:out>
+								</span>
+
 								<div class="card-body">
 									<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
 										value="${page.createondate}" />
 								</div>
-								
+
 							</div>
 							<div class="edit-link">
 								<a href="${contextRoot}/comments/edit?id=${page.id}"><button
@@ -99,8 +151,7 @@ cursor:pointer
 									href="${contextRoot}/comments/delete?id=${page.id}"><button
 										class="btn btn-danger">刪除</button></a>
 							</div>
-							<br /> 
-							<br />
+							<br /> <br />
 							<!-- 							<div> -->
 							<!-- 							<br /> <br /> -->
 							<%-- 								<a href="${contextRoot}/comments/page?id=${page.id}"><button --%>
