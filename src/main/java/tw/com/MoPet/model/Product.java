@@ -23,8 +23,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-
-
 @Entity
 @Table(name="product")
 public class Product {
@@ -34,6 +32,8 @@ public class Product {
 	@Column(name="productid")
 	private Integer pId;
 	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "pId",cascade = CascadeType.ALL)
+	private Set<CartItems> cartItemsId=new LinkedHashSet<CartItems>();
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_company_id")
