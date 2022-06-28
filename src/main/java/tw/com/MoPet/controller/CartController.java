@@ -37,6 +37,9 @@ public class CartController {
 
 	@GetMapping("minus/cartItem/{id}")
 	public String minusItems(@PathVariable Integer id, HttpSession session) {
+		if (session.getAttribute("loginOK") == null) {
+			return "redirect:/login";
+		}else {
 		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
 		Optional<Cart> cart = cService.findByMemberId(memId);
 		Integer cartId = cart.get().getCartId().intValue();
@@ -51,9 +54,13 @@ public class CartController {
 		}
 		return "redirect:/into/cart";
 	}
+		}
 
 	@GetMapping("add/cartItem/{id}")
 	public String addItems(@PathVariable Integer id, HttpSession session) {
+		if (session.getAttribute("loginOK") == null) {
+			return "redirect:/login";
+		}else {
 		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
 		Optional<Cart> cart = cService.findByMemberId(memId);
 
@@ -63,10 +70,14 @@ public class CartController {
 		ciService.insertCartItems(item);
 
 		return "redirect:/into/cart";
+		}
 	}
 
 	@GetMapping("delete/cartItem/{id}")
 	public String deleteItems(@PathVariable Integer id, HttpSession session) {
+		if (session.getAttribute("loginOK") == null) {
+			return "redirect:/login";
+		}else {
 		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
 		Optional<Cart> cart = cService.findByMemberId(memId);
 		Integer cartId = cart.get().getCartId().intValue();
@@ -78,12 +89,13 @@ public class CartController {
 //		ciService.deleteItemByTwoKeys(id,cartId);
 		return "redirect:/into/cart";
 	}
+	}
 
 	@GetMapping("add/cartItems/{id}")
 	public String addCartList(@PathVariable Integer id, HttpSession session) {
 
 		if (session.getAttribute("loginOK") == null) {
-			return "login";
+			return "redirect:/login";
 		}
 
 		else {
@@ -152,7 +164,7 @@ public class CartController {
 	public ModelAndView seeCartItems(ModelAndView mvc, HttpSession session) {
 
 		if (session.getAttribute("loginOK") == null) {
-			mvc.setViewName("login");
+			mvc.setViewName("redirect:/login");
 		} else {
 			int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
 			Optional<Cart> cart = cService.findByMemberId(memId);

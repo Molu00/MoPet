@@ -57,7 +57,7 @@ public class RepliesController {
 	@PostMapping("replies/add") // post送出資料
 	public String addReplies(@ModelAttribute("replies") Replies replies, Model model,@RequestParam("repimg")MultipartFile file,@RequestParam("id")Integer id) throws IOException {
 		
-		if (file.getBytes()==null) {
+		if (!file.isEmpty()) {
 		String temp = new String(Base64.getEncoder().encode(file.getBytes()));
 		String profile = "data:image/png;base64," + temp;
 		

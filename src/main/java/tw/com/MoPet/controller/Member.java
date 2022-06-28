@@ -40,7 +40,7 @@ public class Member {
 		return "login";
 	}
 
-	@GetMapping(path = "checklogin.controller")
+	@PostMapping(path = "checklogin.controller")
 	public String login(@RequestParam("userEmail") String user, @RequestParam("userPwd") String pwd, Model m,
 			HttpSession session) {
 		Map<String, String> errors = new HashMap<String, String>();
