@@ -37,8 +37,12 @@ public class CartController {
 
 	@GetMapping("minus/cartItem/{id}")
 	public String minusItems(@PathVariable Integer id, HttpSession session) {
+		
 		if (session.getAttribute("loginOK") == null) {
+			String prePage="redirect:/into/cart";
+			session.setAttribute("PrePage", prePage);
 			return "redirect:/login";
+			
 		}else {
 		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
 		Optional<Cart> cart = cService.findByMemberId(memId);
@@ -59,6 +63,8 @@ public class CartController {
 	@GetMapping("add/cartItem/{id}")
 	public String addItems(@PathVariable Integer id, HttpSession session) {
 		if (session.getAttribute("loginOK") == null) {
+			String prePage="redirect:/into/cart";
+			session.setAttribute("PrePage", prePage);
 			return "redirect:/login";
 		}else {
 		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
@@ -76,6 +82,8 @@ public class CartController {
 	@GetMapping("delete/cartItem/{id}")
 	public String deleteItems(@PathVariable Integer id, HttpSession session) {
 		if (session.getAttribute("loginOK") == null) {
+			String prePage="redirect:/into/cart";
+			session.setAttribute("PrePage", prePage);
 			return "redirect:/login";
 		}else {
 		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
@@ -95,6 +103,8 @@ public class CartController {
 	public String addCartList(@PathVariable Integer id, HttpSession session) {
 
 		if (session.getAttribute("loginOK") == null) {
+			String prePage="redirect:/shop/products";
+			session.setAttribute("PrePage", prePage);
 			return "redirect:/login";
 		}
 
@@ -164,6 +174,8 @@ public class CartController {
 	public ModelAndView seeCartItems(ModelAndView mvc, HttpSession session) {
 
 		if (session.getAttribute("loginOK") == null) {
+			String prePage="redirect:/into/cart";
+			session.setAttribute("PrePage", prePage);
 			mvc.setViewName("redirect:/login");
 		} else {
 			int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
