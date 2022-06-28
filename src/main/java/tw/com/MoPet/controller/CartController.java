@@ -81,7 +81,13 @@ public class CartController {
 
 	@GetMapping("add/cartItems/{id}")
 	public String addCartList(@PathVariable Integer id, HttpSession session) {
-		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
+		
+		if (session.getAttribute("loginOK")== null) {
+			   return "login";
+			  }
+		
+		else {
+			int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
 		Optional<Cart> cart = cService.findByMemberId(memId);
 		Cart tempCart = null;
 
@@ -137,7 +143,9 @@ public class CartController {
 				ciService.insertCartItems(items);
 			}
 		}
-		return "redirect:/shop/products";
+		return "redirect:/shop/products";}
+		
+		
 	}
 
 	@GetMapping("into/cart")
@@ -150,13 +158,11 @@ public class CartController {
 		}
 
 		else {
-			
 			List<CartItems> cartList = ciService.findItemByCart(cart.get().getCartId());
-			
 			if (cartList.isEmpty() || cart.get().isCartStatus() == true) {
 				mvc.setViewName("cartItemsEmpty");
 			}
-			if (!cart.isEmpty() && cart.get().isCartStatus() == false) {
+			else if (!cart.isEmpty() && cart.get().isCartStatus() == false) {
 				System.out.println("有從memberid抓到購物車車 cart Id: " + cart.get().getCartId());
 				List<CartItems> productList = ciService.findItemByCart(cart.get().getCartId());
 				mvc.getModel().put("productList", productList);

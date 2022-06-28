@@ -56,10 +56,9 @@ $(function(){
 					</tr>
 				</thead>
 				<tbody>
-				<form:form method="POST" action="${contextRoot}/checkAllInOrder" modelAttribute="Order">
 					<c:forEach var="allProduct" items="${productList}">
 						<tr>
-							<td class="col-1"><a href="${contextRoot}/delete/cartItem/${allProduct.pId.getpId()}"><button class="btn btn-warning">X</button></a></td>
+							<td class="col-1"><a href="${contextRoot}/delete/cartItem/${allProduct.pId.getpId()}"><button type="button" class="btn btn-danger">X</button></a></td>
 							<td><img class="rounded-sm" alt="productImg" src="${allProduct.pId.getpImg()}" width="80px" height="80px"></td>
 							<td class="col-4"><c:out value="${allProduct.pId.getpName()}" /></td>
 							<td class="col-2"><c:out value="${allProduct.pId.getpPrice()}" /></td>
@@ -70,17 +69,18 @@ $(function(){
 							  <a href="${contextRoot}/add/cartItem/${allProduct.pId.getpId()}"><button type="button" class="btn btn-secondary">＋</button></a>
 							</div>
 							</td>
-							<td><div>${allProduct.cartItemsAmount*allProduct.pId.getpPrice()}</div></td>
+							<td><input class="col-md-7" readonly value="${allProduct.cartItemsAmount*allProduct.pId.getpPrice()}"></td>
 						</tr>
 					</c:forEach>
-					</form:form>
+					
 				</tbody>
 			</table>
     <hr>
-		<div class="btn-toolbar mb-2 mb-md-0">
-		<a href="${contextRoot}/shop/products"><button type="button" class="btn btn-secondary mg-1">返回商城</button></a>
-		  <a href="#"><button type="submit" class="btn btn-secondary">下一步</button></a>
+    	<div class="d-grid gap-2 d-md-block">
+				<a href="${contextRoot}/shop/products"><button type="button" class="btn btn-secondary">返回商城</button></a>
+		 		 <a href="${contextRoot}/checkIntoOrder"><button type="button" class="btn btn-secondary">下一步</button></a>
 		  </div>
+		  
   </div> <!-- /container -->
   </div>
 </main>
