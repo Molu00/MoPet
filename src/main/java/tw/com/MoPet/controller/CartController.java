@@ -145,14 +145,15 @@ public class CartController {
 		int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
 		Optional<Cart> cart = cService.findByMemberId(memId);
 
-		List<CartItems> cartList = ciService.findItemByCart(cart.get().getCartId());
-
-		if (cartList.isEmpty()) {
+		if (cart.isEmpty()) {
 			mvc.setViewName("cartItemsEmpty");
 		}
 
 		else {
-			if (cart.isEmpty() || cart.get().isCartStatus() == true) {
+			
+			List<CartItems> cartList = ciService.findItemByCart(cart.get().getCartId());
+			
+			if (cartList.isEmpty() || cart.get().isCartStatus() == true) {
 				mvc.setViewName("cartItemsEmpty");
 			}
 			if (!cart.isEmpty() && cart.get().isCartStatus() == false) {
