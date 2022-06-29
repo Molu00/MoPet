@@ -33,7 +33,7 @@
 				<div class="card-header">請輸入</div>
 				<div class="card-body">
 
-					<form:form class="form" method="post" modelAttribute="replies">
+					<form:form class="form" method="post" modelAttribute="replies" enctype="multipart/form-data">
 
 						<form:input path="id" type="hidden" />
 						<form:input path="name" type="hidden" />
@@ -44,7 +44,7 @@
 						</div>
 						<div class="form-group">
 							<div id="upload"></div>
-							<input type="file" name="comimg" id="comimg" width="40%"
+							<input type="file" name="repimg" id="repimg" width="40%"
 								height="35%" />
 						</div>
 
