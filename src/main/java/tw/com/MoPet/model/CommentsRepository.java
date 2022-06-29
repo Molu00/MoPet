@@ -8,5 +8,5 @@ public interface CommentsRepository extends JpaRepository<Comments,Integer>{
 
 	public Comments findFirstByOrderByCreateondateDesc();
 	
-	
+	public Comments findFirstByOrderByCreateondateAsc();
 }
