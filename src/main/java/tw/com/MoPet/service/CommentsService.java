@@ -42,6 +42,10 @@ public class CommentsService {
 		 return cDao.findFirstByOrderByCreateondateDesc();
 	}
 	
+	public Comments showTime2() {
+		return cDao.findFirstByOrderByCreateondateAsc();
+	}
+	
 	public List<Comments> getAllComments(List<Comments> comments) {
 		return cDao.saveAll(comments);
 	}
@@ -49,7 +53,7 @@ public class CommentsService {
 	//分頁
 	public Page<Comments> findByPage(Integer pageNumber){
 		
-		PageRequest pgb = PageRequest.of(pageNumber-1, 6, Sort.Direction.DESC, "createondate");
+		PageRequest pgb = PageRequest.of(pageNumber-1, 5, Sort.Direction.DESC, "createondate");
 		Page<Comments> page = cDao.findAll(pgb);
 		
 		return page;
@@ -64,6 +68,10 @@ public class CommentsService {
 	
 	public Comments getLastest() {
 		return cDao.findFirstByOrderByCreateondateDesc();
+	}
+	
+	public Comments getOldTime() {
+		return cDao.findFirstByOrderByCreateondateAsc();
 	}
 	
 	public List<Comments> findAll(){
