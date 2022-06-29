@@ -8,7 +8,7 @@
 		scope='session' />
 	<c:redirect url="/login" />
 </c:if>
-<jsp:include page="layout/frontendBar.jsp" />
+<jsp:include page="layout/frontendBar2.jsp" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 
@@ -44,7 +44,7 @@
 			class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 			<h1 class="h2">貼文管理</h1>
 			<div class="btn-toolbar mb-2 mb-md-0">
-				<a href="${contextRoot}/comments/add"><button type="button"
+				<a href="${contextRoot}/comments/add2"><button type="button"
 						class="btn btn-sm btn-outline-secondary">
 						<span data-feather="calendar"></span> 新增貼文
 					</button></a>
@@ -86,7 +86,7 @@
 					aria-expanded="false">篩選</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<a class="dropdown-item" href="${contextRoot}/comments/all">最新</a> <a
-						class="dropdown-item" href="#">最舊</a> <a
+						class="dropdown-item" href="${contextRoot}/comments/old">最舊</a> <a
 						class="dropdown-item" href="#">最熱門</a>
 				</div>
 			</div>
@@ -103,7 +103,7 @@
 					<div class="col-9">
 						<div class="card text-center ">
 							<div class="myMOUSE"
-								onclick="window.open('${contextRoot}/comments/page?id=${page.id}')">
+								onclick="window.open('${contextRoot}/comments/page2?id=${page.id}')">
 								<div class="card-header text-white bg-dark ">
 									<c:out value="${page.name}"></c:out>
 								</div>
@@ -145,10 +145,10 @@
 
 							</div>
 							<div class="edit-link">
-								<a href="${contextRoot}/comments/edit?id=${page.id}"><button
+								<a href="${contextRoot}/comments/edit2?id=${page.id}"><button
 										class="btn btn-info">編輯</button></a> <a
 									onclick="return confirm('刪除')"
-									href="${contextRoot}/comments/delete?id=${page.id}"><button
+									href="${contextRoot}/comments/delete2?id=${page.id}"><button
 										class="btn btn-danger">刪除</button></a>
 							</div>
 							<br /> <br />
@@ -179,7 +179,7 @@
 								<c:choose>
 									<c:when test="${page.number != pageNumber-1}">
 										<li class="page-item"><a class="page-link"
-											href="${contextRoot}/comments/all?p=${pageNumber}"><c:out
+											href="${contextRoot}/comments/all2?p=${pageNumber}"><c:out
 													value="${pageNumber}" /></a></li>
 									</c:when>
 									<c:otherwise>

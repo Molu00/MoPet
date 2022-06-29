@@ -19,65 +19,59 @@ public class CommentsService {
 
 	@Autowired
 	private CommentsRepository cDao;
-	
-	
-	//新增留言
+
+	// 新增留言
 	public void insertComment(Comments comments) {
 		cDao.save(comments);
 	}
-	
-	
+
 	public Comments findById(Integer id) {
-		
+
 		Optional<Comments> optinal = cDao.findById(id);
-		
-		if(optinal.isPresent()) {
+
+		if (optinal.isPresent()) {
 			return optinal.get();
 		}
 		return null;
 	}
-	
-	//時間
+
+	// 時間
 	public Comments showTime() {
-		 return cDao.findFirstByOrderByCreateondateDesc();
+		return cDao.findFirstByOrderByCreateondateDesc();
 	}
-	
+
 	public Comments showTime2() {
 		return cDao.findFirstByOrderByCreateondateAsc();
 	}
-	
+
 	public List<Comments> getAllComments(List<Comments> comments) {
 		return cDao.saveAll(comments);
 	}
-	
-	//分頁
-	public Page<Comments> findByPage(Integer pageNumber){
-		
-		PageRequest pgb = PageRequest.of(pageNumber-1, 5, Sort.Direction.DESC, "createondate");
+
+	// 分頁
+	public Page<Comments> findByPage(Integer pageNumber) {
+
+		PageRequest pgb = PageRequest.of(pageNumber - 1, 5, Sort.Direction.DESC, "createondate");
 		Page<Comments> page = cDao.findAll(pgb);
-		
+
 		return page;
 	}
-	
-	
+
 	public void deleteComment(Integer id) {
-		
+
 		cDao.deleteById(id);
 	}
-	
-	
+
 	public Comments getLastest() {
 		return cDao.findFirstByOrderByCreateondateDesc();
 	}
-	
+
 	public Comments getOldTime() {
 		return cDao.findFirstByOrderByCreateondateAsc();
 	}
-	
-	public List<Comments> findAll(){
+
+	public List<Comments> findAll() {
 		return cDao.findAll();
 	}
-	
-	
-}
 
+}

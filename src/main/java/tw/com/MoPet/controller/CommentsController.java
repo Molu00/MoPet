@@ -30,14 +30,14 @@ public class CommentsController {
 	@Autowired
 	private RepliesService rService;
 
-	@GetMapping("comments/findAll")
-	@ResponseBody
-	public List<Comments> findAll() {
-		return cService.findAll();
-	}
+//	@GetMapping("comments/findAll")
+//	@ResponseBody
+//	public List<Comments> findAll() {
+//		return cService.findAll();
+//	}
 
 	@PostMapping("comments/add") // post送出資料
-	public String addComment(@ModelAttribute("comments") Comments comments, Model model,
+	public String addComment(@ModelAttribute("comments") Comments comments,
 			@RequestParam("comimg") MultipartFile file) throws IOException {
 
 		if (!file.isEmpty()) {
@@ -49,12 +49,12 @@ public class CommentsController {
 
 		cService.insertComment(comments);
 
-		Comments newcomment = new Comments();
+//		Comments newcomment = new Comments();
+//
+//		Comments lastest = cService.getLastest();
 
-		Comments lastest = cService.getLastest();
-
-		model.addAttribute("comments", newcomment);
-		model.addAttribute("lastest", lastest);
+//		model.addAttribute("comments", newcomment);
+//		model.addAttribute("lastest", lastest);
 
 		return "redirect:/comments/all";
 	}
@@ -62,9 +62,9 @@ public class CommentsController {
 	@GetMapping("comments/edit")
 	public String editComment(@RequestParam("id") Integer id, Model model) {
 
-		Comments comment = cService.findById(id);
+		Comments comments = cService.findById(id);
 
-		model.addAttribute("commemt", comment);
+		model.addAttribute("commemts", comments);
 
 		return "editComments";
 	}
@@ -102,28 +102,6 @@ public class CommentsController {
 		return "redirect:/comments/all";
 	}
 
-//	@GetMapping("comments/old")
-//	public String addComment2(@ModelAttribute("comments") Comments comments, Model model,
-//			@RequestParam("comimg") MultipartFile file) throws IOException {
-//
-//		if (!file.isEmpty()) {
-//			String temp = new String(Base64.getEncoder().encode(file.getBytes()));
-//			String profile = "data:image/png;base64," + temp;
-//
-//			comments.setCom_img(profile);
-//		}
-//
-//		cService.insertComment(comments);
-//
-//		Comments newcomment = new Comments();
-//
-//		Comments lastest = cService.getOldTime();
-//
-//		model.addAttribute("comments", newcomment);
-//		model.addAttribute("lastest", lastest);
-//
-//		return "redirect:/comments/all";
-//	}
 
 //	@GetMapping(path = "replies/count")
 //	public String countReplies(@RequestParam("fk_c_id") Integer id) {

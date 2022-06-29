@@ -29,15 +29,15 @@ public class RepliesController {
 
 	@Autowired
 	private RepliesService rService;
-	
+
 	@Autowired
 	private CommentsService cService;
 
-	@GetMapping("replies/findAll")
-	@ResponseBody
-	public List<Replies> findAll() {
-		return rService.findAllReplies();
-	}
+//	@GetMapping("replies/findAll")
+//	@ResponseBody
+//	public List<Replies> findAll() {
+//		return rService.findAllReplies();
+//	}
 
 //	@GetMapping(path = "replies/count/{fk_c_id}")
 //	public String countReplies(@PathVariable("fk_c_id") Integer id) {
@@ -48,37 +48,38 @@ public class RepliesController {
 //		return "allComments";
 //	}
 
-	@GetMapping("replies/findFk/{id}")
-	@ResponseBody
-	public List<Replies> findByFk(@PathVariable Integer id) {
-		return rService.findByFk(id);
-	}
+//	@GetMapping("replies/findFk/{id}")
+//	@ResponseBody
+//	public List<Replies> findByFk(@PathVariable Integer id) {
+//		return rService.findByFk(id);
+//	}
 
 	@PostMapping("replies/add") // post送出資料
-	public String addReplies(@ModelAttribute("replies") Replies replies, Model model,@RequestParam("repimg")MultipartFile file,@RequestParam("id")Integer id) throws IOException {
-		
+	public String addReplies(@ModelAttribute("replies") Replies replies, Model model,
+			@RequestParam("repimg") MultipartFile file, @RequestParam("id") Integer id) throws IOException {
+
 		if (!file.isEmpty()) {
-		String temp = new String(Base64.getEncoder().encode(file.getBytes()));
-		String profile = "data:image/png;base64," + temp;
-		
-		replies.setRep_img(profile);
+			String temp = new String(Base64.getEncoder().encode(file.getBytes()));
+			String profile = "data:image/png;base64," + temp;
+
+			replies.setRep_img(profile);
 		}
-		
-		Comments com=cService.findById(id);
-		
+
+		Comments com = cService.findById(id);
+
 		replies.setComments(com);
-		
+
 		rService.insertReplies(replies);
-		
+
 		Replies newReplies = new Replies();
 
 		Replies lastest = rService.getLastest();
 
 		model.addAttribute("replies", newReplies);
 		model.addAttribute("lastest", lastest);
-		
+
 		String url = "redirect:http://localhost:8080/MoPet/comments/page?id=" + id;
-		
+
 		return url;
 	}
 
@@ -91,7 +92,19 @@ public class RepliesController {
 	}
 
 	@PostMapping("replies/edit")
-	public String postEditReplies(@ModelAttribute(name = "replies") Replies replies, @RequestParam("id") Integer id) {
+	public String postEditReplies(@ModelAttribute(name = "replies") Replies replies, @RequestParam("id") Integer id,
+			@RequestParam("repimg") MultipartFile file) throws IOException {
+
+		if (file.isEmpty()) {
+			replies.getId();
+			Replies com = rService.findById(replies.getId());
+			replies.setRep_img(com.getRep_img());
+		} else {
+			String temp = new String(Base64.getEncoder().encode(file.getBytes()));
+			String profile = "data:image/png;base64," + temp;
+
+			replies.setRep_img(profile);
+		}
 
 		// 取得現在時間
 		Date now = Calendar.getInstance().getTime();
