@@ -49,7 +49,7 @@ public class CommentsService {
 	//分頁
 	public Page<Comments> findByPage(Integer pageNumber){
 		
-		PageRequest pgb = PageRequest.of(pageNumber-1, 3, Sort.Direction.DESC, "createondate");
+		PageRequest pgb = PageRequest.of(pageNumber-1, 6, Sort.Direction.DESC, "createondate");
 		Page<Comments> page = cDao.findAll(pgb);
 		
 		return page;

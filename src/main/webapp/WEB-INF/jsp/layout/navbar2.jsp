@@ -61,7 +61,7 @@
 		<input class="form-control form-control-dark w-100" type="text"
 			placeholder="Search" aria-label="Search">
 		<ul class="navbar-nav px-3">
-			<li class="nav-item text-nowrap"><a class="nav-link" href="#">登出</a></li>
+			<li class="nav-item text-nowrap"><a class="nav-link" href="${contextRoot}/logout">登出</a></li>
 		</ul>
 	</nav>
 
@@ -110,8 +110,10 @@
 				|| document
 						.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')
 	</script>
-	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
+	
+	<script src="${contextRoot}/js/popper.min.js"></script>
+	
+	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>

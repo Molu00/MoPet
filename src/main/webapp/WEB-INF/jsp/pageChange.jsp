@@ -6,7 +6,22 @@
 
 <jsp:include page="layout/navbar2.jsp"></jsp:include>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-
+<style type="text/css">
+.back-to-top {
+	display: none;
+	position: fixed;
+	bottom: 20px;
+	right: 30px;
+	z-index: 99;
+	border: 1px solid #5cb85c;
+	outline: none;
+	background-color: #fff;
+	color: #5cb85c;
+	cursor: pointer;
+	padding: 10px 15px 15px 15px;
+	border-radius: 10px;
+}
+</style>
 <body>
 	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 
@@ -19,6 +34,37 @@
 	<div
 		class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom ">
 		<div class="container">
+		
+		<button class="js-back-to-top back-to-top" title="回到頭部">&#65085;</button>
+
+			<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+			<script>
+				$(function() {
+					var $win = $(window);
+					var $backToTop = $('.js-back-to-top');
+					$win.scroll(function() {
+						if ($win.scrollTop() > 100) {
+							$backToTop.show();
+						} else {
+							$backToTop.hide();
+						}
+					});
+					$backToTop.click(function() {
+						$('html, body').animate({
+							scrollTop : 0
+						}, 200);
+					});
+				});
+			</script>
+			
+			<div class="btn-toolbar mb-2 mb-md-0">
+				<a href="${contextRoot}/replies/add?id=${com.id}"><button type="button"
+						class="btn btn-sm btn-outline-secondary">
+						<span data-feather="calendar"></span> 新增留言
+					</button></a>
+			</div>
+
 
 			<form:form class="form" method="post" modelAttribute="com">
 
@@ -34,21 +80,21 @@
 									<c:out value="${com.title}"></c:out>
 								</h1>
 							</div>
-							<div class="card-body">
+							<div>
 								<c:out value="${com.content}"></c:out>
 							</div>
 							<div class="card-body">
-							<c:choose>
-											<c:when test="${com.com_img !=null }">
-												<img alt="avatar" src="${com.com_img}" width="40%"
-													height="30%">
-											</c:when>
-											<c:otherwise>
+								<c:choose>
+									<c:when test="${com.com_img !=null }">
+										<img alt="avatar" src="${com.com_img}" width="40%"
+											height="30%">
+									</c:when>
+									<c:otherwise>
 
-											</c:otherwise>
-										</c:choose>
+									</c:otherwise>
+								</c:choose>
 							</div>
-										<span>留言數<c:out value="${count}"></c:out></span>
+							<span>留言數<c:out value="${count}"></c:out></span>
 							<div class="card-body">
 								<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
 									value="${com.createondate}" />
@@ -67,8 +113,24 @@
 								留言
 								<c:out value="${fk.name}"></c:out>
 							</div>
-							<div class="card-body">
+							<span class="card-body">
 								<c:out value="${fk.content}"></c:out>
+								
+							</span>
+							<div class="card-body">
+							<h1 class="display-5">
+										<%-- 										<img alt="avatar" src="${page.com_img}" width="50%" --%>
+										<!-- 											height="50%"> -->
+									</h1>
+									<c:choose>
+										<c:when test="${fk.rep_img !=null }">
+											<img alt="#" src="${fk.rep_img}" width="15%"
+												height="10%">
+										</c:when>
+										<c:otherwise>
+
+										</c:otherwise>
+									</c:choose>
 							</div>
 							<div class="card-body">
 								<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
@@ -88,8 +150,7 @@
 		</div>
 	</div>
 
-<h1>777</h1>
+	<h1>777</h1>
 </body>
-
 
 

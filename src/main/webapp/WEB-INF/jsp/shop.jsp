@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <jsp:include page="layout/frontendBar.jsp" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
@@ -11,12 +12,13 @@
 
 <main role="main">
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1>Mopet Store</h1>
-      <p class="lead text-muted">歡迎來到Mopet商城，您可以在這裡找到數百種商品，總有一種適合您心愛的寵物</p>
-    </div>
-  </section>
+<!--   <section class="jumbotron text-center"> -->
+<!--     <div class="container"> -->
+<!--       <h1>Mopet Store</h1> -->
+<!--       <p class="lead text-muted">歡迎來到Mopet商城，您可以在這裡找到數百種商品，總有一種適合您心愛的寵物</p> -->
+<!--     </div> -->
+<!--   </section> -->
+<br/>
   <a href="${contextRoot}/into/cart"><button type="button"
 					class="btn btn-sm btn-outline-secondary">將購物車明細暫放這個位置</button></a>			
   <div class="album py-5 bg-light">

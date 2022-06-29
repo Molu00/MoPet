@@ -50,6 +50,21 @@
 							<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
 								value="${page.createondate}" />
 						</div>
+						<div class="card-body">
+									<h1 class="display-5">
+										<%-- 										<img alt="avatar" src="${page.com_img}" width="50%" --%>
+										<!-- 											height="50%"> -->
+									</h1>
+									<c:choose>
+										<c:when test="${page.rep_img !=null }">
+											<img alt="avatar" src="${page.rep_img}" width="40%"
+												height="35%">
+										</c:when>
+										<c:otherwise>
+
+										</c:otherwise>
+									</c:choose>
+								</div>
 
 						<div class="edit-link">
 							<a href="${contextRoot}/replies/edit?id=${page.id}"><button

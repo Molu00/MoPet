@@ -48,19 +48,20 @@ public class PageController {
 		
 		model.addAttribute("comments", comments);
 		model.addAttribute("lastest", lastest);
+		
 		return "addComment";
 		
 	}
 	
 	@GetMapping("replies/add")
-	public String addReplies(Model model) {
+	public String addReplies(Model model,@RequestParam("id")Integer id) {
 		
 		Replies replies = new Replies();
 		
-		Replies lastest = rService.getLastest();
+		replies.setFk_c_id(id);
 		
-		model.addAttribute("replies", replies);
-		model.addAttribute("lastest", lastest);
+		model.addAttribute("replies", replies); 
+	
 		return "addReplies";
 		
 	}
@@ -158,6 +159,11 @@ public class PageController {
 			mvc.getModel().put("productList",page);
 			mvc.setViewName("viewProducts");
 			return mvc;
+		}
+		
+		@GetMapping("cart/ItemsEmpty")
+		public String cartItemEmpty() {
+			return "cartItemsEmpty";
 		}
 	
 }

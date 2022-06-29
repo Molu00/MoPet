@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:if test="${empty loginOK}">
+    <c:set var='target' value='${pageContext.request.requestURI}' scope='session' />
+    <c:redirect url="/login"/>
+</c:if>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <jsp:include page="layout/navbar2.jsp" />
 <!DOCTYPE html>
@@ -45,7 +49,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="inputgender">性別</label> <select name="gender" value="${member.memberGender}">
+						<label for="inputgender">性別</label> <select name="gender" value=${member.memberGender}>
 							<option value="男">男</option>
 							<option value="女">女</option>
 						</select>
