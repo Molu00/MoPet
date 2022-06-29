@@ -16,6 +16,6 @@ public interface cartRepository extends JpaRepository<Cart, Integer> {
 	@Query(value = "select * from Cart a where a.fk_member_id = ?1", nativeQuery=true)
 	public Optional<Cart> testMember(Integer id);
 	
-	
-	
+	@Query(value = "select * from cart where fk_member_id=?1 and cartStatus=?2", nativeQuery = true)
+	public Optional<Cart> findBymIdAndcStatus(Integer memberId,boolean status);
 }
