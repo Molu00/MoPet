@@ -180,5 +180,8 @@ public class Member {
 		session.removeAttribute("cart_ID");
 		return "login";
 	}
-	
+	@GetMapping(path = "/question")
+	public String processQuestion() {
+		return "question";
+	}
 }
