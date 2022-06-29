@@ -59,16 +59,16 @@ public class Member {
 		member temp = mService.checkLogin(user, pwd);
 		member temp2 = mService.findByAccount(user);
 		System.out.println(temp2.getId());
-//		Object com=session.getAttribute("loginOK");
-//		if (session.getAttribute("loginOK")== null) {
-//			return "login";
-//		}
 
 		if (temp != null) {
 			m.addAttribute("user", temp.getMemberEmail());
 			session.setAttribute("loginOK", temp2);
 			session.setAttribute("cart_ID", temp2.getId());
+			String previous =(String)session.getAttribute("PrePage");
+			if (previous.isEmpty()) {
 			return "redirect:/members/all";
+			}
+			return previous;
 		}
 		errors.put("msg", "UserEmail or UserPwd is not correct.");
 		return "login";

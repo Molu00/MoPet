@@ -34,13 +34,13 @@ $(function(){
 <body>
 <main role="main">
   <!-- Main jumbotron for a primary marketing message or call to action -->
-  <div class="jumbotron">
-    <div class="container">
-      <h1 class="display-3">購物車</h1>
-      <p>請確認以下商品數量與金額是否正確</p>
-    </div>
-  </div>
-
+<!--   <div class="jumbotron"> -->
+<!--     <div class="container"> -->
+<!--       <h1 class="display-3">購物車</h1> -->
+<!--       <p>請確認以下商品數量與金額是否正確</p> -->
+<!--     </div> -->
+<!--   </div> -->
+<br/>
   <div class="container">
     <!-- Example row of columns -->
     <div >
