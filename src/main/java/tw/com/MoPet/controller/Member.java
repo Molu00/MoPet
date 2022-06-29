@@ -65,7 +65,7 @@ public class Member {
 			session.setAttribute("loginOK", temp2);
 			session.setAttribute("cart_ID", temp2.getId());
 			String previous =(String)session.getAttribute("PrePage");
-			if (previous.isEmpty()) {
+			if (previous == null) {
 			return "redirect:/members/all";
 			}
 			return previous;
@@ -179,5 +179,9 @@ public class Member {
 		session.removeAttribute("loginOK");
 		session.removeAttribute("cart_ID");
 		return "login";
+	}
+	@GetMapping(path = "/question")
+	public String processQuestion() {
+		return "Question";
 	}
 }

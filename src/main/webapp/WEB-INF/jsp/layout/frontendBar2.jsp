@@ -48,7 +48,7 @@
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<a class="navbar-brand" href="#"> <img src="../icons.png"
+		<a class="navbar-brand" href="#"> <img src="${contextRoot}/img/icons.png"
 			width="35" height="35" alt="">
 		</a>
 
@@ -58,7 +58,7 @@
 				<li class="nav-item"><a class="navbar-brand"
 					href="${contextRoot}/shop/products">商品專區</a></li>
 				<li class="nav-item"><a class="navbar-brand" href="#">寵物美容</a></li>
-				<li class="nav-item"><a class="navbar-brand" href="#">聯絡我們</a></li>
+				<li class="nav-item"><a class="navbar-brand" href="${contextRoot}/question">聯絡我們</a></li>
 			</ul>
 			<a class="alert-link" style="color: #642100"
 				href="${contextRoot}/logout">登出</a>
