@@ -26,83 +26,105 @@ public class CommentsController {
 
 	@Autowired
 	private CommentsService cService;
-	
+
 	@Autowired
 	private RepliesService rService;
-	
+
 	@GetMapping("comments/findAll")
 	@ResponseBody
-	public List<Comments> findAll(){
+	public List<Comments> findAll() {
 		return cService.findAll();
 	}
-	
-	@PostMapping("comments/add") //post送出資料
-	public String addComment(@ModelAttribute("comments") Comments comments,Model model,@RequestParam("comimg") MultipartFile file) throws IOException {
-		
+
+	@PostMapping("comments/add") // post送出資料
+	public String addComment(@ModelAttribute("comments") Comments comments, Model model,
+			@RequestParam("comimg") MultipartFile file) throws IOException {
+
 		if (!file.isEmpty()) {
 			String temp = new String(Base64.getEncoder().encode(file.getBytes()));
-		String profile = "data:image/png;base64," + temp;
-		
-		comments.setCom_img(profile);
+			String profile = "data:image/png;base64," + temp;
+
+			comments.setCom_img(profile);
 		}
-		
-		
-		
+
 		cService.insertComment(comments);
-		
+
 		Comments newcomment = new Comments();
-		
+
 		Comments lastest = cService.getLastest();
-		
+
 		model.addAttribute("comments", newcomment);
 		model.addAttribute("lastest", lastest);
-		
+
 		return "redirect:/comments/all";
 	}
-	
+
 	@GetMapping("comments/edit")
-	public String editComment(@RequestParam("id") Integer id,Model model) {
-		
+	public String editComment(@RequestParam("id") Integer id, Model model) {
+
 		Comments comment = cService.findById(id);
-		
+
 		model.addAttribute("commemt", comment);
-		
+
 		return "editComments";
 	}
-	
+
 	@PostMapping("comments/edit")
-	public String postEditComments(@ModelAttribute(name="comment") Comments comment,@RequestParam("comimg") MultipartFile file) throws IOException {
-		
+	public String postEditComments(@ModelAttribute(name = "comment") Comments comment,
+			@RequestParam("comimg") MultipartFile file) throws IOException {
+
 		if (file.isEmpty()) {
 			comment.getId();
-			Comments com=cService.findById(comment.getId());
+			Comments com = cService.findById(comment.getId());
 			comment.setCom_img(com.getCom_img());
+		} else {
+			String temp = new String(Base64.getEncoder().encode(file.getBytes()));
+			String profile = "data:image/png;base64," + temp;
+
+			comment.setCom_img(profile);
 		}
-		else {
-		String temp = new String(Base64.getEncoder().encode(file.getBytes()));
-		String profile = "data:image/png;base64," + temp;
-		
-		comment.setCom_img(profile);
-		}
-		
-		//取得現在時間
-		   Date now = Calendar.getInstance().getTime();
-		
-		   comment.setCreateondate(now);
-		
+
+		// 取得現在時間
+		Date now = Calendar.getInstance().getTime();
+
+		comment.setCreateondate(now);
+
 		cService.insertComment(comment);
-		
+
 		return "redirect:/comments/all";
 	}
-	
+
 	@GetMapping("comments/delete")
-	public String deleteComment(@RequestParam("id")Integer id) {
-		
+	public String deleteComment(@RequestParam("id") Integer id) {
+
 		cService.deleteComment(id);
-		
+
 		return "redirect:/comments/all";
 	}
-	
+
+//	@GetMapping("comments/old")
+//	public String addComment2(@ModelAttribute("comments") Comments comments, Model model,
+//			@RequestParam("comimg") MultipartFile file) throws IOException {
+//
+//		if (!file.isEmpty()) {
+//			String temp = new String(Base64.getEncoder().encode(file.getBytes()));
+//			String profile = "data:image/png;base64," + temp;
+//
+//			comments.setCom_img(profile);
+//		}
+//
+//		cService.insertComment(comments);
+//
+//		Comments newcomment = new Comments();
+//
+//		Comments lastest = cService.getOldTime();
+//
+//		model.addAttribute("comments", newcomment);
+//		model.addAttribute("lastest", lastest);
+//
+//		return "redirect:/comments/all";
+//	}
+
 //	@GetMapping(path = "replies/count")
 //	public String countReplies(@RequestParam("fk_c_id") Integer id) {
 //
@@ -111,7 +133,5 @@ public class CommentsController {
 //
 //		return "allComments";
 //	}
-	
 
-	
 }
