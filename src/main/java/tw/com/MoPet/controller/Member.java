@@ -182,6 +182,6 @@ public class Member {
 	}
 	@GetMapping(path = "/question")
 	public String processQuestion() {
-		return "question";
+		return "Question";
 	}
 }
