@@ -22,20 +22,17 @@ public class CartService {
 		return cartDao.save(cart);
 	}
 	
-//	public Integer findByMemberId(Integer id) {
-//	return cartDao.findCartIdByfkMemberId(id);
-//}
-	
-//	public Cart findByMemberId(member id) {
-//		return cartDao.findByFkMemberId(id);
-//	}
-	
 	public Optional<Cart> findByMemberId(Integer id) {
 		return cartDao.testMember(id);
-//		if(option.isPresent()) {
-//		return option.get();
-//			}
-//		return null;
-//		return cartDao.testMember(id);
+
 	}
+	
+	public Cart findBymIdAndcStatus(Integer memberId,boolean status) {
+		Optional<Cart> option= cartDao.findBymIdAndcStatus(memberId, status);
+		if(option.isPresent()) {
+			return option.get();
+				}
+			return null;
+	}
+	
 }

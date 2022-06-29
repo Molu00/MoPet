@@ -71,15 +71,7 @@ public class PageController {
 		public String viewtext(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model) {
 			
 			Page<Comments> page = cService.findByPage(pageNumber);
-			
-			
-//			for(Comments comments:page) {
-//				
-//				comments.setCount(rService.countReplies(comments.getId()));
-//				comments_count.setCom(comments);
-//				comments_count.setCom(comments);
-//			}
-//			
+					
 			model.addAttribute("page", page);
 			
 			return "allComments";

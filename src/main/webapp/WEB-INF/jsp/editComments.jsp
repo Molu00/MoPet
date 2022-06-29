@@ -31,12 +31,12 @@
 				<div class="card-header">請輸入</div>
 				<div class="card-body">
 
-					<form:form class="form" method="post" modelAttribute="commemt"
+					<form:form class="form" method="post" modelAttribute="commemts"
 						enctype="multipart/form-data">
 
 						<form:input path="id" type="hidden" />
 						<form:input path="name" type="hidden" />
-						<%--   <form:input path="createondate" type="hidden" /> --%>
+<%-- 						  <form:input path="createondate" type="hidden" /> --%>
 
 						<div class="form-group">
 							<form:textarea path="title" class="form-control" />

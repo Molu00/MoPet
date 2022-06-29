@@ -9,69 +9,114 @@
 </c:if>
 <jsp:include page="layout/frontendBar2.jsp" />
 
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+<main role="main">
 	<div
 		class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-		<h1 class="h2">即將為您成立細項</h1>
+		<h1 class="h2">訂單成立中</h1>
 	</div>
 </main>
 <div
-	class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom">
+	>
 	<div class="container" align="center">
-		<div class="row justify-content-center">
-			<div class="col-9">
-				<h2>商品資訊</h2>
-				<form:form method="POST" action="${contextRoot}/insertProduct" modelAttribute="Product" enctype="multipart/form-data">
-					<div class="form-group">
-						<input placeholder="商品名稱" class="form-control" type="text" name="pName" id="pName" />
-					</div>
-					<div class="form-group">
-						<select class="form-control" id="categoryjsp" name="catid">
-							<option value="" disabled selected>商品分類</option>
-							<c:forEach items="${catelist}" var="catelist">
-								<option value="${catelist.categoryid}">${catelist.categoryName}</option>
+		<div>
+			<div>
+				<h2>訂單資訊</h2>
+				<form:form method="POST" action="${contextRoot}/intoOrder" modelAttribute="Order">
+					
+					<h1>商品確認</h1>
+					<table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col" class="text-md-center">圖片</th>
+								<th scope="col" class="text-md-center">名稱</th>
+								<th scope="col" class="text-md-center">訂價</th>
+								<th scope="col" class="text-md-center">數量</th>
+								<th scope="col" class="text-md-center">小計</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="allProduct" items="${productList}">
+								<tr>
+									<td class="col-2"><img class="rounded-sm" alt="productImg" src="${allProduct.pId.getpImg()}" width="80px" height="80px"></td>
+									<td class="col-6 text-md-center"><c:out value="${allProduct.pId.getpName()}" /></td>
+									<td class="col-2 text-md-center"><c:out value="${allProduct.pId.getpPrice()}" /></td>
+									<td class="col-2 text-md-center"><c:out value="${allProduct.cartItemsAmount}"/></td>
+									<td class="col-4 text-md-center"><c:out value="${allProduct.cartItemsAmount*allProduct.pId.getpPrice()}" /></td>
+								</tr>
 							</c:forEach>
-						</select>
-					</div>
-					<div class="form-group">
-						<select class="form-control" id="companyjsp" name="companyid">
-							<option value="" disabled selected>公司名稱</option>
-							<c:forEach items="${companyList}" var="companyList">
-								<option value="${companyList.companyid}">${companyList.company}</option>
+							<tr>
+								<th scope="col">總計</th>
+								<td colspan="3"></td>
+								<td id="orderTatle" colspan="2">${tempSum}</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<h1>收件人資料</h1>
+					<table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col"></th>
+								<th scope="col">收件人名字</th>
+								<th scope="col">收件人電話</th>
+								<th scope="col">送貨地址</th>
+							</tr>
+							</thead>
+							<tbody>
+									<tr>
+										<td class="col-1"></td>
+										<td class="col-3"><c:out value="${member.memberName}" /></td>
+										<td class="col-3"><c:out value="${member.memberTel}" /></td>
+										<td class="col-2"><input id="" name="" type="text" value="${member.memberAddress}"></td>
+									</tr>
+							</tbody>
+						</table>
+					<h1>送貨相關</h1>
+					<table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col" colspan="2" class="text-center">送貨方式</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="shippingWay" items="${shipList}">
+								<tr>
+									<td class="col-5 text-md-center">
+										<div class="form-check">
+										 	<input class="form-check-input" type="radio" name="shippingId" id="shippingId" value="${shippingWay.shippingId}" checked>
+											<c:out value="${shippingWay.shippingWay}" />
+										</div>
+									</td>
+								</tr>
 							</c:forEach>
-						</select>
-					</div>
-					<div class="form-group">
-						<input placeholder="商品單價" class="form-control" type="text"
-							name="pPrice" id="pPrice" />
-					</div>
-					<div class="form-group">
-						<input placeholder="商品成本" class="form-control" type="text"
-							name="pCost" id="pCost" />
-					</div>
-					<div class="form-group">
-						<input placeholder="商品庫存" class="form-control" type="text"
-							name="pStock" id="pStock" />
-					</div>
-					<div class="form-group">
-						<select class="form-control" id="sold" name="sold">
-							<option value="" disabled selected>是否直接上架</option>
-							<option value=true>直接上架</option>
-							<option value=false>暫不上架</option>
-						</select>
-					</div>
-
-					<div class="input-group mb-3">
-						<input type="file" class="form-control" name="tempFile" id="tempFile" onchange="preview()"> 
-						<label class="input-group-text" for="inputGroupFile02">上傳</label>
-					</div>
-					<div>
-						<img id="frame" class="rounded-sm" alt="productImg" src="${contextRoot}/img/defaultimg.jpg" width="100px" height="100px">
-					</div>
-					<div class="btn-group d-flex" role="group">
-						<input class="btn btn-primary" type="submit" value="送出資料" />
-					</div>
+						</tbody>
+					</table>
+					
+					<h1>付費相關</h1>
+					<table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col" colspan="2" class="text-center">付費方式</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="payWay" items="${payList}">
+								<tr>
+									<td class="col-5 text-md-center">
+										<div class="form-check">
+										 	<input class="form-check-input" type="radio" name="paymentId" id="paymentId" value="${payWay.payId}" checked>
+											<c:out value="${payWay.paymentWay}" />
+										</div>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					
 				</form:form>
+				<div class="btn-group d-flex" role="group">
+						<input class="btn btn-primary" type="submit" value="送出資料" />
+				</div>
 				<div class="btn-group d-flex" role="group">
 					<button id="autokeyin" class="btn btn-light" type="submit">Auto keyin</button>
 				</div>
