@@ -56,24 +56,28 @@ img.card-img {
 	<%-- 		<img src="${contextRoot}/img/top.jpg" class="card-img" alt="topcat"> --%>
 	<!-- 		<div class="card-img-overlay"></div> -->
 	<!-- 	</div> -->
-	<nav class="navbar navbar-expand-lg navbar-light" style="background-color:		#FFF0AC;">
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color:#FFFFFF;">
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarTogglerDemo03"
 			aria-controls="navbarTogglerDemo03" aria-expanded="false"
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<a class="navbar-brand" href="#"> <img src="../icons.png" width="35"
-			height="35" alt="">
+		<a class="navbar-brand" href="#"> <img src="${contextRoot}/img/icon2.png" width="90"
+			height="20" alt="">
 		</a>
 
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="navbar-brand" href="#">論壇討論</a></li>
+			<ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+				<li class="nav-item active"><a class="navbar-brand" href="#"><img src="${contextRoot}/img/論壇字體2.png" width="90"
+			height="30" alt=""></a></li>
 				<li class="nav-item"><a class="navbar-brand"
-					href="${contextRoot}/shop/products">商品專區</a></li>
-				<li class="nav-item"><a class="navbar-brand" href="#">寵物美容</a></li>
-				<li class="nav-item"><a class="navbar-brand" href="${contextRoot}/question">聯絡我們</a></li>
+					href="${contextRoot}/shop/products"><img src="${contextRoot}/img/寵物商城2.png" width="90"
+			height="25" alt=""></a></li>
+				<li class="nav-item"><a class="navbar-brand" href="#"><img src="${contextRoot}/img/寵物美容2.png" width="90"
+			height="22" alt=""></a></li>
+				<li class="nav-item"><a class="navbar-brand" href="${contextRoot}/question"><img src="${contextRoot}/img/聯絡我們2.png" width="90"
+			height="23" alt=""></a></li>
 			</ul>
 			<a class="alert-link"  style="color:#642100" href="${contextRoot}/logout">登出</a>
 		</div>
