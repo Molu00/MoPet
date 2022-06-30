@@ -2,9 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:if test="${empty loginOK}">
-    <c:set var='target' value='${pageContext.request.requestURI}' scope='session' />
-    <c:redirect url="/login"/>
+	<c:set var='target' value='${pageContext.request.requestURI}'
+		scope='session' />
+	<c:redirect url="/login" />
 </c:if>
 
 <jsp:include page="layout/navbar2.jsp"></jsp:include>
@@ -31,7 +33,8 @@
 				<div class="card-body">
 
 					<form:form class="form" method="post"
-						action="${contextRoot}/comments/add" modelAttribute="comments" enctype="multipart/form-data">
+						action="${contextRoot}/comments/add" modelAttribute="comments"
+						enctype="multipart/form-data">
 
 						<div class="card-header">標題</div>
 						<div class="form-group">
@@ -45,9 +48,11 @@
 						<div class="form-group">
 							<form:textarea path="name" class="form-control" />
 						</div>
-						
+
 						<div class="card-header">上傳圖片</div>
-						<div class="form-group"><br>
+						<div class="form-group">
+							<br> 
+							<div id="upload"></div>
 							<input type="file" name="comimg" id="comimg" />
 						</div>
 
@@ -57,7 +62,6 @@
 
 					</form:form>
 
-
 				</div>
 
 
@@ -66,3 +70,21 @@
 	</div>
 
 </div>
+<script type="text/javascript">
+	$(function() {
+
+		function preView(preDIV) {
+			var files = preDIV.files;
+			for (var i = 0; i < files.length; i++) {
+				var data = URL.createObjectURL(files[i]);
+				$('<img class="img-item" src="'+data+'" />').appendTo(
+						$("#upload"));
+			}
+		}
+
+		$(':file').change(function() {
+			console.log(this);
+			preView(this);
+		});
+	});
+</script>

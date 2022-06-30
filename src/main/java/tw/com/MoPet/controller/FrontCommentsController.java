@@ -42,6 +42,16 @@ public class FrontCommentsController {
 		return "allComments2";
 	}
 	
+	@GetMapping("comments/all3")
+	public String viewtext2(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model) {
+		
+		Page<Comments> page = cService.findByPage2(pageNumber);
+				
+		model.addAttribute("page", page);
+		
+		return "allComments2";
+	}
+	
 	@GetMapping("comments/add2")
 	public String addComment(Model model) {
 		
@@ -121,13 +131,6 @@ public class FrontCommentsController {
 
 		cService.insertComment(comments);
 
-//		Comments newcomment = new Comments();
-//
-//		Comments lastest = cService.getLastest();
-
-//		model.addAttribute("comments", newcomment);
-//		model.addAttribute("lastest", lastest);
-
 		return "redirect:/comments/all2";
 	}
 	
@@ -139,7 +142,22 @@ public class FrontCommentsController {
 		return "redirect:/comments/all2";
 	}
 	
-	@PostMapping("replies/add2") // post送出資料
+	@GetMapping("replies/add2")
+	public String addReplies(Model model) {
+		
+		Replies replies = new Replies();
+		
+		Replies lastest = rService.getLastest();
+		
+		model.addAttribute("Replies", replies);
+		model.addAttribute("lastest", lastest);
+		
+		return "addReplies2";
+		
+	}
+	
+	
+	@PostMapping("replies/add23") // post送出資料
 	public String addReplies(@ModelAttribute("replies") Replies replies, Model model,
 			@RequestParam("repimg") MultipartFile file, @RequestParam("id") Integer id) throws IOException {
 
@@ -156,27 +174,22 @@ public class FrontCommentsController {
 
 		rService.insertReplies(replies);
 
-		Replies newReplies = new Replies();
-
-		Replies lastest = rService.getLastest();
-
-		model.addAttribute("replies", newReplies);
-		model.addAttribute("lastest", lastest);
-
 		String url = "redirect:http://localhost:8080/MoPet/comments/page2?id=" + id;
 
 		return url;
 	}
 	
-	@GetMapping("replies/edit2")
+	@GetMapping("replies/edit23")
 	public String editReplies(@RequestParam("id") Integer id, Model model) { // 回覆ID
+		
 		Replies replies = rService.findById(id);
 
 		model.addAttribute("replies", replies);
+		
 		return "editReplies2";
 	}
 	
-	@PostMapping("replies/edit2")
+	@PostMapping("replies/edit23")
 	public String postEditReplies(@ModelAttribute(name = "replies") Replies replies, @RequestParam("id") Integer id,
 			@RequestParam("repimg") MultipartFile file) throws IOException {
 
@@ -190,7 +203,6 @@ public class FrontCommentsController {
 
 			replies.setRep_img(profile);
 		}
-
 		// 取得現在時間
 		Date now = Calendar.getInstance().getTime();
 

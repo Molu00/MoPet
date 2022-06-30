@@ -86,7 +86,7 @@
 					aria-expanded="false">篩選</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<a class="dropdown-item" href="${contextRoot}/comments/all">最新</a> <a
-						class="dropdown-item" href="${contextRoot}/comments/old">最舊</a> <a
+						class="dropdown-item" href="${contextRoot}/comments/all4">最舊</a> <a
 						class="dropdown-item" href="#">最熱門</a>
 				</div>
 			</div>
@@ -96,8 +96,6 @@
 				<form:form modelAttribute="count">
 					<c:out value="${count.count}"></c:out>
 				</form:form>
-
-
 
 				<div class="row justify-content-center ">
 					<div class="col-9">

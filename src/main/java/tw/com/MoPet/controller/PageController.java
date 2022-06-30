@@ -77,6 +77,16 @@ public class PageController {
 			return "allComments";
 		}
 		
+		@GetMapping("comments/all4")
+		public String viewtext3(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model) {
+			
+			Page<Comments> page = cService.findByPage2(pageNumber);
+					
+			model.addAttribute("page", page);
+			
+			return "allComments";
+		}
+		
 		@GetMapping("replies/all")
 		public String viewtext2(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model) {
 			Page<Replies> page = rService.findByPage(pageNumber);
