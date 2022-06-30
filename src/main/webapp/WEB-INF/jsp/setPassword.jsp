@@ -27,24 +27,6 @@
 	crossorigin="anonymous">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#info').click(function() {
-			$('#floatingPassword').val('123');
-			$('#floatingInput').val('cindy070814@gmail.com');
-			document.getElementById("123").innerText = ""
-			document.getElementById("456").innerText = ""
-		})
-		$('#floatingInput').click(function() {
-
-			document.getElementById("123").innerText = ""
-		})
-		$('#floatingPassword').click(function() {
-
-			document.getElementById("456").innerText = ""
-		})
-	})
-</script>
 <style>
 html, body {
 	height: 100%;
@@ -130,9 +112,6 @@ body {
 
 			</div></form>
 			<p class="mt-5 mb-3 text-muted">© 2017–2021</p>
-
-		
-		<button id="info" type="submit">一鍵帶入</button>
 	</main>
 	</div>
 </body>

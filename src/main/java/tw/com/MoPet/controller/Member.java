@@ -80,6 +80,26 @@ public class Member {
 		m.addAttribute("member", mem);
 		return "setPassword";
 	}
+	
+	@GetMapping(path = "member/forgetpassword")
+	public String forgetPassword(@RequestParam("id") Integer id, Model m) {
+		member mem = mService.findById(id);
+		m.addAttribute("member", mem);
+		return "setPassword2";
+	}
+	
+	@GetMapping(path = "member/forgetpassword2")
+	public String forgetPassword2() {
+		return "forgetPWD";
+	}
+	
+	@PostMapping(path = "member/forgetpassword")
+	public String forgetPWD(@RequestParam("userEmail") String account) throws Exception {
+		member tmem =mService.findByAccount(account);
+		String toEmail = tmem.getMemberEmail();
+		mService.sendEmail2(toEmail, "請重新設定你的密碼", tmem);
+		return "setPassword3";
+	}
 
 	@PostMapping(path = "member/setPassword")
 	public String setPassword(@RequestParam("id") Integer id, @RequestParam("password") String pwd) {

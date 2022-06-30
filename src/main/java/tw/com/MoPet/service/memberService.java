@@ -99,6 +99,27 @@ public class memberService {
 		System.out.println("Mail Sent successfully");
 		
 	}
+	public void sendEmail2(String toEmail, String subject, member mem) throws MessagingException {
+		
+		MimeMessage message = mailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message);
+		 
+		helper.setSubject(subject);
+		helper.setFrom("test");
+		helper.setTo(toEmail);
+		 
+		Map<String,Object> valuesMap=new HashMap<>();
+		valuesMap.put("UserName", mem.getMemberName());
+		valuesMap.put("id", mem.getId() );
+		String template="<b>Hey ${UserName}</b>,<br><i>請按下以下連結設定密碼</i><br><a href='http://localhost:8080/MoPet/member/forgetpassword?id=${id}'>請按下我認證</a>";
+		StringSubstitutor sub = new StringSubstitutor(valuesMap);
+		String resolvedString = sub.replace(template);
+		helper.setText(resolvedString, true);
+		
+		mailSender.send(message);
+		System.out.println("Mail Sent successfully");
+		
+	}
 	
 	public member findByAccount(String email) {
 		return memDao.findByAccount(email);
