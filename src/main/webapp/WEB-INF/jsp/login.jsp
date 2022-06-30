@@ -125,10 +125,11 @@ body {
 			</div>
 			<p style="color: #E60000">${errors.msg}</p>
 			<p style="color: #E60000">${errors.msg2}</p>
-			<button class="w-100 btn btn-lg btn-primary" type="submit">Sign
-				In</button>
-			<p class="mt-5 mb-3 text-muted">© 2017–2021</p>
+			<button class="w-100 btn btn-lg btn-primary" type="submit">登入</button>
 		</form>
+		<p></p>
+		<button class="w-100 btn btn-lg btn-light" type="submit"><a href="${contextRoot}/member/forgetpassword2">忘記密碼</a></button>
+			<p class="mt-5 mb-3 text-muted">© 2017–2021</p>
 		<button id="info" type="submit">一鍵帶入</button>
 	</main>
 	</div>
