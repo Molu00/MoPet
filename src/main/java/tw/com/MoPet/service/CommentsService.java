@@ -56,6 +56,14 @@ public class CommentsService {
 
 		return page;
 	}
+	
+	public Page<Comments> findByPage2(Integer pageNumber) {
+
+		PageRequest pgb = PageRequest.of(pageNumber - 1, 5, Sort.Direction.ASC, "createondate");
+		Page<Comments> page = cDao.findAll(pgb);
+
+		return page;
+	}
 
 	public void deleteComment(Integer id) {
 

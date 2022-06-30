@@ -4,8 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:if test="${empty loginOK}">
-    <c:set var='target' value='${pageContext.request.requestURI}' scope='session' />
-    <c:redirect url="/login"/>
+	<c:set var='target' value='${pageContext.request.requestURI}'
+		scope='session' />
+	<c:redirect url="/login" />
 </c:if>
 <jsp:include page="layout/navbar2.jsp" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
@@ -36,7 +37,7 @@
 
 						<form:input path="id" type="hidden" />
 						<form:input path="name" type="hidden" />
-<%-- 						  <form:input path="createondate" type="hidden" /> --%>
+						<%-- 						  <form:input path="createondate" type="hidden" /> --%>
 
 						<div class="form-group">
 							<form:textarea path="title" class="form-control" />
@@ -47,31 +48,13 @@
 						<div class="form-group">
 							<div id="upload"></div>
 							<input type="file" name="comimg" id="comimg" width="40%"
-													height="35%"/>
+								height="35%" />
 						</div>
 
 
 						<input type="submit" name="submit" value="更新">
 
 					</form:form>
-					<script type="text/javascript">
-						$(function() {
-
-							function preView(preDIV) {
-								var files = preDIV.files;
-								for (var i = 0; i < files.length; i++) {
-									var data = URL.createObjectURL(files[i]);
-									$('<img class="img-item" src="'+data+'" />')
-											.appendTo($("#upload"));
-								}
-							}
-
-							$(':file').change(function() {
-								console.log(this);
-								preView(this);
-							});
-						});
-					</script>
 
 				</div>
 			</div>
@@ -80,3 +63,21 @@
 
 	</div>
 </div>
+<script type="text/javascript">
+	$(function() {
+
+		function preView(preDIV) {
+			var files = preDIV.files;
+			for (var i = 0; i < files.length; i++) {
+				var data = URL.createObjectURL(files[i]);
+				$('<img class="img-item" src="'+data+'" />').appendTo(
+						$("#upload"));
+			}
+		}
+
+		$(':file').change(function() {
+			console.log(this);
+			preView(this);
+		});
+	});
+</script>

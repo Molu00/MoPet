@@ -7,7 +7,7 @@
 		scope='session' />
 	<c:redirect url="/login" />
 </c:if>
-<jsp:include page="layout/frontendBar2.jsp"></jsp:include>
+<jsp:include page="layout/frontendBar.jsp"></jsp:include>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 	<div
@@ -31,7 +31,7 @@
 			<div class="card-body">
 
 				<form:form class="form" method="post"
-					action="${contextRoot}/replies/add2" modelAttribute="replies"
+					action="${contextRoot}/replies/add23" modelAttribute="replies"
 					enctype="multipart/form-data">
 
 
@@ -50,6 +50,7 @@
 
 					<div class="card-header">上傳圖片</div>
 					<div class="form-group">
+					<div id="upload"></div>
 						<br> <input type="file" name="repimg" id="repimg" />
 					</div>
 

@@ -69,7 +69,7 @@ img.card-img {
 
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 			<ul class="navbar-nav mx-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="navbar-brand" href="#"><img src="${contextRoot}/img/論壇字體2.png" width="90"
+				<li class="nav-item active"><a class="navbar-brand" href="${contextRoot}/comments/all2"><img src="${contextRoot}/img/論壇字體2.png" width="90"
 			height="30" alt=""></a></li>
 				<li class="nav-item"><a class="navbar-brand"
 					href="${contextRoot}/shop/products"><img src="${contextRoot}/img/寵物商城2.png" width="90"
