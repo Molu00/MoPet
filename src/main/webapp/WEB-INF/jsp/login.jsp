@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -49,15 +52,19 @@ html, body {
 body {
 	display: flex;
 	align-items: center;
-	padding-top: 40px;
-	padding-bottom: 40px;
-	background-color: #f5f5f5;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-image: url("${contextRoot}/img/top6.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	 background-attachment: fixed;
+	 margin-left: 100px;
 }
 
 .form-signin {
-	width: 100%;
-	max-width: 330px;
-	padding: 15px;
+	width: 300px;
+	padding: 20px;
 	margin: auto;
 }
 
@@ -99,11 +106,11 @@ body {
 </head>
 
 <body class="text-center">
+<div class="shadow-lg p-3 mb-5 bg-white rounded">
 
 	<main class="form-signin">
 		<form action="checklogin.controller" method="post">
-			<img class="mb-4" src="icons.png" alt="" width="100" height="100">
-			<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+			<h1 class="h3 mb-3 fw-normal">請登入</h1>
 
 			<div class="form-floating">
 				<input type="text" class="form-control" id="floatingInput"
@@ -124,5 +131,6 @@ body {
 		</form>
 		<button id="info" type="submit">一鍵帶入</button>
 	</main>
+	</div>
 </body>
 </html>
