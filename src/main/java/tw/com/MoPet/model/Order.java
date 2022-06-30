@@ -24,16 +24,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name="order")
+@Table(name="order_table")
 public class Order {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="orderId")
 	private Integer orderId;
-	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "orderId",cascade = CascadeType.ALL)
-	private Set<OrderDetail> orderdetail=new LinkedHashSet<OrderDetail>();
 	
 	@Column(name="orderTotal")
 	private Integer orderTotal;
@@ -59,6 +56,9 @@ public class Order {
 	@JoinColumn(name="fk_shipping_id")
 	private Shipping shippingId;
 	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "order",cascade = CascadeType.ALL)
+	private Set<OrderDetail> orderDetail=new LinkedHashSet<OrderDetail>();
+	
 	@Column(name="shippingStatus")
 	private boolean shippingStatus;
 	
@@ -75,6 +75,14 @@ public class Order {
 	
 	public Order() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Date getOrderAdded() {
+		return orderAdded;
+	}
+
+	public void setOrderAdded(Date orderAdded) {
+		this.orderAdded = orderAdded;
 	}
 
 	public Integer getOrderId() {
@@ -139,6 +147,14 @@ public class Order {
 
 	public void setPaymentStatus(boolean paymentStatus) {
 		this.paymentStatus = paymentStatus;
+	}
+
+	public Set<OrderDetail> getOrderDetail() {
+		return orderDetail;
+	}
+
+	public void setOrderDetail(Set<OrderDetail> orderDetail) {
+		this.orderDetail = orderDetail;
 	}
 
 }
