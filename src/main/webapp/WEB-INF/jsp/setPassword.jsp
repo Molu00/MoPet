@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -54,14 +55,19 @@ body {
 	align-items: center;
 	padding-top: 40px;
 	padding-bottom: 40px;
-	background-color: #f5f5f5;
+	background-image: url("${contextRoot}/img/top6.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	 background-attachment: fixed;
+	 margin-left: 100px;
 }
 
 .form-signin {
 	width: 100%;
 	max-width: 330px;
-	padding: 15px;
-	margin: auto;
+	padding: 20px;
+/* 	margin: auto; */
 }
 
 .form-signin .checkbox {
@@ -101,21 +107,22 @@ body {
 
 </head>
 
-<body class="text-center">
-
-	<main class="form-signin">
+<body class="text-center" >
+<div class="shadow-lg p-3 mb-5 bg-white rounded">
+	<main class="form-signin" >
 		<form method="post" action="setPassword">
-			<img class="mb-4" src="icons.png" alt="" width="100" height="100">
-			<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+			<h1 class="h3 mb-3 fw-normal">恭喜你已完成認證!</h1>
+			<h5 class="h5 mb-3 fw-normal">請設定密碼</h5> 
+			<br/>
 			<div>
-			
-					<table>
-						<tr>
-							<td><input type="hidden" value="${member.id}" name="id">
-							<td>輸入密碼:
-							<td><input type="text" name="password">
-					</table>
-					<br>
+							<p><input type="hidden" value="${member.id}" name="id"></p>
+				<div><label>輸入密碼:</label>  <input type="text"></div>  
+			    <br/>
+				<div>
+					<label>再次輸入密碼:</label> <input type="text" name="password">
+				</div>
+				<br/>
+						    
 					<button class="w-100 btn btn-lg btn-primary" type="submit">確定</button>
 				
 
@@ -127,5 +134,6 @@ body {
 		
 		<button id="info" type="submit">一鍵帶入</button>
 	</main>
+	</div>
 </body>
 </html>
