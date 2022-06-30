@@ -7,6 +7,7 @@
     <c:set var='target' value='${pageContext.request.requestURI}' scope='session' />
     <c:redirect url="/login"/>
 </c:if>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <jsp:include page="layout/frontendBar2.jsp" />
 
 <main role="main">
@@ -47,7 +48,7 @@
 							<tr>
 								<th scope="col">總計</th>
 								<td colspan="3"></td>
-								<td id="orderTatle" colspan="2">${tempSum}</td>
+								<td colspan="2"><input class="text-center" id="orderTotal" name="orderTotal" type="text" value="${tempSum}"/></td>
 							</tr>
 						</tbody>
 					</table>
@@ -64,10 +65,10 @@
 							</thead>
 							<tbody>
 									<tr>
-										<td class="col-1"></td>
+										<td class="col-1"><input id="fkMemberId" name="fkMemberId" type="hidden" value="${member.id}"></td>
 										<td class="col-3"><c:out value="${member.memberName}" /></td>
 										<td class="col-3"><c:out value="${member.memberTel}" /></td>
-										<td class="col-2"><input id="" name="" type="text" value="${member.memberAddress}"></td>
+										<td class="col-2"><input id="shippingAddress" name="shippingAddress" type="text" value="${member.memberAddress}"></td>
 									</tr>
 							</tbody>
 						</table>
@@ -86,9 +87,11 @@
 										 	<input class="form-check-input" type="radio" name="shippingId" id="shippingId" value="${shippingWay.shippingId}" checked>
 											<c:out value="${shippingWay.shippingWay}" />
 										</div>
+										<input id="shippingStatus" name="shippingStatus" type="hidden" value="false">
 									</td>
 								</tr>
 							</c:forEach>
+							
 						</tbody>
 					</table>
 					
@@ -107,16 +110,16 @@
 										 	<input class="form-check-input" type="radio" name="paymentId" id="paymentId" value="${payWay.payId}" checked>
 											<c:out value="${payWay.paymentWay}" />
 										</div>
+										<input id="paymentStatus" name="paymentStatus" type="hidden" value="false">
 									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-					
-				</form:form>
-				<div class="btn-group d-flex" role="group">
+					<div class="btn-group d-flex" role="group">
 						<input class="btn btn-primary" type="submit" value="送出資料" />
 				</div>
+				</form:form>
 				<div class="btn-group d-flex" role="group">
 					<button id="autokeyin" class="btn btn-light" type="submit">Auto keyin</button>
 				</div>

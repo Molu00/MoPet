@@ -34,8 +34,8 @@
 	<div
 		class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom ">
 		<div class="container">
-		
-		<button class="js-back-to-top back-to-top" title="回到頭部">&#65085;</button>
+
+			<button class="js-back-to-top back-to-top" title="回到頭部">&#65085;</button>
 
 			<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
 
@@ -57,14 +57,13 @@
 					});
 				});
 			</script>
-			
+
 			<div class="btn-toolbar mb-2 mb-md-0">
-				<a href="${contextRoot}/replies/add?id=${com.id}"><button type="button"
-						class="btn btn-sm btn-outline-secondary">
+				<a href="${contextRoot}/replies/add?id=${com.id}"><button
+						type="button" class="btn btn-sm btn-outline-secondary">
 						<span data-feather="calendar"></span> 新增留言
 					</button></a>
 			</div>
-
 
 			<form:form class="form" method="post" modelAttribute="com">
 
@@ -80,7 +79,7 @@
 									<c:out value="${com.title}"></c:out>
 								</h1>
 							</div>
-							<div>
+							<div style="padding: 10px ; font-size: 18px">
 								<c:out value="${com.content}"></c:out>
 							</div>
 							<div class="card-body">
@@ -113,25 +112,31 @@
 								留言
 								<c:out value="${fk.name}"></c:out>
 							</div>
-							<span class="card-body">
-								<c:out value="${fk.content}"></c:out>
-								
-							</span>
-							<div class="card-body">
-							<h1 class="display-5">
-										<%-- 										<img alt="avatar" src="${page.com_img}" width="50%" --%>
-										<!-- 											height="50%"> -->
-									</h1>
-									<c:choose>
-										<c:when test="${fk.rep_img !=null }">
-											<img alt="#" src="${fk.rep_img}" width="15%"
-												height="10%">
-										</c:when>
-										<c:otherwise>
+							<span class="card-body"> <c:out value="${fk.content}"></c:out>
+								<c:choose>
+									<c:when test="${fk.rep_img !=null }">
+										<img alt="#" src="${fk.rep_img}" width="15%" height="10%">
+									</c:when>
+									<c:otherwise>
 
-										</c:otherwise>
-									</c:choose>
-							</div>
+									</c:otherwise>
+								</c:choose>
+							</span>
+							<!-- 							<div class="card-body"> -->
+							<!-- 							<h1 class="display-5"> -->
+							<%-- 																				<img alt="avatar" src="${page.com_img}" width="50%" --%>
+							<!-- 																					height="50%"> -->
+							<!-- 									</h1> -->
+							<%-- 									<c:choose> --%>
+							<%-- 										<c:when test="${fk.rep_img !=null }"> --%>
+							<%-- 											<img alt="#" src="${fk.rep_img}" width="15%" --%>
+							<!-- 												height="10%"> -->
+							<%-- 										</c:when> --%>
+							<%-- 										<c:otherwise> --%>
+
+							<%-- 										</c:otherwise> --%>
+							<%-- 									</c:choose> --%>
+							<!-- 							</div> -->
 							<div class="card-body">
 								<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
 									value="${fk.createondate}" />

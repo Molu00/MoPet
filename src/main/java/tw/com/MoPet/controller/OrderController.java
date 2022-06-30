@@ -1,5 +1,6 @@
 package tw.com.MoPet.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -7,15 +8,21 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import tw.com.MoPet.model.Cart;
 import tw.com.MoPet.model.CartItems;
+import tw.com.MoPet.model.Order;
+import tw.com.MoPet.model.OrderDetail;
 import tw.com.MoPet.model.Payment;
 import tw.com.MoPet.model.Shipping;
 import tw.com.MoPet.model.member;
 import tw.com.MoPet.service.CartService;
 import tw.com.MoPet.service.CartitemsService;
+import tw.com.MoPet.service.OrderDetailService;
+import tw.com.MoPet.service.OrderService;
 import tw.com.MoPet.service.PaymentService;
 import tw.com.MoPet.service.ProductService;
 import tw.com.MoPet.service.ShippingService;
@@ -23,6 +30,9 @@ import tw.com.MoPet.service.memberService;
 
 @Controller
 public class OrderController {
+
+	@Autowired
+	private OrderService oService;
 
 	@Autowired
 	private ProductService pService;
@@ -35,12 +45,15 @@ public class OrderController {
 
 	@Autowired
 	private memberService mService;
-	
+
 	@Autowired
 	private ShippingService shipService;
-	
+
 	@Autowired
 	private PaymentService payService;
+	
+	@Autowired
+	private OrderDetailService odService;
 
 	@GetMapping("checkIntoOrder")
 	public ModelAndView CheckOrder(ModelAndView mvc, HttpSession session) {
@@ -66,30 +79,89 @@ public class OrderController {
 
 			if (cart != null) {
 				List<CartItems> productList = ciService.findItemByCart(cart.getCartId());
-				Integer tempSum=0;
-				
-				for(CartItems items:productList) {
-					Integer aoumnt=items.getCartItemsAmount().intValue();
-					Integer price=items.getpId().getpPrice();
-					tempSum+=aoumnt*price;
+				Integer tempSum = 0;
+
+				for (CartItems items : productList) {
+					Integer aoumnt = items.getCartItemsAmount().intValue();
+					Integer price = items.getpId().getpPrice();
+					tempSum += aoumnt * price;
 				}
-				
-				List<Shipping> shipList=shipService.findAll();
-				List<Payment> payList=payService.findAll();
-				member member=mService.findById(memId);
-				
-				System.out.println("訂購人名稱？ "+member.getMemberName());
-				System.out.println("訂購人電話？ "+member.getMemberTel());
-				System.out.println("訂購人地址？ "+member.getMemberAddress());
-				
+
+				List<Shipping> shipList = shipService.findAll();
+				List<Payment> payList = payService.findAll();
+				member member = mService.findById(memId);
+
 				mvc.getModel().put("member", member);
 				mvc.getModel().put("tempSum", tempSum);
 				mvc.getModel().put("shipList", shipList);
 				mvc.getModel().put("payList", payList);
 				mvc.getModel().put("productList", productList);
 				mvc.setViewName("checkOrder");
+			} else {
+				mvc.setViewName("cartItemsEmpty");
 			}
 		}
 		return mvc;
 	}
+
+	@PostMapping("intoOrder")
+	public String intoOrder(@ModelAttribute Order order, ModelAndView mvc, HttpSession session) {
+
+		if (session.getAttribute("loginOK") == null) {
+			String prePage = "redirect:/intoOrder";
+			session.setAttribute("PrePage", prePage);
+			mvc.setViewName("redirect:/login");
+
+		} else {
+
+			Date now = pService.getTimeNow();
+			order.setOrderAdded(now);
+
+			System.out.println(order.toString());
+
+			Order getOrder=oService.insertOrder(order);
+
+			// session撈memberid出來
+			// 用id跟status撈未結帳那台，改成結帳
+
+			Integer memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
+			Cart cart = cService.findBymIdAndcStatus(memId, false);
+			
+			//將未成立的單子從items裡抓出List
+			List<CartItems> itemsList = ciService.findItemByCart(cart.getCartId());
+			for (CartItems content : itemsList) {
+				OrderDetail orderDetail = new OrderDetail();
+				orderDetail.setOrder(getOrder);
+				orderDetail.setpId(content.getpId());
+				orderDetail.setProductAmount(content.getCartItemsAmount());
+				odService.insertOdDetail(orderDetail);
+			}
+			
+			cart.setCartStatus(true);
+			cService.insertCart(cart);
+			// 確認訂單是否成立, 刪cartItems跟cart
+			// 確認一下如果重新走買東西的流程是不是會報錯
+
+			Cart trueCart = cService.findBymIdAndcStatus(memId, true);
+			ciService.deleteListByCartId(trueCart.getCartId());
+			cService.deleteCart(trueCart);
+			
+			System.out.println("有沒有走到最後？");
+			
+//			if (trueCart != null) {
+//				List<CartItems> itemsList = ciService.findItemByCart(trueCart.getCartId());
+//
+//				for (CartItems content : itemsList) {
+//					OrderDetail orderDetail = new OrderDetail();
+////					orderDetail.setCartid(content.getCartId());
+//					orderDetail.setpId(content.getpId());
+//					orderDetail.setProductAmount(content.getCartItemsAmount());
+//					odService.insertOdDetail(orderDetail);
+//				}
+//			}
+
+		}
+	return "orderOK";
+	}
+	
 }

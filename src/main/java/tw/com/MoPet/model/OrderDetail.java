@@ -1,7 +1,5 @@
 package tw.com.MoPet.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,17 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name="orderDetail")
+@Table(name="order_Detail_temp")
 public class OrderDetail {
 	
 	@Id
@@ -30,25 +21,14 @@ public class OrderDetail {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_order_id")
-	private Order orderId;
+	private Order order;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="fk_cart_id")
-	private Cart cartid;
+	@JoinColumn(name="fk_product_id")
+	private Product pId;
 	
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") // Spring MVC 用
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="orderdetail_added", columnDefinition="datetime") // 預設是 datetime2
-	private Date orderdetailAdded;
-
-	// 檢查是否有時間，沒有的話依照現在時間產生
-	@PrePersist // helper function 在物件轉換成 Persistent 狀態以前，做此方法
-	public void onCreate() {
-		if(orderdetailAdded == null) {
-			this.orderdetailAdded = new Date();
-		}
-	}
+	@Column(name="amount")
+	private Integer productAmount;
 	
 	public OrderDetail() {
 		// TODO Auto-generated constructor stub
@@ -62,28 +42,28 @@ public class OrderDetail {
 		this.orderDetailId = orderDetailId;
 	}
 
-	public Order getOrderId() {
-		return orderId;
+	public Order getOrder() {
+		return order;
 	}
 
-	public void setOrderId(Order orderId) {
-		this.orderId = orderId;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
-	public Cart getCartid() {
-		return cartid;
+	public Product getpId() {
+		return pId;
 	}
 
-	public void setCartid(Cart cartid) {
-		this.cartid = cartid;
+	public void setpId(Product pId) {
+		this.pId = pId;
 	}
 
-	public Date getOrderdetailAdded() {
-		return orderdetailAdded;
+	public Integer getProductAmount() {
+		return productAmount;
 	}
 
-	public void setOrderdetailAdded(Date orderdetailAdded) {
-		this.orderdetailAdded = orderdetailAdded;
+	public void setProductAmount(Integer productAmount) {
+		this.productAmount = productAmount;
 	}
 
 }

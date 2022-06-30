@@ -8,7 +8,7 @@
 		scope='session' />
 	<c:redirect url="/login" />
 </c:if>
-<jsp:include page="layout/frontendBar2.jsp" />
+<jsp:include page="layout/frontendBar.jsp" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 
@@ -38,25 +38,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-		<div
-			class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-			<h1 class="h2">貼文管理</h1>
-			<div class="btn-toolbar mb-2 mb-md-0">
-				<a href="${contextRoot}/comments/add2"><button type="button"
-						class="btn btn-sm btn-outline-secondary">
-						<span data-feather="calendar"></span> 新增貼文
-					</button></a>
-			</div>
-		</div>
-	</main>
-	<div
-		class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom ">
+<body><br/>
+
+
+	<div>
 
 
 		<div class="container">
-
+		
 			<button class="js-back-to-top back-to-top" title="回到頭部">&#65085;</button>
 
 			<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
@@ -81,14 +70,21 @@
 			</script>
 			
 			<div class="dropdown">
-				<button class="btn btn-secondary dropdown-toggle" type="button"
+				<button class="btn btn-info dropdown-toggle" type="button"
 					id="dropdownMenuButton" data-toggle="dropdown"
 					aria-expanded="false">篩選</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="${contextRoot}/comments/all">最新</a> <a
-						class="dropdown-item" href="${contextRoot}/comments/old">最舊</a> <a
+					<a class="dropdown-item" href="${contextRoot}/comments/all2">最新</a> <a
+						class="dropdown-item" href="${contextRoot}/comments/all3">最舊</a> <a
 						class="dropdown-item" href="#">最熱門</a>
 				</div>
+			</div><br/><br/>
+			
+			<div class="btn-toolbar mb-2 mb-md-0">
+				<a href="${contextRoot}/comments/add2"><button type="button"
+						class="btn btn-sm btn-outline-secondary">
+						<span data-feather="calendar"></span> 新增貼文
+					</button></a>
 			</div>
 
 			<c:forEach var="page" items="${page.content}">
@@ -104,7 +100,7 @@
 						<div class="card text-center ">
 							<div class="myMOUSE"
 								onclick="window.open('${contextRoot}/comments/page2?id=${page.id}')">
-								<div class="card-header text-white bg-dark ">
+								<div class="card-header text-white bg-info ">
 									<c:out value="${page.name}"></c:out>
 								</div>
 
@@ -144,14 +140,15 @@
 								</div>
 
 							</div>
-							<div class="edit-link">
-								<a href="${contextRoot}/comments/edit2?id=${page.id}"><button
-										class="btn btn-info">編輯</button></a> <a
-									onclick="return confirm('刪除')"
-									href="${contextRoot}/comments/delete2?id=${page.id}"><button
-										class="btn btn-danger">刪除</button></a>
-							</div>
-							<br /> <br />
+<!-- 							<div class="edit-link"> -->
+<%-- 								<a href="${contextRoot}/comments/edit2?id=${page.id}"><button --%>
+<!-- 										class="btn btn-info">編輯</button></a> <a -->
+<!-- 									onclick="return confirm('刪除')" -->
+<%-- 									href="${contextRoot}/comments/delete2?id=${page.id}"><button --%>
+<!-- 										class="btn btn-danger">刪除</button></a> -->
+<!-- 							</div> -->
+<!-- 							<br /> <br /> -->
+
 							<!-- 							<div> -->
 							<!-- 							<br /> <br /> -->
 							<%-- 								<a href="${contextRoot}/comments/page?id=${page.id}"><button --%>
