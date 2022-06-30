@@ -4,17 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.com.MoPet.model.Order;
-import tw.com.MoPet.model.OrderRepository;
+import tw.com.MoPet.model.OrderDetail;
+import tw.com.MoPet.model.OrderDetailRepository;
 
 @Service
 @Transactional
-public class OrderService {
+public class OrderDetailService {
 	
 	@Autowired
-	private OrderRepository OrderDAO;
+	private OrderDetailRepository odDAO;
 	
-	public Order insertOrder(Order order) {
-		return OrderDAO.save(order);
+	public void insertOdDetail(OrderDetail orderDetail) {
+		odDAO.save(orderDetail);
 	}
+	
+
 }

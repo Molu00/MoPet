@@ -43,6 +43,9 @@ public class Product {
 	@JoinColumn(name="fk_category_id")
 	private Category catid;
 	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "pId",cascade = CascadeType.ALL)
+	private Set<OrderDetail> orderdetail=new LinkedHashSet<OrderDetail>();
+	
 	@Column(name="pName")
 	private String pName;
 	@Column(name="pPrice")
@@ -151,6 +154,22 @@ public class Product {
 
 	public void setSold(boolean sold) {
 		this.sold = sold;
+	}
+
+	public Set<CartItems> getCartItemsId() {
+		return cartItemsId;
+	}
+
+	public void setCartItemsId(Set<CartItems> cartItemsId) {
+		this.cartItemsId = cartItemsId;
+	}
+
+	public Set<OrderDetail> getOrderdetail() {
+		return orderdetail;
+	}
+
+	public void setOrderdetail(Set<OrderDetail> orderdetail) {
+		this.orderdetail = orderdetail;
 	}
 
 }

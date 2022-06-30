@@ -35,4 +35,8 @@ public class CartService {
 			return null;
 	}
 	
+	public void deleteCart(Cart cart) {
+		cartDao.delete(cart);
+	}
+	
 }

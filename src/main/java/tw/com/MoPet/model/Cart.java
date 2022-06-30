@@ -39,11 +39,10 @@ public class Cart {
 	@JoinColumn(name="cartStatus")
 	private boolean cartStatus;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "cartid",cascade = CascadeType.ALL)
-	private Set<OrderDetail> orderdetail=new LinkedHashSet<OrderDetail>();
-	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "cartId",cascade = CascadeType.ALL)
 	private Set<CartItems> cartitems=new LinkedHashSet<CartItems>();
+	
+	
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") // Spring MVC 用
@@ -101,14 +100,6 @@ public class Cart {
 
 	public void setCartStatus(boolean cartStatus) {
 		this.cartStatus = cartStatus;
-	}
-
-	public Set<OrderDetail> getOrderdetail() {
-		return orderdetail;
-	}
-
-	public void setOrderdetail(Set<OrderDetail> orderdetail) {
-		this.orderdetail = orderdetail;
 	}
 
 }

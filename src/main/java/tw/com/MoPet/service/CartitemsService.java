@@ -14,6 +14,10 @@ public class CartitemsService {
 	@Autowired
 	private cartitemsRepository cartitemsDao;
 	
+	public void deleteListByCartId(Integer cartid) {
+		cartitemsDao.deleteListByCartId(cartid);
+	}
+	
 	public void insertCartItems(CartItems items) {
 		cartitemsDao.save(items);
 	}
