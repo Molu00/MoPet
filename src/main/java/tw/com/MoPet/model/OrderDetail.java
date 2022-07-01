@@ -16,12 +16,12 @@ public class OrderDetail {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="orderDetailId")
+	@Column(name="orderDetailTemp")
 	private Integer orderDetailId;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_order_id")
-	private Order order;
+	private Order orderId;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_product_id")
@@ -42,12 +42,12 @@ public class OrderDetail {
 		this.orderDetailId = orderDetailId;
 	}
 
-	public Order getOrder() {
-		return order;
+	public Order getOrderId() {
+		return orderId;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrderId(Order orderId) {
+		this.orderId = orderId;
 	}
 
 	public Product getpId() {
