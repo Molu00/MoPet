@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -96,7 +98,13 @@ public class Employee {
 	
 	@GetMapping(path ="employees/all")
 	public ModelAndView viewMessages(ModelAndView mav,
-			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber) {
+			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber, HttpSession session) {
+		employee emp=(employee)session.getAttribute("loginOK");
+		employee emp1=empService.findById(emp.getEmpId());
+		if (emp1.getEmpRole().equals("老闆")){
+			mav.setViewName("noOK");
+			return mav;
+		}
 		Page<employee> page = empService.findByPage(pageNumber);
 		mav.getModel().put("page", page);
 		mav.setViewName("viewEmployees");
