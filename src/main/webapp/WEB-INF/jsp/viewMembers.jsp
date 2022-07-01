@@ -13,8 +13,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-</style>
 <title>All Members</title>
 </head>
 <body>
@@ -68,9 +66,9 @@
 										value="${member.memberAddress}" /></td>
 								<td><a href="${contextRoot}/member/${member.id}"><button
 											class="btn btn-info">編輯</button></a></td>
-								<td><a onclick="return confirm('真的要刪除嗎')"
-									href="${contextRoot}/member/delete/${member.id}"><button
-											class="btn btn-danger">刪除</button></a></td>
+								<td><a 
+									href="${contextRoot}/member/delete/${member.id}"><button id="test"
+											class="btn btn-danger">刪除</button ></a></td>
 
 							</tr>
 						</c:forEach>
@@ -109,6 +107,5 @@
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

@@ -79,15 +79,15 @@
 					});
 				});
 			</script>
-			
+
 			<div class="dropdown">
 				<button class="btn btn-secondary dropdown-toggle" type="button"
 					id="dropdownMenuButton" data-toggle="dropdown"
 					aria-expanded="false">篩選</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="${contextRoot}/comments/all">最新</a> <a
-						class="dropdown-item" href="${contextRoot}/comments/all4">最舊</a> <a
-						class="dropdown-item" href="#">最熱門</a>
+					<a class="dropdown-item" href="${contextRoot}/comments/all">最新</a>
+					<a class="dropdown-item" href="${contextRoot}/comments/all4">最舊</a>
+					<a class="dropdown-item" href="#">最熱門</a>
 				</div>
 			</div>
 
@@ -133,8 +133,7 @@
 										</c:otherwise>
 									</c:choose>
 								</div>
-								<span>留言數 <c:out value="${count}"></c:out>
-								</span>
+
 
 								<div class="card-body">
 									<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
@@ -161,7 +160,28 @@
 
 					</div>
 				</div>
+				<c:forEach var="current" items="${map}">
+					<div class="row justify-content-center ">
+						<div class="col-9">
+							<div class="card text-center ">
+								<div>
+									<c:choose>
+										<c:when test="${page.id == current.key}">
+											<span> 留言數 <c:out value="${current.value}"></c:out>
+											</span>
+										</c:when>
+										<c:otherwise>
+										</c:otherwise>
+									</c:choose>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
 			</c:forEach>
+			
+			
+
 			<div class="row justify-content-center">
 				<div class="col-9">
 
