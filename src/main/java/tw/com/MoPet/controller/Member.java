@@ -26,7 +26,9 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import tw.com.MoPet.model.employee;
 import tw.com.MoPet.model.member;
+import tw.com.MoPet.service.employeeService;
 import tw.com.MoPet.service.memberService;
 
 @Controller
@@ -34,6 +36,9 @@ public class Member {
 
 	@Autowired
 	private memberService mService;
+	
+	@Autowired
+	private employeeService eService;
 
 	@GetMapping(path = "/login")
 	public String processMainAction() {
@@ -57,21 +62,28 @@ public class Member {
 		}
 
 		member temp = mService.checkLogin(user, pwd);
-		member temp2 = mService.findByAccount(user);
-		System.out.println(temp2.getId());
-
-		if (temp != null) {
+	
+		employee emp=eService.checkLogin(user, pwd);
+		if (emp != null) {
+			employee emp2=eService.findByAccount(user);
+			m.addAttribute("user", emp.getEmpEmail());
+			session.setAttribute("loginOK",emp2);
+			return "redirect:/members/all";
+			
+		}else if (temp != null) {
+			member temp2 = mService.findByAccount(user);
 			m.addAttribute("user", temp.getMemberEmail());
-			session.setAttribute("loginOK", temp2);
+			session.setAttribute("loginOK",temp2);
 			session.setAttribute("cart_ID", temp2.getId());
 			String previous =(String)session.getAttribute("PrePage");
 			if (previous == null) {
-			return "redirect:/members/all";
+			return "redirect:shop/products";
 			}
 			return previous;
-		}
+		}else {
 		errors.put("msg", "UserEmail or UserPwd is not correct.");
 		return "login";
+		}
 	}
 
 	@GetMapping(path = "member/verification")
