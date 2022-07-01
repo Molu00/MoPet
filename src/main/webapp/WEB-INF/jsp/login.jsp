@@ -34,6 +34,13 @@
 			document.getElementById("123").innerText = ""
 			document.getElementById("456").innerText = ""
 		})
+		
+		$('#info2').click(function() {
+			$('#floatingPassword').val('MoPetisTheBest');
+			$('#floatingInput').val('aaa@gmail.com');
+			document.getElementById("123").innerText = ""
+			document.getElementById("456").innerText = ""
+		})
 		$('#floatingInput').click(function() {
 
 			document.getElementById("123").innerText = ""
@@ -130,7 +137,8 @@ body {
 		<p></p>
 		<button class="w-100 btn btn-lg btn-light" type="submit"><a href="${contextRoot}/member/forgetpassword2">忘記密碼</a></button>
 			<p class="mt-5 mb-3 text-muted">© 2017–2021</p>
-		<button id="info" type="submit">一鍵帶入</button>
+		<button id="info" type="submit">前台帶入</button>
+		<button id="info2" type="submit">後台帶入</button>
 	</main>
 	</div>
 </body>

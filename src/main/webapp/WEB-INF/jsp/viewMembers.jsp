@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<c:if test="${empty loginOK}">
+<c:if test="${empty backloginOK}">
     <c:set var='target' value='${pageContext.request.requestURI}' scope='session' />
     <c:redirect url="/login"/>
 </c:if> 
@@ -13,8 +13,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-</style>
 <title>All Members</title>
 </head>
 <body>
@@ -42,12 +40,12 @@
 
 
 				<br />
-				<table class="table">
+				<table data-toggle="table">
 					<thead class="thead-dark">
 						<tr>
 							<th scope="col">頭像</th>
 							<th scope="col">暱稱</th>
-							<th scope="col">Email帳號</th>
+							<th scope="col" data-sortable="true">Email帳號</th>
 							<th scope="col">聯繫方式</th>
 							<th scope="col">地址</th>
 							<th scope="col">編輯</th>
@@ -58,7 +56,7 @@
 						<c:forEach var="member" items="${page.content}">
 							<tr>
 								<td style="width: 100px"><img alt="avatar"
-									src="${member.memberProfile}" width="50%" height="50%"></td>
+									src="${member.memberProfile}" width="50px" height="50px"></td>
 								<td><c:out value="${member.memberName}" /></td>
 								<td scope="row" style="width: 50px"><c:out
 										value="${member.memberEmail}" />
@@ -68,9 +66,9 @@
 										value="${member.memberAddress}" /></td>
 								<td><a href="${contextRoot}/member/${member.id}"><button
 											class="btn btn-info">編輯</button></a></td>
-								<td><a onclick="return confirm('真的要刪除嗎')"
-									href="${contextRoot}/member/delete/${member.id}"><button
-											class="btn btn-danger">刪除</button></a></td>
+								<td><a 
+									href="${contextRoot}/member/delete/${member.id}"><button id="test"
+											class="btn btn-danger">刪除</button ></a></td>
 
 							</tr>
 						</c:forEach>
@@ -109,6 +107,5 @@
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

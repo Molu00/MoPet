@@ -8,7 +8,7 @@
     <c:redirect url="/login"/>
 </c:if>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<jsp:include page="layout/frontendBar2.jsp" />
+<jsp:include page="layout/frontendBar.jsp" />
 
 <main role="main">
 	<div

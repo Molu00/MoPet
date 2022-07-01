@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import tw.com.MoPet.model.employee;
 import tw.com.MoPet.model.employeeRepository;
+import tw.com.MoPet.model.member;
 
 @Service
 @Transactional
@@ -52,5 +53,19 @@ public class employeeService {
 	public void insertStaff(employee emp) {
 	    this.empDao.save(emp);
 	  }
+
+	public employee checkLogin(String user, String Pwd) {
+		String updatePwd = CipherUtils.getStringSHA256(Pwd);
+		employee emp = empDao.findByNameAndPwd(user, updatePwd);
+		if (emp != null) {
+			return emp;
+		}
+		return null;
+	}
+	
+
+	public employee findByAccount(String email) {
+		return empDao.findByAccount(email);
+	}
 
 }

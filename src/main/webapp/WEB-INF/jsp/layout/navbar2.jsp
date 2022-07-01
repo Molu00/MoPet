@@ -22,7 +22,8 @@
 
 <!-- Bootstrap core CSS -->
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
-
+<link href="${contextRoot}/css/bootstrap-table.min.css" rel="stylesheet">
+<link href="${contextRoot}/css/all.css" rel="stylesheet">
 
 
 <style>
@@ -75,7 +76,7 @@
 								<span data-feather="home"></span> Dashboard <span
 								class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <span
+						<li class="nav-item"><a class="nav-link" href="${contextRoot}/all/orders"> <span
 								data-feather="file"></span> 訂單管理
 						</a></li>
 						<li class="nav-item"><a class="nav-link"
@@ -134,5 +135,6 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 	<script src="${contextRoot}/js/dashboard.js"></script>
+	<script src="${contextRoot}/js/bootstrap-table.min.js"></script>
 </body>
 </html>
