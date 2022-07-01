@@ -99,7 +99,7 @@ public class Employee {
 	@GetMapping(path ="employees/all")
 	public ModelAndView viewMessages(ModelAndView mav,
 			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber, HttpSession session) {
-		employee emp=(employee)session.getAttribute("loginOK");
+		employee emp=(employee)session.getAttribute("backloginOK");
 		employee emp1=empService.findById(emp.getEmpId());
 		if (emp1.getEmpRole().equals("老闆")){
 			mav.setViewName("noOK");

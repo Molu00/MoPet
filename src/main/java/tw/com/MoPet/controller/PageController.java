@@ -33,9 +33,9 @@ public class PageController {
 	public RepliesService rService;
 	
 	@Autowired
-
 	private employeeService empService;
 
+	@Autowired
 	public OrderService oService;
 
 	
@@ -196,14 +196,13 @@ public class PageController {
 			mav.getModel().put("page", page);
 			mav.setViewName("viewStaffs");
 			return mav;
+			}
 
-		@GetMapping("all/orders")
+		@GetMapping("orders/all")
 		public ModelAndView allOrderList(ModelAndView mvc, @RequestParam(value = "p",defaultValue = "1") Integer pageNumber) {
 			
 			Page<Order> page=oService.findByPage(pageNumber);
-//			List<Product> productList=pService.findAll();
-			
-//			mvc.getModel().put("productList",productList);
+
 			mvc.getModel().put("orderList",page);
 			mvc.setViewName("viewOrder");
 			return mvc;
