@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<c:if test="${empty loginOK}">
+<c:if test="${empty backloginOK}">
     <c:set var='target' value='${pageContext.request.requestURI}' scope='session' />
     <c:redirect url="/login"/>
 </c:if>
@@ -35,13 +35,13 @@
 				<button class="btn btn-dark" type="submit">Search</button>
 			</form>
 			<br />
-			<table class="table">
+			<table data-toggle="table">
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">編號</th>
 						<th scope="col">圖片</th>
 						<th scope="col">名稱</th>
-						<th scope="col">廠商</th>
+						<th scope="col" data-sortable="true">廠商</th>
 						<th scope="col">分類</th>
 						<th scope="col">庫存</th>
 						<th scope="col">成本</th>
@@ -56,7 +56,7 @@
 					<c:forEach var="allProduct" items="${productList.content}">
 						<tr>
 							<th scope="row"><c:out value="${allProduct.pId}" /></th>
-							<td><img class="rounded-sm" alt="productImg" src="${allProduct.pImg}" width="50px" height="50px"></td>
+							<td><img class="rounded-sm" alt="productImg" src="${allProduct.pImg}" width="100px" height="100px"></td>
 							<td><c:out value="${allProduct.pName}" /></td>
 							<td><c:out value="${allProduct.companyid.getCompany()}" /></td>
 							<td><c:out value="${allProduct.catid.getCategoryName()}" /></td>

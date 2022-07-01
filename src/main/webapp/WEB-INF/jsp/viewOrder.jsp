@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<c:if test="${empty loginOK}">
+<c:if test="${empty backloginOK}">
     <c:set var='target' value='${pageContext.request.requestURI}' scope='session' />
     <c:redirect url="/login"/>
 </c:if>
@@ -35,12 +35,12 @@
 				<button class="btn btn-dark" type="submit">Search</button>
 			</form>
 			<br />
-			<table class="table">
+			<table data-toggle="table">
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">訂單編號</th>
-						<th scope="col" class="text-center">訂單日期</th>
-						<th scope="col">顧客名稱</th>
+						<th scope="col" data-sortable="true" class="text-center">訂單日期</th>
+						<th scope="col" data-sortable="true">顧客名稱</th>
 						<th scope="col">訂單金額</th>
 						<th scope="col">送貨地址</th>
 						<th scope="col">付費方式</th>
