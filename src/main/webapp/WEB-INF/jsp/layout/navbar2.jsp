@@ -75,7 +75,7 @@
 								<span data-feather="home"></span> Dashboard <span
 								class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <span
+						<li class="nav-item"><a class="nav-link" href="${contextRoot}/all/orders"> <span
 								data-feather="file"></span> 訂單管理
 						</a></li>
 						<li class="nav-item"><a class="nav-link"

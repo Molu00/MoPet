@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import tw.com.MoPet.model.Comments;
+import tw.com.MoPet.model.Order;
 import tw.com.MoPet.model.Product;
 import tw.com.MoPet.model.Replies;
 import tw.com.MoPet.service.CommentsService;
+import tw.com.MoPet.service.OrderService;
 import tw.com.MoPet.service.ProductService;
 import tw.com.MoPet.service.RepliesService;
 
@@ -25,6 +27,9 @@ public class PageController {
 	
 	@Autowired
 	public RepliesService rService;
+	
+	@Autowired
+	public OrderService oService;
 	
 //	@Autowired
 //	public comments_count comments_count;
@@ -166,6 +171,18 @@ public class PageController {
 		@GetMapping("cart/ItemsEmpty")
 		public String cartItemEmpty() {
 			return "cartItemsEmpty";
+		}
+		
+		@GetMapping("all/orders")
+		public ModelAndView allOrderList(ModelAndView mvc, @RequestParam(value = "p",defaultValue = "1") Integer pageNumber) {
+			
+			Page<Order> page=oService.findByPage(pageNumber);
+//			List<Product> productList=pService.findAll();
+			
+//			mvc.getModel().put("productList",productList);
+			mvc.getModel().put("orderList",page);
+			mvc.setViewName("viewOrder");
+			return mvc;
 		}
 	
 }
