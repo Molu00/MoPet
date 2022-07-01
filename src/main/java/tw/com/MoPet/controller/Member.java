@@ -67,7 +67,7 @@ public class Member {
 		if (emp != null) {
 			employee emp2=eService.findByAccount(user);
 			m.addAttribute("user", emp.getEmpEmail());
-			session.setAttribute("loginOK",emp2);
+			session.setAttribute("backloginOK",emp2);
 			return "redirect:/members/all";
 			
 		}else if (temp != null) {
