@@ -116,5 +116,7 @@ $(function () {
 			</div>
 		</div>
 	</div>
+	<div style="height:100px"></div>
+<jsp:include page="layout/footer.jsp" />
 </body>
 </html>

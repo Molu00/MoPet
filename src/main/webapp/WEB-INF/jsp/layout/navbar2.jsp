@@ -76,7 +76,7 @@
 								<span data-feather="home"></span> Dashboard <span
 								class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="${contextRoot}/all/orders"> <span
+						<li class="nav-item"><a class="nav-link" href="${contextRoot}/orders/all"> <span
 								data-feather="file"></span> 訂單管理
 						</a></li>
 						<li class="nav-item"><a class="nav-link"
@@ -95,6 +95,20 @@
 							href="${contextRoot}/comments/all"> <span
 								data-feather="layers"></span> 論壇管理
 						</a></li>
+						<li class="nav-item">
+                        <a class="nav-link" href="${contextRoot}/staff/all"> 
+                        <span data-feather="bar-chart-2"></span> 
+                        排班管理
+                        </a></li>
+          
+                        <li class="nav-item">
+                        <a class="nav-link" href="${contextRoot}/staff/option">
+                        <span data-feather="layers"></span>
+                         預約管理
+                        </a></li>
+						
+						
+						
 					</ul>
 				</div>
 			</nav>
