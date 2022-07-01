@@ -7,6 +7,6 @@
     <c:set var='target' value='${pageContext.request.requestURI}' scope='session' />
     <c:redirect url="/login"/>
 </c:if>
-<jsp:include page="layout/frontendBar2.jsp" />
+<jsp:include page="layout/frontendBar.jsp" />
 
 <h2>OK</h2>
