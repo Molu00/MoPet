@@ -13,9 +13,11 @@ import org.springframework.web.servlet.ModelAndView;
 import tw.com.MoPet.model.Comments;
 import tw.com.MoPet.model.Product;
 import tw.com.MoPet.model.Replies;
+import tw.com.MoPet.model.employee;
 import tw.com.MoPet.service.CommentsService;
 import tw.com.MoPet.service.ProductService;
 import tw.com.MoPet.service.RepliesService;
+import tw.com.MoPet.service.employeeService;
 
 @Controller
 public class PageController {
@@ -25,6 +27,9 @@ public class PageController {
 	
 	@Autowired
 	public RepliesService rService;
+	
+	@Autowired
+	private employeeService empService;
 	
 //	@Autowired
 //	public comments_count comments_count;
@@ -166,6 +171,16 @@ public class PageController {
 		@GetMapping("cart/ItemsEmpty")
 		public String cartItemEmpty() {
 			return "cartItemsEmpty";
+		}
+		
+		@GetMapping("staff/all")
+		public ModelAndView viewStaffs(ModelAndView mav,
+				@RequestParam(name = "p", defaultValue = "1") Integer pageNumber) {
+			Page<employee> page = empService.findByPage(pageNumber);
+
+			mav.getModel().put("page", page);
+			mav.setViewName("viewStaffs");
+			return mav;
 		}
 	
 }

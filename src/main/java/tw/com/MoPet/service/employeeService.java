@@ -47,5 +47,10 @@ public class employeeService {
 		}
 		return null;
 	}
+	
+	//Paul 在Controller會使用的Service方法，先放上後續再優化
+	public void insertStaff(employee emp) {
+	    this.empDao.save(emp);
+	  }
 
 }
