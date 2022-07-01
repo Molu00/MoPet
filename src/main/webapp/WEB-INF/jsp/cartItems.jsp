@@ -7,7 +7,7 @@
     <c:set var='target' value='${pageContext.request.requestURI}' scope='session' />
     <c:redirect url="/login"/>
 </c:if>
-<jsp:include page="layout/frontendBar.jsp" />
+<jsp:include page="layout/frontendBar2.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,16 +33,8 @@ $(function(){
 </head>
 <body>
 <main role="main">
-  <!-- Main jumbotron for a primary marketing message or call to action -->
-<!--   <div class="jumbotron"> -->
-<!--     <div class="container"> -->
-<!--       <h1 class="display-3">購物車</h1> -->
-<!--       <p>請確認以下商品數量與金額是否正確</p> -->
-<!--     </div> -->
-<!--   </div> -->
-<br/>
+<div style="height:125px"></div>
   <div class="container">
-    <!-- Example row of columns -->
     <div >
     <table class="table">
 				<thead class="thead-dark">
@@ -84,5 +76,7 @@ $(function(){
   </div> <!-- /container -->
   </div>
 </main>
+<div style="height:100px"></div>
+<jsp:include page="layout/footer.jsp" />
 </body>
 </html>
