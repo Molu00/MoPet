@@ -131,7 +131,7 @@ public class OrderController {
 			List<CartItems> itemsList = ciService.findItemByCart(cart.getCartId());
 			for (CartItems content : itemsList) {
 				OrderDetail orderDetail = new OrderDetail();
-				orderDetail.setOrder(getOrder);
+				orderDetail.setOrderId(getOrder);
 				orderDetail.setpId(content.getpId());
 				orderDetail.setProductAmount(content.getCartItemsAmount());
 				odService.insertOdDetail(orderDetail);
@@ -145,23 +145,8 @@ public class OrderController {
 			Cart trueCart = cService.findBymIdAndcStatus(memId, true);
 			ciService.deleteListByCartId(trueCart.getCartId());
 			cService.deleteCart(trueCart);
-			
-			System.out.println("有沒有走到最後？");
-			
-//			if (trueCart != null) {
-//				List<CartItems> itemsList = ciService.findItemByCart(trueCart.getCartId());
-//
-//				for (CartItems content : itemsList) {
-//					OrderDetail orderDetail = new OrderDetail();
-////					orderDetail.setCartid(content.getCartId());
-//					orderDetail.setpId(content.getpId());
-//					orderDetail.setProductAmount(content.getCartItemsAmount());
-//					odService.insertOdDetail(orderDetail);
-//				}
-//			}
 
 		}
 	return "orderOK";
 	}
-	
 }

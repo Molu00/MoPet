@@ -67,25 +67,22 @@
 									value="${allProduct.pAdded}" /></td>
 							<c:choose>
 								<c:when test="${allProduct.sold}">
-									<td><a
-										href="${contextRoot}/onsold/product/${allProduct.pId}"><button
-												class="btn btn-secondary" disabled>上架</button></a> <a
-										href="${contextRoot}/offsold/product/${allProduct.pId}"><button
-												class="btn btn-secondary">下架</button></a></td>
+									<td><a href="${contextRoot}/onsold/product/${allProduct.pId}">
+										<button class="btn btn-secondary" disabled>上架</button></a> 
+										<a href="${contextRoot}/offsold/product/${allProduct.pId}">
+									<button class="btn btn-secondary">下架</button></a></td>
 								</c:when>
 								<c:otherwise>
-									<td><a
-										href="${contextRoot}/onsold/product/${allProduct.pId}"><button
-												class="btn btn-secondary">上架</button></a> <a
-										href="${contextRoot}/offsold/product/${allProduct.pId}"><button
-												class="btn btn-secondary" disabled>下架</button></a></td>
+									<td><a href="${contextRoot}/onsold/product/${allProduct.pId}">
+										<button class="btn btn-secondary">上架</button></a> 
+										<a href="${contextRoot}/offsold/product/${allProduct.pId}">
+									<button class="btn btn-secondary" disabled>下架</button></a></td>
 								</c:otherwise>
 							</c:choose>
-							<td><a href="${contextRoot}/edit/product/${allProduct.pId}"><button
-										class="btn btn-primary">Edit</button></a></td>
-							<td><a
-								href="${contextRoot}/delete/product/${allProduct.pId}"><button
-										class="btn btn-warning">Delete</button></a></td>
+							<td><a href="${contextRoot}/edit/product/${allProduct.pId}">
+								<button class="btn btn-primary">Edit</button></a></td>
+								<td><a href="${contextRoot}/delete/product/${allProduct.pId}">
+							<button class="btn btn-warning">Delete</button></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

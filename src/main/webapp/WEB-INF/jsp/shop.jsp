@@ -24,7 +24,11 @@
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
+      
       <c:forEach var="allProduct" items="${productList}">
+      
+      <c:if test="${allProduct.sold==true}">
+      
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <img class="rounded-sm" alt="productImg" src="${allProduct.pImg}">
@@ -40,7 +44,11 @@
             </div>
           </div>
         </div>
+        
+        </c:if>
+        
         </c:forEach>
+        
       </div>
     </div>
   </div>
