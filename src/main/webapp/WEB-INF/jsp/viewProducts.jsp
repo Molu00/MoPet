@@ -56,7 +56,7 @@
 					<c:forEach var="allProduct" items="${productList.content}">
 						<tr>
 							<th scope="row"><c:out value="${allProduct.pId}" /></th>
-							<td><img class="rounded-sm" alt="productImg" src="${allProduct.pImg}" width="80px" height="80px"></td>
+							<td><img class="rounded-sm" alt="productImg" src="${allProduct.pImg}" width="50px" height="50px"></td>
 							<td><c:out value="${allProduct.pName}" /></td>
 							<td><c:out value="${allProduct.companyid.getCompany()}" /></td>
 							<td><c:out value="${allProduct.catid.getCategoryName()}" /></td>
