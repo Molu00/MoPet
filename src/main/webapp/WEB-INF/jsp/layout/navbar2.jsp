@@ -22,7 +22,8 @@
 
 <!-- Bootstrap core CSS -->
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
-
+<link href="${contextRoot}/css/bootstrap-table.min.css" rel="stylesheet">
+<link href="${contextRoot}/css/all.css" rel="stylesheet">
 
 
 <style>
@@ -120,5 +121,6 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 	<script src="${contextRoot}/js/dashboard.js"></script>
+	<script src="${contextRoot}/js/bootstrap-table.min.js"></script>
 </body>
 </html>
