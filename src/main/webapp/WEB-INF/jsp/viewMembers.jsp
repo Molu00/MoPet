@@ -4,9 +4,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:if test="${empty backloginOK}">
-    <c:set var='target' value='${pageContext.request.requestURI}' scope='session' />
-    <c:redirect url="/login"/>
-</c:if> 
+	<c:set var='target' value='${pageContext.request.requestURI}'
+		scope='session' />
+	<c:redirect url="/login" />
+</c:if>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <jsp:include page="layout/navbar2.jsp" />
 <!DOCTYPE html>
@@ -66,11 +67,32 @@
 										value="${member.memberAddress}" /></td>
 								<td><a href="${contextRoot}/member/${member.id}"><button
 											class="btn btn-info">編輯</button></a></td>
-								<td><a 
-									href="${contextRoot}/member/delete/${member.id}"><button id="test"
-											class="btn btn-danger">刪除</button ></a></td>
+								<td><button id="test" class="btn btn-danger"
+										data-toggle="modal" data-target="#staticBackdrop">刪除</button></td>
 
 							</tr>
+							<div class="modal fade" id="staticBackdrop"
+								data-backdrop="static" data-keyboard="false" tabindex="-1"
+								aria-labelledby="staticBackdropLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="staticBackdropLabel">刪除</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">你確定要刪除嗎?</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">取消</button>
+											<a href="${contextRoot}/member/delete/${member.id}"><button
+													type="button" class="btn btn-primary">刪除</button></a>
+										</div>
+									</div>
+								</div>
+							</div>
 						</c:forEach>
 					</tbody>
 				</table>
@@ -107,5 +129,8 @@
 			</div>
 		</div>
 	</div>
+
+<jsp:include page="layout/footer.jsp" />
 </body>
+
 </html>

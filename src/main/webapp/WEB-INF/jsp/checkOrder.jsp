@@ -8,7 +8,8 @@
     <c:redirect url="/login"/>
 </c:if>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<jsp:include page="layout/frontendBar.jsp" />
+<jsp:include page="layout/frontendBar2.jsp" />
+<div style="height:125px"></div>
 
 <main role="main">
 	<div
@@ -128,3 +129,5 @@
 		</div>
 	</div>
 </div>
+<div style="height:100px"></div>
+<jsp:include page="layout/footer.jsp" />
