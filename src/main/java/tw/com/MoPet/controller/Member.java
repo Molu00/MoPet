@@ -209,6 +209,7 @@ public class Member {
 	@GetMapping("/logout")
 	public String toLogout(HttpSession session) {
 		session.removeAttribute("loginOK");
+		session.removeAttribute("backloginOK");
 		session.removeAttribute("cart_ID");
 		return "login";
 	}
