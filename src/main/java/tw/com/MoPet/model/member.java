@@ -52,10 +52,22 @@ public class member {
 	
 	@Column(name = "member_birth")
 	private Date memberBirth;
+	
+	@Column(name = "member_email_verify")
+	private Long member_email_verify;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "petOwner", cascade = CascadeType.ALL)
 	private Set<pet> pets=new LinkedHashSet<pet>();
 	
+	
+	public Long getMember_email_verify() {
+		return member_email_verify;
+	}
+
+	public void setMember_email_verify(long member_email_verify) {
+		this.member_email_verify = member_email_verify;
+	}
+
 	public Set<pet> getPets() {
 		return pets;
 	}

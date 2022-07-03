@@ -141,6 +141,14 @@
 								</div>
 
 							</div>
+							<c:forEach var="current" items="${map}">
+
+									<c:if test="${page.id == current.key}" >
+										 留言數 <c:out value="${current.value}" />
+											
+									</c:if>
+
+				</c:forEach>
 							<div class="edit-link">
 								<a href="${contextRoot}/comments/edit?id=${page.id}"><button
 										class="btn btn-info">編輯</button></a> <a
@@ -160,27 +168,10 @@
 
 					</div>
 				</div>
-				<c:forEach var="current" items="${map}">
-					<div class="row justify-content-center ">
-						<div class="col-9">
-							<div class="card text-center ">
-								<div>
-									<c:choose>
-										<c:when test="${page.id == current.key}">
-											<span> 留言數 <c:out value="${current.value}"></c:out>
-											</span>
-										</c:when>
-										<c:otherwise>
-										</c:otherwise>
-									</c:choose>
-								</div>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
+				
 			</c:forEach>
-			
-			
+
+
 
 			<div class="row justify-content-center">
 				<div class="col-9">
