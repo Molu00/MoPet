@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
@@ -100,7 +101,7 @@ public class CartController {
 	}
 
 	@GetMapping("add/cartItems/{id}")
-	public String addCartList(@PathVariable Integer id, HttpSession session) {
+	public String addCartList(@PathVariable Integer id, HttpSession session,Model model) {
 
 		if (session.getAttribute("loginOK") == null) {
 			String prePage = "redirect:/shop/products";
@@ -127,6 +128,9 @@ public class CartController {
 				if (item != null) {
 					item.setCartItemsAmount(item.getCartItemsAmount() + 1);
 					ciService.insertCartItems(item);
+					
+
+					
 				} else {
 					// 撈不到特定商品，new一個items
 					CartItems items = new CartItems();
@@ -169,6 +173,20 @@ public class CartController {
 					ciService.insertCartItems(items);
 				}
 			}
+			
+			
+//			Cart getCart2 = cService.findBymIdAndcStatus(memId, false);
+//			List<CartItems> itemsList=ciService.findItemByCart(getCart2.getCartId());
+//			Integer itemsAcount=0;
+//			
+//			if(itemsList.size()!=0) {
+//			
+//			for(CartItems items:itemsList) {
+//				itemsAcount+=items.getCartItemsAmount();
+//			}}else {itemsAcount=0;}
+//			
+//			session.setAttribute("itemsAcount", itemsAcount);
+//			model.addAttribute("itemsAcount",itemsAcount);
 			return "redirect:/shop/products";
 		}
 	}

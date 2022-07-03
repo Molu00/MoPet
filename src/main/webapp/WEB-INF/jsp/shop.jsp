@@ -26,8 +26,9 @@
 <!--     </div> -->
 <!--   </section> -->
 <br/>
-  <a href="${contextRoot}/into/cart"><button type="button"
-					class="btn btn-sm btn-outline-secondary">將購物車明細暫放這個位置</button></a>			
+  <a href="${contextRoot}/into/cart"><button type="button" class="btn btn-primary">購物車
+  <%-- <span class="badge badge-light">${itemsAcount}</span> --%>
+  </button></a>			
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
@@ -44,7 +45,6 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="${contextRoot}/add/cartItems/${allProduct.pId}"><button type="button" class="btn btn-sm btn-outline-secondary">加入購物車</button></a>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">商品詳細頁面</button>
                 </div>
                 <small class="text-muted"></small>
               </div>
