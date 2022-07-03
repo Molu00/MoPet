@@ -1,17 +1,35 @@
 package tw.com.MoPet.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ecpay.payment.integration.AllInOne;
+import ecpay.payment.integration.domain.AioCheckOutDevide;
+import ecpay.payment.integration.domain.AioCheckOutOneTime;
 import tw.com.MoPet.model.Cart;
 import tw.com.MoPet.model.CartItems;
 import tw.com.MoPet.model.Order;
@@ -54,6 +72,8 @@ public class OrderController {
 	
 	@Autowired
 	private OrderDetailService odService;
+	
+	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
 	@GetMapping("checkIntoOrder")
 	public ModelAndView CheckOrder(ModelAndView mvc, HttpSession session) {
@@ -105,7 +125,7 @@ public class OrderController {
 	}
 
 	@PostMapping("intoOrder")
-	public String intoOrder(@ModelAttribute Order order, ModelAndView mvc, HttpSession session) {
+	public String intoOrder(@ModelAttribute Order order,Model model, ModelAndView mvc, HttpSession session, HttpServletRequest requeset, HttpServletResponse response) throws IOException {
 
 		if (session.getAttribute("loginOK") == null) {
 			String prePage = "redirect:/intoOrder";
@@ -120,7 +140,9 @@ public class OrderController {
 			System.out.println(order.toString());
 
 			Order getOrder=oService.insertOrder(order);
-
+			
+			String orderStr="";
+			
 			// session撈memberid出來
 			// 用id跟status撈未結帳那台，改成結帳
 
@@ -135,6 +157,7 @@ public class OrderController {
 				orderDetail.setpId(content.getpId());
 				orderDetail.setProductAmount(content.getCartItemsAmount());
 				odService.insertOdDetail(orderDetail);
+				orderStr+=content.getpId().getpName()+" "+content.getpId().getpPrice()+"元 "+content.getCartItemsAmount()+" 個#";
 			}
 			
 			cart.setCartStatus(true);
@@ -145,8 +168,96 @@ public class OrderController {
 			Cart trueCart = cService.findBymIdAndcStatus(memId, true);
 			ciService.deleteListByCartId(trueCart.getCartId());
 			cService.deleteCart(trueCart);
+			
+			//接綠界結帳
+			//嘗試一下
+			
+			AllInOne aio=new AllInOne("");
+			AioCheckOutOneTime aoiCheck=new AioCheckOutOneTime();
+			
+			aoiCheck.setMerchantID("2000214");
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			sdf.setLenient(false);
+			aoiCheck.setMerchantTradeDate(sdf.format(new Date()));
+			
+			aoiCheck.setTotalAmount(getOrder.getOrderTotal().toString());
+			
+			aoiCheck.setTradeDesc("testOrder1");
+			
+			aoiCheck.setItemName(orderStr);
+			
+			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMddHHmmss");
+			String nowStr = sdf1.format(new Date()).toString();
+			aoiCheck.setMerchantTradeNo(nowStr+getOrder.getOrderId());
+			
+			aoiCheck.setReturnURL("http://localhost:8080/MoPet/order/returnURL");
+			
+			aoiCheck.setOrderResultURL("http://localhost:8080/MoPet/showHistoryOrder");
 
+			aoiCheck.setClientBackURL("http://localhost:8080/MoPet/shop/products");
+			
+			aoiCheck.setNeedExtraPaidInfo("N");
+			
+			aoiCheck.setRedeem("Y");
+			
+			System.out.println(aoiCheck.toString());
+			
+			String form=aio.aioCheckOut(aoiCheck, null);
+//			return form;
+			model.addAttribute("ecpay",form);
+			
+			
+			System.out.println("this order ========= "+getOrder.getOrderId());
+//			PrintWriter out = response.getWriter();
+//			response.setContentType("text/html;charset=UTF-8");
+//			out.print(aio.aioCheckOut(aoiCheck, null));
 		}
-	return "orderOK";
+//	return "orderOK";
+		return "checkOutECPay";
+	}
+	
+	@PostMapping("order/returnURL")
+	public void returnURL(@RequestParam("MerchantTradeNo") String MerchantTradeNo, @RequestParam("RtnCode") int RtnCode,
+			@RequestParam("TradeAmt") int TradeAmt, HttpServletRequest request, Model model) {
+		if ((request.getRemoteAddr().equalsIgnoreCase("175.99.72.1")
+				|| request.getRemoteAddr().equalsIgnoreCase("175.99.72.11")
+				|| request.getRemoteAddr().equalsIgnoreCase("175.99.72.24")
+				|| request.getRemoteAddr().equalsIgnoreCase("175.99.72.28")
+				|| request.getRemoteAddr().equalsIgnoreCase("175.99.72.32")) && RtnCode == 1) {
+
+			System.out.println("傳進來的 MerchantTradeNo "+MerchantTradeNo);
+			System.out.println("傳進來的 TradeAmt "+TradeAmt);
+//			String orderIdStr =MerchantTradeNo.substring(36);
+//			System.out.println(MerchantTradeNo);
+//			//抓訂單id，用id搜尋訂單然後改狀態
+//			String orderIdStr = MerchantTradeNo.substring(8);
+//			int OrderId = Integer.parseInt(orderIdStr);
+//			Order order =oService.getOrderById(OrderId);
+//			order.setPaymentStatus(true);
+//			oService.insertOrder(order);
+//			//findById(OrderId)
+			logger.info("test check out ok");
+		}
+	}
+	
+//	@RequestMapping(path = "/checkOut/showHistoryOrder", method = {RequestMethod.GET,RequestMethod.POST})
+	@PostMapping("showHistoryOrder")
+	public void showHistoryOrder(Model model, HttpSession session) {
+//		member member = (member) session.getAttribute("loginOK");
+//		Integer memberId=member.getId();
+//		//回來寫一個OrderService的findBytwoKeys去找未付款單子
+//		Order thisOrder=oService.findBymIdAndcStatus(memberId, false);
+////		Member member = memberService.findById(sessionUId);
+//		List<OrderDetail> orderDetailList=odService.findOrderDetailByCart(thisOrder.getOrderId());
+//		
+//		model.addAttribute("orderDetail"+orderDetailList);
+//		
+//		thisOrder.setPaymentStatus(true);
+//		oService.insertOrder(thisOrder);
+		
+		//透過使用者取得訂單資料並呈現，此處先用index代替
+		logger.info("test check out HistoryOrder");
+//		return "orderOK";
 	}
 }
