@@ -207,6 +207,10 @@ public class OrderController {
 //			return form;
 			model.addAttribute("ecpay",form);}
 			
+			//暫時將訂單成功付款的資訊藏這裡
+			getOrder.setPaymentStatus(true);
+			oService.insertOrder(getOrder);
+			
 			System.out.println("this order ========= "+getOrder.getOrderId());
 //			PrintWriter out = response.getWriter();
 //			response.setContentType("text/html;charset=UTF-8");
