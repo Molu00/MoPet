@@ -9,9 +9,9 @@
 </c:if>
 <jsp:include page="layout/frontendBar2.jsp" />
 
-<div>
+
 <h2>OK</h2>
-</div>
+
 
 <div style="height:100px"></div>
 <jsp:include page="layout/footer.jsp" />
