@@ -79,55 +79,54 @@ img.card-img {
 				<li class="nav-item"><a class="navbar-brand" href="${contextRoot}/question"><img src="${contextRoot}/img/聯絡我們2.png" width="90"
 			height="23" alt=""></a></li>
 			</ul>
-			<a class="alert-link"  style="color:#642100" href="${contextRoot}/shop/logout">登出</a>
+			<a class="alert-link"  style="color:#642100" href="${contextRoot}/login">登入</a>
 		</div>
 	</nav>
-<!-- 	<div id="carouselExampleCaptions" class="carousel slide" -->
-<!-- 		data-ride="carousel"> -->
-<!-- 		<ol class="carousel-indicators"> -->
-<!-- 			<li data-target="#carouselExampleCaptions" data-slide-to="0" -->
-<!-- 				class="active"></li> -->
-<!-- 			<li data-target="#carouselExampleCaptions" data-slide-to="1"></li> -->
-<!-- 			<li data-target="#carouselExampleCaptions" data-slide-to="2"></li> -->
-<!-- 		</ol> -->
-<!-- 		<div class="carousel-inner"> -->
-<!-- 			<div class="carousel-item active"> -->
-<%-- 				<img src="${contextRoot}/img/top.jpg" class="d-block w-100"  --%>
-<!-- 			height="500" -->
-<!-- 					alt="..."> -->
-<!-- 				<div class="carousel-caption d-none d-md-block"> -->
-<!-- 					<h5>MoPet Store</h5> -->
-<!-- 					<p>歡迎來到Mopet商城，您可以在這裡找到數百種商品，總有一種適合您心愛的寵物</p> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="carousel-item"> -->
-<%-- 				<img src="${contextRoot}/img/top9.jpg" class="d-block w-100" height="500" --%>
-<!-- 					alt="..."> -->
-<!-- 				<div class="carousel-caption d-none d-md-block"> -->
-<!-- 					<h5>Second slide label</h5> -->
-<!-- 					<p>Some representative placeholder content for the second -->
-<!-- 						slide.</p> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="carousel-item"> -->
-<%-- 				<img src="${contextRoot}/img/top2.jpg" class="d-block w-100" height="500" --%>
-<!-- 					alt="..."> -->
-<!-- 				<div class="carousel-caption d-none d-md-block"> -->
-<!-- 					<h5>Third slide label</h5> -->
-<!-- 					<p>Some representative placeholder content for the third slide.</p> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 		<button class="carousel-control-prev" type="button" -->
-<!-- 			data-target="#carouselExampleCaptions" data-slide="prev"> -->
-<!-- 			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span -->
-<!-- 				class="sr-only">Previous</span> -->
-<!-- 		</button> -->
-<!-- 		<button class="carousel-control-next" type="button" -->
-<!-- 			data-target="#carouselExampleCaptions" data-slide="next"> -->
-<!-- 			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span -->
-<!-- 				class="sr-only">Next</span> -->
-<!-- 		</button> -->
-<!-- 	</div> -->
+<div id="carouselExampleCaptions" class="carousel slide"
+		data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleCaptions" data-slide-to="0"
+				class="active"></li>
+			<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+			<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner" >
+			<div class="carousel-item active" >
+				<img src="${contextRoot}/img/top.jpg" class="d-block w-100"  style="height:700px" 
+					alt="...">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>MoPet Store</h5>
+					<p>歡迎來到Mopet商城，您可以在這裡找到數百種商品，總有一種適合您心愛的寵物</p>
+				</div>
+			</div>
+			<div class="carousel-item" >
+				<img src="${contextRoot}/img/top9.jpg" class="d-block w-100"  style="height:700px" 
+					alt="...">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>Second slide label</h5>
+					<p>Some representative placeholder content for the second
+						slide.</p>
+				</div>
+			</div>
+			<div class="carousel-item" >
+				<img src="${contextRoot}/img/top3.png" class="d-block w-100"  style="height:700px" 
+					alt="...">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>Third slide label</h5>
+					<p>Some representative placeholder content for the third slide.</p>
+				</div>
+			</div>
+		</div>
+		<button class="carousel-control-prev" type="button"
+			data-target="#carouselExampleCaptions" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+				class="sr-only">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button"
+			data-target="#carouselExampleCaptions" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
+				class="sr-only">Next</span>
+		</button>
+	</div>
 </body>
 </html>
