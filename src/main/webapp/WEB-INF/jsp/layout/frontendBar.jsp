@@ -79,7 +79,7 @@ img.card-img {
 				<li class="nav-item"><a class="navbar-brand" href="${contextRoot}/question"><img src="${contextRoot}/img/聯絡我們2.png" width="90"
 			height="23" alt=""></a></li>
 			</ul>
-			<a class="alert-link"  style="color:#642100" href="${contextRoot}/logout">登出</a>
+			<a class="alert-link"  style="color:#642100" href="${contextRoot}/shop/logout">登出</a>
 		</div>
 	</nav>
 	<div id="carouselExampleCaptions" class="carousel slide"

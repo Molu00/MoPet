@@ -1,5 +1,6 @@
 package tw.com.MoPet.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -96,6 +97,10 @@ public class memberService {
 		helper.setText(resolvedString, true);
 		
 		mailSender.send(message);
+		Date date = new Date();
+		 Long timeMilli = date.getTime();
+		 System.out.println("Time in milliseconds using Date class: " + timeMilli);
+		 mem.setMember_email_verify(timeMilli);
 		System.out.println("Mail Sent successfully");
 		
 	}
@@ -117,6 +122,10 @@ public class memberService {
 		helper.setText(resolvedString, true);
 		
 		mailSender.send(message);
+		Date date = new Date();
+		 Long timeMilli = date.getTime();
+		 System.out.println("Time in milliseconds using Date class: " + timeMilli);
+		 mem.setMember_email_verify(timeMilli);
 		System.out.println("Mail Sent successfully");
 		
 	}

@@ -89,6 +89,12 @@ public class Member {
 	@GetMapping(path = "member/verification")
 	public String verifyEmail(@RequestParam("id") Integer id, Model m) {
 		member mem = mService.findById(id);
+		Long time=mem.getMember_email_verify();
+		Date date = new Date();
+		Long timeMilli = date.getTime();
+		if ((timeMilli-time)>10000) {
+			return "forgetPWD_nogood2";
+		}
 		m.addAttribute("member", mem);
 		return "setPassword";
 	}
@@ -96,6 +102,12 @@ public class Member {
 	@GetMapping(path = "member/forgetpassword")
 	public String forgetPassword(@RequestParam("id") Integer id, Model m) {
 		member mem = mService.findById(id);
+		Long time=mem.getMember_email_verify();
+		Date date = new Date();
+		Long timeMilli = date.getTime();
+		if ((timeMilli-time)>10000) {
+			return "forgetPWD_nogood";
+		}
 		m.addAttribute("member", mem);
 		return "setPassword2";
 	}
@@ -212,6 +224,13 @@ public class Member {
 		session.removeAttribute("backloginOK");
 		session.removeAttribute("cart_ID");
 		return "login";
+	}
+	@GetMapping("shop/logout")
+	public String ShoptoLogout(HttpSession session) {
+		session.removeAttribute("loginOK");
+		session.removeAttribute("backloginOK");
+		session.removeAttribute("cart_ID");
+		return "redirect:/shop/products";
 	}
 	@GetMapping(path = "/question")
 	public String processQuestion() {
