@@ -171,8 +171,8 @@ public class OrderController {
 			
 			//接綠界結帳
 			//嘗試一下
-			
-			AllInOne aio=new AllInOne("");
+			if(getOrder.getPaymentId().getPayId()==2) {
+				AllInOne aio=new AllInOne("");
 			AioCheckOutOneTime aoiCheck=new AioCheckOutOneTime();
 			
 			aoiCheck.setMerchantID("2000214");
@@ -205,8 +205,7 @@ public class OrderController {
 			
 			String form=aio.aioCheckOut(aoiCheck, null);
 //			return form;
-			model.addAttribute("ecpay",form);
-			
+			model.addAttribute("ecpay",form);}
 			
 			System.out.println("this order ========= "+getOrder.getOrderId());
 //			PrintWriter out = response.getWriter();
