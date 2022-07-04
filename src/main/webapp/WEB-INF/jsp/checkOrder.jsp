@@ -12,10 +12,6 @@
 <div style="height:125px"></div>
 
 <main role="main">
-	<div
-		class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-		<h1 class="h2">訂單成立中</h1>
-	</div>
 </main>
 <div
 	>
@@ -49,7 +45,7 @@
 							<tr>
 								<th scope="col">總計</th>
 								<td colspan="3"></td>
-								<td colspan="2"><input class="text-center" id="orderTotal" name="orderTotal" type="text" value="${tempSum}"/></td>
+								<td colspan="2"><input class="text-center" id="orderTotal" name="orderTotal" type="text" value="${tempSum}" readonly/></td>
 							</tr>
 						</tbody>
 					</table>
@@ -118,13 +114,10 @@
 						</tbody>
 					</table>
 					<div class="btn-group d-flex" role="group">
-						<input class="btn btn-primary" type="submit" value="送出資料" />
+<!-- 						<input class="btn btn-primary" type="submit" value="送出資料" /> -->
+						<button type="submit" class="btn btn-outline-secondary">送出資料</button>
 				</div>
 				</form:form>
-				<div class="btn-group d-flex" role="group">
-					<button id="autokeyin" class="btn btn-light" type="submit">Auto keyin</button>
-				</div>
-
 			</div>
 		</div>
 	</div>

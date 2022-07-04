@@ -13,17 +13,47 @@
 </c:otherwise>
 </c:choose>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-
+<style type="text/css">
+.back-to-top {
+	display: none;
+	position: fixed;
+	bottom: 20px;
+	right: 30px;
+	z-index: 99;
+	border: 1px solid #5cb85c;
+	outline: none;
+	background-color: #fff;
+	color: #5cb85c;
+	cursor: pointer;
+	padding: 10px 15px 15px 15px;
+	border-radius: 10px;
+}
+</style>
 
 <div class="container">
 <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
 <main role="main">
 
+<a href="${contextRoot}/into/cart"><button class="js-back-to-top back-to-top" title="購物車"><img alt="購物車" src="${contextRoot}/img/trolley.png" width="30px" height="30px"></button></a>
+
+			<script>
+				$(function() {
+					var $win = $(window);
+					var $backToTop = $('.js-back-to-top');
+					$win.scroll(function() {
+						if ($win.scrollTop() > 1) {
+							$backToTop.show();
+						} else {
+							$backToTop.hide();
+						}
+					});
+				});
+			</script>
 
 <br/>
-  <a href="${contextRoot}/into/cart"><button type="button" class="btn btn-primary">購物車
-  <%-- <span class="badge badge-light">${itemsAcount}</span> --%>
-  </button></a>			
+	<button type="button" class="btn btn-outline-secondary">Secondary1</button>
+      <button type="button" class="btn btn-outline-secondary">Secondary2</button>
+      <button type="button" class="btn btn-outline-secondary">Secondary3</button>	
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">

@@ -76,6 +76,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<br/>
 			<div class="row justify-content-center">
 
 				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
