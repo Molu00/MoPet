@@ -12,6 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
@@ -77,7 +78,7 @@
 					</div>
 					<div></div>
 					<br />
-					<button type="submit" class="btn btn-dark">新增</button>
+					<button type="submit" class="btn btn-dark" id="test">新增</button>
 				</form>
 			</div>
 		</div>
@@ -87,6 +88,22 @@
 			}
 		</script>
 	</div>
-
+<script>
+document.getElementById('test').addEventListener('click',function(){
+	Swal.fire({
+		  title: '已新增會員',
+		  width: 600,
+		  padding: '3em',
+		  color: '#716add',
+		  background: '#fff url()',
+		  backdrop: `
+			  rgba(210,233,255,0.4)
+		    url("${contextRoot}/img/fun2.gif")
+		    left
+		    no-repeat
+		  `
+		})
+})
+</script>
 </body>
 </html>

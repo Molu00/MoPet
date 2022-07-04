@@ -18,6 +18,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <br/>
@@ -77,7 +78,7 @@
 					</div>
 					<div></div>
 					<br />
-					<button type="submit" class="btn btn-dark">更新</button>
+					<button type="submit" class="btn btn-dark" id="test">更新</button>
 				</form>
 			</div>
 		</div>
@@ -85,6 +86,18 @@
 <br/>
 <br/>
 <br/>
+<script>
+document.getElementById('test').addEventListener('click',function(){
+	event.preventDefault();
+	Swal.fire({
+		  position: 'center',
+		  icon: 'success',
+		  title: '帳號已更新',
+		  showConfirmButton: false,
+		  timer: 2000
+		})
+})
+</script>
 <jsp:include page="layout/footer.jsp" />
 </body>
 </html>
