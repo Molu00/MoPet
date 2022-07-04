@@ -73,7 +73,7 @@
 			</script>
 
 			<div class="dropdown">
-				<button class="btn btn-info dropdown-toggle" type="button"
+				<button class="btn btn-secondary dropdown-toggle" type="button"
 					id="dropdownMenuButton" data-toggle="dropdown"
 					aria-expanded="false">篩選</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -100,10 +100,10 @@
 
 				<div class="row justify-content-center  ">
 					<div class="col-10">
-						<div class="card text-center shadow-lg p-3 mb-5 bg-white rounded">
+						<div class="card text-center shadow-lg p-3 mb-5 bg-white rounded font-italic " >
 							<div class="myMOUSE"
-								onclick="window.open('${contextRoot}/comments/page2?id=${page.id}')">
-								<div class="card-header text-white bg-info ">
+								onclick="window.location.href='${contextRoot}/comments/page2?id=${page.id}'">
+								<div class="card-header text-white bg-secondary ">
 									<c:out value="${page.name}"></c:out>
 								</div>
 

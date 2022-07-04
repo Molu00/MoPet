@@ -101,7 +101,7 @@
 					<div class="col-9">
 						<div class="card text-center ">
 							<div class="myMOUSE"
-								onclick="window.open('${contextRoot}/comments/page?id=${page.id}')">
+								onclick="window.location.href='${contextRoot}/comments/page?id=${page.id}'">
 								<div class="card-header text-white bg-dark ">
 									<c:out value="${page.name}"></c:out>
 								</div>
