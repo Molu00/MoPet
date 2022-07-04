@@ -49,7 +49,7 @@
 							<tr>
 								<th scope="col">總計</th>
 								<td colspan="3"></td>
-								<td colspan="2"><input class="text-center" id="orderTotal" name="orderTotal" type="text" value="${tempSum}"/></td>
+								<td colspan="2"><input class="text-center" id="orderTotal" name="orderTotal" type="text" value="${tempSum}" readonly/></td>
 							</tr>
 						</tbody>
 					</table>
