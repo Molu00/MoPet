@@ -17,12 +17,12 @@
 <div
 	class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 ">
 	<div class="row justify-content-center ">
-		<div class=" text-white bg-secondary text-center" style="width: 813px">
+		<div class=" text-white bg-secondary text-center" style="width: 915px">
 			<h1>新增留言</h1>
 		</div>
 	</div>
 	<div class="row justify-content-center ">
-		<div class="col-8">
+		<div class="col-9">
 			<div
 				class="card text-center  shadow-lg p-3 mb-5 bg-white rounded font-italic">
 				<div class="card-body">
@@ -37,12 +37,12 @@
 
 						<div class="font-weight-bold">發文者</div>
 						<div class="form-group">
-							<form:textarea path="name" class="form-control" />
+							<form:input path="name" class="form-control" />
 						</div>
 						<div class="font-weight-bold">內容</div>
 						<div class="form-group">
 							<form:textarea path="content" class="form-control" />
-						</div>
+						</div><br/>
 
 
 						<div class="font-weight-bold">上傳圖片<div class="form-group">

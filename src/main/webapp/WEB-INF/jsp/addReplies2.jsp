@@ -14,74 +14,75 @@
 	<c:redirect url="/login" />
 </c:if>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-
+<main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-md-4">
 </main>
 <br />
 <br />
+<div>
 
-
-<div class="row justify-content-center ">
-	<div class=" text-white bg-secondary text-center" style="width: 1000px">
-		<h1>新增留言</h1>
+	<div class="row justify-content-center">
+		<div class="text-white bg-secondary text-center" style="width: 1000px">
+			<h1>新增留言</h1>
+		</div>
 	</div>
-</div>
-<div class="row justify-content-center ">
-	<div class="col-8">
-		<div
-			class="card text-center  shadow-lg p-3 mb-5 bg-white rounded font-italic">
-			<div class="card-body">
 
-				<form:form class="form" method="post"
-					action="${contextRoot}/replies/add2" modelAttribute="replies"
-					enctype="multipart/form-data">
+	<div class="row justify-content-center">
+		<div class="col-8">
+			<div
+				class="card text-center shadow-lg p-3 mb-5 bg-white rounded font-italic">
+				<div class="card-body">
 
-
-					<input type="hidden" name="id" value="${replies.fk_c_id}" />
-
-					<div>發文者</div>
-					<div class="form-group">
-						<form:input path="name" class="form-control" />
-					</div>
+					<form:form class="form" method="post"
+						action="${contextRoot}/replies/add2" modelAttribute="replies"
+						enctype="multipart/form-data">
 
 
-					<div>內容</div>
-					<div class="form-group">
-						<form:textarea path="content" class="form-control" />
-					</div>
-					<br />
+						<input type="hidden" name="id" value="${replies.fk_c_id}" />
+
+						<div class="font-weight-bold">發文者</div>
+						<div class="form-group">
+							<form:input path="name" class="form-control" />
+						</div>
 
 
-					<div>上傳圖片</div>
-					<div class="form-group">
-						<div id="upload"></div>
-						<br> <input type="file" name="repimg" id="repimg" />
-					</div>
+						<div class="font-weight-bold">內容</div>
+						<div class="form-group">
+							<form:textarea path="content" class="form-control" />
+						</div>
+						<br />
 
 
-					<input onclick="return confirm('確認發布?')" type="submit"
-						name="submit" value="確定發布">
+						<div class="font-weight-bold">上傳圖片</div>
+						<div class="form-group">
+							<div id="upload"></div>
+							<br> <input type="file" name="repimg" id="repimg" />
+						</div>
 
-				</form:form>
-				<script type="text/javascript">
-					$(function() {
 
-						function preView(preDIV) {
-							var files = preDIV.files;
-							for (var i = 0; i < files.length; i++) {
-								var data = URL.createObjectURL(files[i]);
-								$('<img class="img-item" src="'+data+'" />')
-										.appendTo($("#upload"));
+						<input onclick="return confirm('確認發布?')" type="submit"
+							name="submit" value="確定發布">
+
+					</form:form>
+					<script type="text/javascript">
+						$(function() {
+
+							function preView(preDIV) {
+								var files = preDIV.files;
+								for (var i = 0; i < files.length; i++) {
+									var data = URL.createObjectURL(files[i]);
+									$('<img class="img-item" src="'+data+'" />')
+											.appendTo($("#upload"));
+								}
 							}
-						}
 
-						$(':file').change(function() {
-							console.log(this);
-							preView(this);
+							$(':file').change(function() {
+								console.log(this);
+								preView(this);
+							});
 						});
-					});
-				</script>
+					</script>
 
+				</div>
 			</div>
 		</div>
 

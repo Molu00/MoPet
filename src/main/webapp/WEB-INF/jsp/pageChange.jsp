@@ -32,7 +32,7 @@
 
 	</main>
 	<div
-		class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom ">
+		class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 ">
 		<div class="container">
 
 			<button class="js-back-to-top back-to-top" title="回到頭部">&#65085;</button>
@@ -70,7 +70,7 @@
 				<div class="row justify-content-center ">
 					<div class="col-9">
 						<div class="card text-center ">
-							<div class="card-header text-white bg-dark ">
+							<div class="card-header text-white bg-secondary ">
 
 								<c:out value="${com.name}"></c:out>
 							</div>
@@ -108,11 +108,11 @@
 				<div class="row justify-content-center">
 					<div class="col-9">
 						<div class="card text-center">
-							<div class="card-header card-header text-white bg-dark">
+							<div class="card-header card-header text-white bg-secondary">
 								留言
 								<c:out value="${fk.name}"></c:out>
 							</div>
-							<span class="card-body"> <c:out value="${fk.content}"></c:out>
+							<span class="card-body "> <c:out value="${fk.content}"></c:out>
 								<c:choose>
 									<c:when test="${fk.rep_img !=null }">
 										<img alt="#" src="${fk.rep_img}" width="15%" height="10%">

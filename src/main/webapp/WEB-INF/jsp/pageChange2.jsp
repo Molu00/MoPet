@@ -78,7 +78,7 @@
 				<div class="row justify-content-center ">
 					<div class="col-9">
 						<div class="card text-center ">
-							<div class="card-header text-white bg-info ">
+							<div class="card-header text-white bg-secondary ">
 
 								<c:out value="${com.name}"></c:out>
 							</div>
@@ -116,7 +116,7 @@
 				<div class="row justify-content-center">
 					<div class="col-9">
 						<div class="card text-center">
-							<div class="card-header card-header text-white bg-info">
+							<div class="card-header card-header text-white bg-secondary">
 								留言
 								<c:out value="${fk.name}"></c:out>
 							</div>

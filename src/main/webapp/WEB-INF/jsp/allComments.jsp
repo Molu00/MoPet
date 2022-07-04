@@ -99,10 +99,10 @@
 
 				<div class="row justify-content-center ">
 					<div class="col-9">
-						<div class="card text-center ">
+						<div class="card text-center shadow-lg">
 							<div class="myMOUSE"
 								onclick="window.location.href='${contextRoot}/comments/page?id=${page.id}'">
-								<div class="card-header text-white bg-dark ">
+								<div class="card-header text-white bg-secondary ">
 									<c:out value="${page.name}"></c:out>
 								</div>
 
@@ -149,7 +149,8 @@
 								</c:if>
 
 							</c:forEach>
-							<br /> <br /> <br />
+							<br /> <br/>
+							
 
 							<div class="edit-link">
 								<a href="${contextRoot}/comments/edit?id=${page.id}"><button
@@ -158,7 +159,7 @@
 									href="${contextRoot}/comments/delete?id=${page.id}"><button
 										class="btn btn-danger">刪除</button></a>
 							</div>
-							<br /> <br />
+							<br />
 							<!-- 							<div> -->
 							<!-- 							<br /> <br /> -->
 							<%-- 								<a href="${contextRoot}/comments/page?id=${page.id}"><button --%>
@@ -170,7 +171,7 @@
 
 					</div>
 				</div>
-
+<br /> <br />
 			</c:forEach>
 
 

@@ -14,15 +14,16 @@
 
 <!-- </main> -->
 <br/><br/><br/>
-<div
-	class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3">
-
-
-	<div class="row justify-content-center">
+<div class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 ">
+	<div class="row justify-content-center ">
+		<div class=" text-white bg-secondary text-center" style="width: 920px">
+			<h1>編輯留言</h1>
+		</div>
+	</div>
+	<div class="row justify-content-center ">
 		<div class="col-9">
-			<h1>更新留言</h1>
-			<div class="card">
-				<div class="card-header">請輸入</div>
+			<div
+				class="card text-center  shadow-lg p-3 mb-5 bg-white rounded font-italic">
 				<div class="card-body">
 
 					<form:form class="form" method="post" modelAttribute="replies" enctype="multipart/form-data">
@@ -33,7 +34,9 @@
 
 						<div class="form-group">
 							<form:textarea path="content" class="form-control" />
-						</div>
+						</div><br/>
+						
+						<div class="font-weight-bold">更新圖片</div><br/>
 						<div class="form-group">
 							<div id="upload"></div>
 							<input type="file" name="repimg" id="repimg" width="40%"
