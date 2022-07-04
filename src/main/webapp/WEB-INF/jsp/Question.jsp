@@ -63,7 +63,6 @@ $(function () {
 				<h5 class="card-title">毛胚會開發票嗎？</h5>
 				<p class="card-text">當然會！配合政府環保無紙發票政策，所有訂單一律在出貨的同時寄出電子發票到你的
 					email 信箱裡喔。</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
 			</div>
 		</div>
 		<br />
@@ -73,7 +72,6 @@ $(function () {
 				<h5 class="card-title">目前有什麼付款方式呢？</h5>
 				<p class="card-text">現在可以使用【線上刷卡】、【宅配貨到付款】、【Apple Pay
 					付款】、以及【超商取貨付款】等方式付款唷！</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
 			</div>
 		</div>
 		<br />
@@ -83,7 +81,6 @@ $(function () {
 				<h5 class="card-title">可以開統編嗎？</h5>
 				<p class="card-text">可以，請在訂單結帳畫面勾選「公司戶(三聯)發票」，填寫統編、抬頭、地址，我們會在出貨的同時寄出電子發票到你的
 					email 信箱裡喔。</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
 			</div>
 		</div>
 		<br />
@@ -94,7 +91,6 @@ $(function () {
 				<p class="card-text">單筆訂單運費計算如下： 【本島】購物滿 1000 元免運 (購物金 /
 					優惠碼折抵後，不包含運費) 未滿 1000 元將酌收 80 元金物流費。 【離島】購物滿 2000 元免運 (購物金 /
 					優惠碼折抵後，不包含運費) 未滿 2000 元將酌收 200 元金物流費。</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
 			</div>
 		</div>
 		<br />
@@ -103,7 +99,6 @@ $(function () {
 			<div class="card-body">
 				<h5 class="card-title">購物金是什麼？</h5>
 				<p class="card-text">購物金就是存在你帳戶的錢錢，下單時可用購物金直接折抵消費金額，並且沒有使用限制與期限，不管多少錢都可折抵喔。點我查詢帳戶裡的購物金。</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
 			</div>
 		</div>
 		<br />
@@ -120,7 +115,6 @@ $(function () {
 
 
 					加入官方客服，解答你的更多問題：https://line.me/R/ti/p/~@petpetgo</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
 			</div>
 		</div>
 	</div>
