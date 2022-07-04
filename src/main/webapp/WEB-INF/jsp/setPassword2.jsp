@@ -95,7 +95,7 @@ body {
 </head>
 
 <body class="text-center" >
-<div class="shadow-lg p-3 mb-5 bg-white rounded">
+<div class="shadow-lg p-3 mb-5 bg-white rounded" style="opacity: 0.8">
 	<main class="form-signin" >
 		<form method="post" action="setPassword">
 			<h1 class="h3 mb-3 fw-normal">請設定密碼</h1> 

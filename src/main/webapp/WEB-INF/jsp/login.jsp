@@ -112,7 +112,7 @@ body {
 
 </head>
 
-<body class="text-center">
+<body class="text-center"style="opacity: 0.8">
 <div class="shadow-lg p-3 mb-5 bg-white rounded">
 
 	<main class="form-signin">
