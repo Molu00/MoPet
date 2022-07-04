@@ -5,12 +5,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:choose>
-<c:when test="${empty loginOK}">
-<jsp:include page="layout/frontendBar3.jsp" />
-</c:when>
-<c:otherwise>
-<jsp:include page="layout/frontendBar.jsp" />
-</c:otherwise>
+	<c:when test="${empty loginOK}">
+		<jsp:include page="layout/frontendBar3.jsp" />
+	</c:when>
+	<c:otherwise>
+		<jsp:include page="layout/frontendBar.jsp" />
+	</c:otherwise>
 </c:choose>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <style type="text/css">
@@ -65,13 +65,13 @@
 				});
 			</script>
 
+
 			<div class="btn-toolbar mb-2 mb-md-0">
 				<a href="${contextRoot}/replies/add2?id=${com.id}"><button
 						type="button" class="btn btn-sm btn-outline-secondary">
 						<span data-feather="calendar"></span> 新增留言
 					</button></a>
 			</div>
-
 
 			<form:form class="form" method="post" modelAttribute="com">
 
@@ -87,7 +87,7 @@
 									<c:out value="${com.title}"></c:out>
 								</h1>
 							</div>
-							<div style="padding: 10px ; font-size: 18px">
+							<div style="padding: 10px; font-size: 18px">
 								<c:out value="${com.content}"></c:out>
 							</div>
 							<div class="card-body">
@@ -138,17 +138,20 @@
 								<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
 									value="${fk.createondate}" />
 							</div>
-														<div class="edit-link">
-															<a href="${contextRoot}/replies/edit23?id=${fk.id}"><button
-																	class="btn btn-info">編輯</button></a> <a
-																onclick="return confirm('刪除')"
-																href="${contextRoot}/replies/delete2?id=${fk.id}&c_id=${com.id}"><button
-																	class="btn btn-danger">刪除</button></a> <br /> <br /> <br />
-														</div>
+							<div class="edit-link">
+								<a href="${contextRoot}/replies/edit23?id=${fk.id}"><button
+										class="btn btn-info">編輯</button></a> <a
+									onclick="return confirm('刪除')"
+									href="${contextRoot}/replies/delete2?id=${fk.id}&c_id=${com.id}"><button
+										class="btn btn-danger">刪除</button></a> <br /> <br /> <br />
+							</div>
 						</div>
 					</div>
 				</div>
+
 			</c:forEach>
+
+
 		</div>
 	</div>
 </body>

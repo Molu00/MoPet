@@ -81,5 +81,9 @@ public class CommentsService {
 	public List<Comments> findAll() {
 		return cDao.findAll();
 	}
+	
+	public Integer findByUserId(Integer id) {
+		return cDao.findUserId(id);
+	}
 
 }

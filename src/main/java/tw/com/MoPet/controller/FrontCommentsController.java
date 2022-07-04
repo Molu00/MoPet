@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +45,25 @@ public class FrontCommentsController {
 	}
 	
 	@GetMapping("comments/all3")
-	public String viewtext2(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model) {
+	public String viewtext4(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model) {
 		
-		Page<Comments> page = cService.findByPage2(pageNumber);
-				
+		Page<Comments> page = cService.findByPage(pageNumber);
+		
+		
+		Map<Integer, Integer> map= new HashMap<>();
+		
+		for (int i = 0; i < page.getSize()-1; i++) {
+			
+		Integer number=rService.countReplies(page.getContent().get(i).getId());
+		
+		map.put(page.getContent().get(i).getId(), number);
+		
+		
+		System.out.println(map);
+		
+		}
+		
+		model.addAttribute("map",map);
 		model.addAttribute("page", page);
 		
 		return "allComments2";
@@ -209,6 +226,15 @@ public class FrontCommentsController {
 			String profile = "data:image/png;base64," + temp;
 
 			replies.setRep_img(profile);
+			
+			
+			
+			rService.getFKID(id); //先找到貼文id
+			Comments com = cService.findById(rService.getFKID(id));
+			replies.setComments(com);
+			
+			rService.insertReplies(replies);		
+			
 		}
 		// 取得現在時間
 		Date now = Calendar.getInstance().getTime();

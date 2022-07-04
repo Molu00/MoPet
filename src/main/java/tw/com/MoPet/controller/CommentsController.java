@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import tw.com.MoPet.model.Comments;
+import tw.com.MoPet.model.Replies;
 import tw.com.MoPet.service.CommentsService;
 import tw.com.MoPet.service.RepliesService;
 
@@ -42,9 +43,9 @@ public class CommentsController {
 //	public List<Comments> findAll() {
 //		return cService.findAll();
 //	}
-
+ 
 	@PostMapping("comments/add") // post送出資料
-	public String addComment(@ModelAttribute("comments") Comments comments,
+	public String addComment(@ModelAttribute("comments") Comments comments,Model model,
 			@RequestParam("comimg") MultipartFile file) throws IOException {
 
 		if (!file.isEmpty()) {
@@ -55,6 +56,13 @@ public class CommentsController {
 		}
 
 		cService.insertComment(comments);
+		
+		Comments com = new Comments(); 
+
+		Comments lastest = cService.getLastest();
+
+		model.addAttribute("com", com);
+		model.addAttribute("lastest", lastest);
 
 		return "redirect:/comments/all";
 	}
