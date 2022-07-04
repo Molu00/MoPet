@@ -14,6 +14,9 @@
 	src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="${contextRoot}/js/sweetalert2@11.js"></script>
 
+<link href="${contextRoot}/css/bootstrap-table.min.css" rel="stylesheet">
+<link href="${contextRoot}/css/all.css" rel="stylesheet">
+
 <link rel="stylesheet" href="${contextRoot}/css/bootstrap.css">
 <link rel="stylesheet" href="${contextRoot}/css/style.css">
 
@@ -128,5 +131,7 @@ img.card-img {
 				class="sr-only">Next</span>
 		</button>
 	</div>
+	<script src="${contextRoot}/js/bootstrap-table.min.js"></script>
+	<script src="${contextRoot}/js/popper.min.js"></script>
 </body>
 </html>

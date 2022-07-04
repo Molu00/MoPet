@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,6 +22,7 @@ import tw.com.MoPet.model.Order;
 import tw.com.MoPet.model.Product;
 import tw.com.MoPet.model.Replies;
 import tw.com.MoPet.model.employee;
+import tw.com.MoPet.model.member;
 import tw.com.MoPet.service.CartService;
 import tw.com.MoPet.service.CartitemsService;
 import tw.com.MoPet.service.CommentsService;
@@ -243,6 +245,4 @@ public class PageController {
 			return mvc;
 		}
 		
-		
-	
 }

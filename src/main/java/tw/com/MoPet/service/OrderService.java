@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import tw.com.MoPet.model.Order;
-import tw.com.MoPet.model.OrderDetail;
 import tw.com.MoPet.model.OrderRepository;
 
 @Service
@@ -45,5 +44,9 @@ public class OrderService {
 			return option.get();
 		}
 		return null;
+	}
+	
+	public List<Order> findAllByMid(Integer memberId){
+		return OrderDAO.findAllByMid(memberId);
 	}
 }
