@@ -65,32 +65,32 @@
 										value="${member.memberAddress}" /></td>
 								<td><a href="${contextRoot}/member/${member.id}"><button
 											class="btn btn-info">編輯</button></a></td>
-								<td><button id="test" class="btn btn-danger"
-										data-toggle="modal" data-target="#staticBackdrop">刪除</button></td>
+								<td><a href="${contextRoot}/member/delete/${member.id}"><button
+													type="button" class="btn btn-info" onclick="return confirm('你確定要刪除嗎?')">刪除</button></a></td>
 
 							</tr>
-							<div class="modal fade" id="staticBackdrop"
-								data-backdrop="static" data-keyboard="false" tabindex="-1"
-								aria-labelledby="staticBackdropLabel" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="staticBackdropLabel">刪除</h5>
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">你確定要刪除嗎?</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary"
-												data-dismiss="modal">取消</button>
-											<a href="${contextRoot}/member/delete/${member.id}"><button
-													type="button" class="btn btn-primary">刪除</button></a>
-										</div>
-									</div>
-								</div>
-							</div>
+<!-- 							<div class="modal fade" id="staticBackdrop" -->
+<!-- 								data-backdrop="static" data-keyboard="false" tabindex="-1" -->
+<!-- 								aria-labelledby="staticBackdropLabel" aria-hidden="true"> -->
+<!-- 								<div class="modal-dialog"> -->
+<!-- 									<div class="modal-content"> -->
+<!-- 										<div class="modal-header"> -->
+<!-- 											<h5 class="modal-title" id="staticBackdropLabel">刪除</h5> -->
+<!-- 											<button type="button" class="close" data-dismiss="modal" -->
+<!-- 												aria-label="Close"> -->
+<!-- 												<span aria-hidden="true">&times;</span> -->
+<!-- 											</button> -->
+<!-- 										</div> -->
+<!-- 										<div class="modal-body">你確定要刪除嗎?</div> -->
+<!-- 										<div class="modal-footer"> -->
+<!-- 											<button type="button" class="btn btn-secondary" -->
+<!-- 												data-dismiss="modal">取消</button> -->
+<%-- 											<a href="${contextRoot}/member/delete/${member.id}"><button --%>
+<!-- 													type="button" class="btn btn-primary">刪除</button></a> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 						</c:forEach>
 					</tbody>
 				</table>
