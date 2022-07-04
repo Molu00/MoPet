@@ -100,7 +100,7 @@
 								<c:choose>
 									<c:when test="${orderList.number!= pages-1}">
 										<!-- 非當前頁面 -->
-										<li class="page-item"><a class="page-link" href="${contextRoot}/all/orders?p=${pages}">
+										<li class="page-item"><a class="page-link" href="${contextRoot}/orders/all?p=${pages}">
 										<c:out value="${pages}" /></a></li>
 									</c:when>
 									<c:otherwise>
