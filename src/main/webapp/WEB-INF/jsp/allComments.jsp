@@ -93,9 +93,9 @@
 
 			<c:forEach var="page" items="${page.content}">
 
-				<form:form modelAttribute="count">
-					<c:out value="${count.count}"></c:out>
-				</form:form>
+				<%-- 				<form:form modelAttribute="count"> --%>
+				<%-- 					<c:out value="${count.count}"></c:out> --%>
+				<%-- 				</form:form> --%>
 
 				<div class="row justify-content-center ">
 					<div class="col-9">
@@ -143,12 +143,14 @@
 							</div>
 							<c:forEach var="current" items="${map}">
 
-									<c:if test="${page.id == current.key}" >
+								<c:if test="${page.id == current.key}">
 										 留言數 <c:out value="${current.value}" />
-											
-									</c:if>
 
-				</c:forEach>
+								</c:if>
+
+							</c:forEach>
+							<br /> <br /> <br />
+
 							<div class="edit-link">
 								<a href="${contextRoot}/comments/edit?id=${page.id}"><button
 										class="btn btn-info">編輯</button></a> <a
@@ -168,7 +170,7 @@
 
 					</div>
 				</div>
-				
+
 			</c:forEach>
 
 

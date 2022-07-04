@@ -76,5 +76,8 @@ public class RepliesService {
 		return rDao.findFKID(id);
 	}
 	
+	public Integer findByUserId(Integer id) {
+		return rDao.findUserId(id);
+	}
 	
 }

@@ -4,12 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:choose>
-<c:when test="${empty loginOK}">
-<jsp:include page="layout/frontendBar3.jsp" />
-</c:when>
-<c:otherwise>
-<jsp:include page="layout/frontendBar.jsp" />
-</c:otherwise>
+	<c:when test="${empty loginOK}">
+		<jsp:include page="layout/frontendBar3.jsp" />
+	</c:when>
+	<c:otherwise>
+		<jsp:include page="layout/frontendBar.jsp" />
+	</c:otherwise>
 </c:choose>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
@@ -40,14 +40,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body><br/>
+<body>
+	<br />
 
 
 	<div>
 
 
 		<div class="container">
-		
+
 			<button class="js-back-to-top back-to-top" title="回到頭部">&#65085;</button>
 
 			<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
@@ -70,18 +71,20 @@
 					});
 				});
 			</script>
-			
+
 			<div class="dropdown">
 				<button class="btn btn-info dropdown-toggle" type="button"
 					id="dropdownMenuButton" data-toggle="dropdown"
 					aria-expanded="false">篩選</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="${contextRoot}/comments/all2">最新</a> <a
-						class="dropdown-item" href="${contextRoot}/comments/all3">最舊</a> <a
-						class="dropdown-item" href="#">最熱門</a>
+					<a class="dropdown-item" href="${contextRoot}/comments/all2">最新</a>
+					<a class="dropdown-item" href="${contextRoot}/comments/all3">最舊</a>
+					<a class="dropdown-item" href="#">最熱門</a>
 				</div>
-			</div><br/><br/>
-			
+			</div>
+			<br />
+			<br />
+
 			<div class="btn-toolbar mb-2 mb-md-0">
 				<a href="${contextRoot}/comments/add2"><button type="button"
 						class="btn btn-sm btn-outline-secondary">
@@ -91,15 +94,13 @@
 
 			<c:forEach var="page" items="${page.content}">
 
-				<form:form modelAttribute="count">
-					<c:out value="${count.count}"></c:out>
-				</form:form>
+				<%-- 				<form:form modelAttribute="count"> --%>
+				<%-- 					<c:out value="${count.count}"></c:out> --%>
+				<%-- 				</form:form> --%>
 
-
-
-				<div class="row justify-content-center ">
-					<div class="col-9">
-						<div class="card text-center ">
+				<div class="row justify-content-center  ">
+					<div class="col-10">
+						<div class="card text-center shadow-lg p-3 mb-5 bg-white rounded">
 							<div class="myMOUSE"
 								onclick="window.open('${contextRoot}/comments/page2?id=${page.id}')">
 								<div class="card-header text-white bg-info ">
@@ -140,6 +141,16 @@
 									<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
 										value="${page.createondate}" />
 								</div>
+								<c:forEach var="current" items="${map}">
+
+									<c:if test="${page.id == current.key}">
+										 留言數 <c:out value="${current.value}" />
+
+									</c:if>
+
+								</c:forEach>
+								<br />
+								
 
 							</div>
 							<div class="edit-link">
@@ -149,7 +160,7 @@
 									href="${contextRoot}/comments/delete2?id=${page.id}"><button
 										class="btn btn-danger">刪除</button></a>
 							</div>
-							<br /> <br />
+							
 
 							<!-- 							<div> -->
 							<!-- 							<br /> <br /> -->
@@ -162,6 +173,7 @@
 
 					</div>
 				</div>
+				<br/>
 			</c:forEach>
 			<div class="row justify-content-center">
 				<div class="col-9">
@@ -201,5 +213,5 @@
 			</div>
 		</div>
 	</div>
-		<div style="height:100px"></div>
-<jsp:include page="layout/footer.jsp" />
+	<div style="height: 100px"></div>
+	<jsp:include page="layout/footer.jsp" />

@@ -96,14 +96,25 @@ public class RepliesController {
 			@RequestParam("repimg") MultipartFile file) throws IOException {
 
 		if (file.isEmpty()) {
+			
 			Integer id2 = replies.getId();
 			Replies com = rService.findById(id2);
 			replies.setRep_img(com.getRep_img());
+			
 		} else {
+			
 			String temp = new String(Base64.getEncoder().encode(file.getBytes()));
 			String profile = "data:image/png;base64," + temp;
 
 			replies.setRep_img(profile);
+			
+			
+			rService.getFKID(id); //先找到貼文id
+			Comments com = cService.findById(rService.getFKID(id));
+			replies.setComments(com);
+			
+			rService.insertReplies(replies);
+			
 		}
 
 		// 取得現在時間
