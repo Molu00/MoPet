@@ -63,20 +63,20 @@ img.card-img {
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<a class="navbar-brand" href="#"> <img src="${contextRoot}/img/icon2.png" width="100" height="30"
+		<a class="navbar-brand" href="#"> <img src="${contextRoot}/img/icon2.png" width="90" 
 			height="20" alt="">
 		</a>
 
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 			<ul class="navbar-nav mx-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="navbar-brand" href="${contextRoot}/comments/all2"><img src="${contextRoot}/img/論壇字體2.png" width="125" height="50"
+				<li class="nav-item active"><a class="navbar-brand" href="${contextRoot}/comments/all2"><img src="${contextRoot}/img/論壇字體2.png" width="90" 
 			height="30" alt=""></a></li>
 				<li class="nav-item"><a class="navbar-brand"
-					href="${contextRoot}/shop/products"><img src="${contextRoot}/img/寵物商城2.png" width="125" height="45"
+					href="${contextRoot}/shop/products"><img src="${contextRoot}/img/寵物商城2.png" width="90" 
 			height="25" alt=""></a></li>
-				<li class="nav-item"><a class="navbar-brand" href="#"><img src="${contextRoot}/img/寵物美容2.png" width="125" height="39"
+				<li class="nav-item"><a class="navbar-brand" href="#"><img src="${contextRoot}/img/寵物美容2.png" width="90" 
 			height="22" alt=""></a></li>
-				<li class="nav-item"><a class="navbar-brand" href="${contextRoot}/question"><img src="${contextRoot}/img/聯絡我們2.png" width="125" height="40"
+				<li class="nav-item"><a class="navbar-brand" href="${contextRoot}/question"><img src="${contextRoot}/img/聯絡我們2.png" width="90"
 			height="23" alt=""></a></li>
 			</ul>
 			<a class="alert-link"  style="color:#642100" href="${contextRoot}/login">登入</a>
@@ -92,7 +92,7 @@ img.card-img {
 		</ol>
 		<div class="carousel-inner" >
 			<div class="carousel-item active" >
-				<img src="${contextRoot}/img/top.jpg" class="d-block w-100"  style="height:700px" 
+				<img src="${contextRoot}/img/top.jpg" class="d-block w-100"  style="height:500px" 
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
 					<h5>MoPet Store</h5>
@@ -100,7 +100,7 @@ img.card-img {
 				</div>
 			</div>
 			<div class="carousel-item" >
-				<img src="${contextRoot}/img/top9.jpg" class="d-block w-100"  style="height:700px" 
+				<img src="${contextRoot}/img/top9.jpg" class="d-block w-100"  style="height:500px" 
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
 					<h5>Second slide label</h5>
@@ -109,7 +109,7 @@ img.card-img {
 				</div>
 			</div>
 			<div class="carousel-item" >
-				<img src="${contextRoot}/img/top3.png" class="d-block w-100"  style="height:700px" 
+				<img src="${contextRoot}/img/top3.png" class="d-block w-100"  style="height:500px" 
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
 					<h5>Third slide label</h5>

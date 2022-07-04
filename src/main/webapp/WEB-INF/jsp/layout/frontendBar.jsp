@@ -79,6 +79,7 @@ img.card-img {
 				<li class="nav-item"><a class="navbar-brand" href="${contextRoot}/question"><img src="${contextRoot}/img/聯絡我們2.png" width="90"
 			height="23" alt=""></a></li>
 			</ul>
+			  
 			<div class="btn-group dropleft"">
 				<button class="btn btn-info dropdown-toggle" type="button"
 					id="dropdownMenuButton" data-toggle="dropdown"
@@ -101,7 +102,7 @@ img.card-img {
 		</ol>
 		<div class="carousel-inner" >
 			<div class="carousel-item active" >
-				<img src="${contextRoot}/img/top.jpg" class="d-block w-100"  style="height:700px" 
+				<img src="${contextRoot}/img/top.jpg" class="d-block w-100"  style="height:500px" 
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
 					<h5>MoPet Store</h5>
@@ -109,7 +110,7 @@ img.card-img {
 				</div>
 			</div>
 			<div class="carousel-item" >
-				<img src="${contextRoot}/img/top9.jpg" class="d-block w-100"  style="height:700px" 
+				<img src="${contextRoot}/img/top9.jpg" class="d-block w-100"  style="height:500px" 
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
 					<h5>Second slide label</h5>
@@ -118,7 +119,7 @@ img.card-img {
 				</div>
 			</div>
 			<div class="carousel-item" >
-				<img src="${contextRoot}/img/top3.png" class="d-block w-100"  style="height:700px" 
+				<img src="${contextRoot}/img/top3.png" class="d-block w-100"  style="height:500px" 
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
 					<h5>Third slide label</h5>
