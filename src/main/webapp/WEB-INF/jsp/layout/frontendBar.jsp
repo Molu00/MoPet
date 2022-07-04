@@ -82,7 +82,6 @@ img.card-img {
 				<li class="nav-item"><a class="navbar-brand" href="${contextRoot}/question"><img src="${contextRoot}/img/聯絡我們2.png" width="90"
 			height="23" alt=""></a></li>
 			</ul>
-			  
 			<div class="btn-group dropleft"">
 				<button class="btn btn-info dropdown-toggle" type="button"
 					id="dropdownMenuButton" data-toggle="dropdown"
@@ -116,17 +115,16 @@ img.card-img {
 				<img src="${contextRoot}/img/top9.jpg" class="d-block w-100"  style="height:500px" 
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
-					<h5>Second slide label</h5>
-					<p>Some representative placeholder content for the second
-						slide.</p>
+					<h5>MoPet Store</h5>
+					<p>對我們來說，毛孩不只是寵物，更是家人</p>
 				</div>
 			</div>
 			<div class="carousel-item" >
 				<img src="${contextRoot}/img/top3.png" class="d-block w-100"  style="height:500px" 
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
-					<h5>Third slide label</h5>
-					<p>Some representative placeholder content for the third slide.</p>
+					<h5>MoPet Store</h5>
+					<p>家中有了毛孩的加入，依然可以維持原有的生活品味</p>
 				</div>
 			</div>
 		</div>

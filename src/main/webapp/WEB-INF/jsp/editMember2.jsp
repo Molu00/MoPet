@@ -6,7 +6,7 @@
 <jsp:include page="layout/frontendBar3.jsp" />
 </c:when>
 <c:otherwise>
-<jsp:include page="layout/frontendBar.jsp" />
+<jsp:include page="layout/frontendBar2.jsp" />
 </c:otherwise>
 </c:choose>
 <c:if test="${empty loginOK}">
@@ -22,7 +22,9 @@
 <body>
 <br/>
 <br/>
-<!-- 	<div -->
+<br/>
+<br/>
+	<div>
 <!-- 		class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom"> -->
 		<div class="container">
 			<div class="row justify-content-center">
@@ -79,7 +81,7 @@
 				</form>
 			</div>
 		</div>
-<!-- 	</div> -->
+	</div>
 <br/>
 <br/>
 <br/>
