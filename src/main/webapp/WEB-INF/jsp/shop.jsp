@@ -51,7 +51,9 @@
 			</script>
 
 <br/>
-		
+	<button type="button" class="btn btn-outline-secondary">Secondary1</button>
+      <button type="button" class="btn btn-outline-secondary">Secondary2</button>
+      <button type="button" class="btn btn-outline-secondary">Secondary3</button>	
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
