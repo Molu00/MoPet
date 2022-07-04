@@ -95,7 +95,7 @@ body {
 </head>
 
 <body class="text-center" >
-<div class="shadow-lg p-3 mb-5 bg-white rounded">
+<div class="shadow-lg p-3 mb-5 bg-white rounded" style="opacity: 0.8">
 	<main class="form-signin" >
 		<div>很抱歉您的忘記密碼已逾期</div>
 		<div>請再次使用忘記密碼</div>

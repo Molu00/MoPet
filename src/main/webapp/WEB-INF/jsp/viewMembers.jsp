@@ -94,6 +94,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<br/>
 				<nav aria-label="...">
 					<div class="row justify-content-center">
 						<div class="col-9">

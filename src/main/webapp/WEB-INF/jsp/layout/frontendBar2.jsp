@@ -80,7 +80,7 @@ img.card-img {
 			height="23" alt=""></a></li>
 			</ul>
 <div class="btn-group dropleft"">
-				<button class="btn btn-info dropdown-toggle" type="button"
+				<button class="btn btn-secondary dropdown-toggle" type="button"
 					id="dropdownMenuButton" data-toggle="dropdown"
 					aria-expanded="false">你好</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -88,6 +88,10 @@ img.card-img {
 					<a class="dropdown-item" href="${contextRoot}/member/order">我的訂單</a>
 					<a class="dropdown-item" style="color:#642100" href="${contextRoot}/shop/logout">登出</a>
 				</div>
+			</div>
+					<div>
+			  <a href="${contextRoot}/into/cart"><button type="button" class="btn btn-outline-secondary">購物車
+  </button></a>	
 			</div>
 		</div>
 	</nav>
