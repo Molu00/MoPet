@@ -7,7 +7,8 @@
     <c:set var='target' value='${pageContext.request.requestURI}' scope='session' />
     <c:redirect url="/login"/>
 </c:if>
-<jsp:include page="layout/frontendBar.jsp" />
+<jsp:include page="layout/frontendBar2.jsp" />
+<div style="height:125px"></div>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,5 +36,7 @@
   </div> <!-- /container -->
   </div>
 </main>
+<div style="height:100px"></div>
+<jsp:include page="layout/footer.jsp" />
 </body>
 </html>

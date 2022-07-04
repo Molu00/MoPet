@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -12,11 +14,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import tw.com.MoPet.model.Cart;
+import tw.com.MoPet.model.CartItems;
 import tw.com.MoPet.model.Comments;
 import tw.com.MoPet.model.Order;
 import tw.com.MoPet.model.Product;
 import tw.com.MoPet.model.Replies;
 import tw.com.MoPet.model.employee;
+import tw.com.MoPet.service.CartService;
+import tw.com.MoPet.service.CartitemsService;
 import tw.com.MoPet.service.CommentsService;
 import tw.com.MoPet.service.OrderService;
 import tw.com.MoPet.service.ProductService;
@@ -38,6 +44,11 @@ public class PageController {
 	@Autowired
 	public OrderService oService;
 
+	@Autowired
+	private CartitemsService ciService;
+	
+	@Autowired
+	private CartService cartService;
 	
 //	@Autowired
 //	public comments_count comments_count;
@@ -156,6 +167,11 @@ public class PageController {
 			return "index";
 		}
 		
+		@GetMapping("/member/center")
+		public String memberCenter() {
+			return "memberCenter";
+		}
+		
 		@GetMapping("/testIndex")
 		public String testIndex() {
 			return "testIndex";
@@ -167,8 +183,22 @@ public class PageController {
 		}
 		
 		@GetMapping("shop/products")
-		public ModelAndView shopProductList(ModelAndView mvc) {
+		public ModelAndView shopProductList(ModelAndView mvc,HttpSession session) {
 			List<Product> productList=pService.findAll();
+//			Integer memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
+			
+//			if(memId!=null) {
+//			Cart getCart =  cartService.findBymIdAndcStatus(memId, false);
+//			List<CartItems> itemsList=ciService.findItemByCart(getCart.getCartId());
+//			Integer itemsAcount=0;
+//			
+//			if(itemsList.size()!=0) {
+//			
+//			for(CartItems items:itemsList) {
+//				itemsAcount+=items.getCartItemsAmount();
+//			}}else {itemsAcount=0;}
+//			
+//			session.setAttribute("itemsAcount", itemsAcount);}
 			
 			mvc.getModel().put("productList",productList);
 			mvc.setViewName("shop");
@@ -211,7 +241,8 @@ public class PageController {
 			mvc.getModel().put("orderList",page);
 			mvc.setViewName("viewOrder");
 			return mvc;
-
 		}
+		
+		
 	
 }

@@ -79,7 +79,16 @@ img.card-img {
 				<li class="nav-item"><a class="navbar-brand" href="${contextRoot}/question"><img src="${contextRoot}/img/聯絡我們2.png" width="90"
 			height="23" alt=""></a></li>
 			</ul>
-			<a class="alert-link"  style="color:#642100" href="${contextRoot}/logout">登出</a>
+			<div class="btn-group dropleft"">
+				<button class="btn btn-info dropdown-toggle" type="button"
+					id="dropdownMenuButton" data-toggle="dropdown"
+					aria-expanded="false">你好</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="${contextRoot}/member/160">我的帳號</a> 
+					<a class="dropdown-item" href="">我的訂單</a>
+					<a class="dropdown-item" style="color:#642100" href="${contextRoot}/shop/logout">登出</a>
+				</div>
+			</div>
 		</div>
 	</nav>
 	<div id="carouselExampleCaptions" class="carousel slide"
@@ -90,18 +99,17 @@ img.card-img {
 			<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
 			<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
 		</ol>
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="${contextRoot}/img/top.jpg" class="d-block w-100" 
-			height="500"
+		<div class="carousel-inner" >
+			<div class="carousel-item active" >
+				<img src="${contextRoot}/img/top.jpg" class="d-block w-100"  style="height:700px" 
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
 					<h5>MoPet Store</h5>
 					<p>歡迎來到Mopet商城，您可以在這裡找到數百種商品，總有一種適合您心愛的寵物</p>
 				</div>
 			</div>
-			<div class="carousel-item">
-				<img src="${contextRoot}/img/top9.jpg" class="d-block w-100" height="500"
+			<div class="carousel-item" >
+				<img src="${contextRoot}/img/top9.jpg" class="d-block w-100"  style="height:700px" 
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
 					<h5>Second slide label</h5>
@@ -109,8 +117,8 @@ img.card-img {
 						slide.</p>
 				</div>
 			</div>
-			<div class="carousel-item">
-				<img src="${contextRoot}/img/top2.jpg" class="d-block w-100" height="500"
+			<div class="carousel-item" >
+				<img src="${contextRoot}/img/top3.png" class="d-block w-100"  style="height:700px" 
 					alt="...">
 				<div class="carousel-caption d-none d-md-block">
 					<h5>Third slide label</h5>

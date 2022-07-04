@@ -56,7 +56,7 @@ public class Order {
 	@JoinColumn(name="fk_shipping_id")
 	private Shipping shippingId;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "order",cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "orderId",cascade = CascadeType.ALL)
 	private Set<OrderDetail> orderDetail=new LinkedHashSet<OrderDetail>();
 	
 	@Column(name="shippingStatus")

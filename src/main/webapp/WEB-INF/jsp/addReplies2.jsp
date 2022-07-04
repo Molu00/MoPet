@@ -2,12 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:choose>
+<c:when test="${empty loginOK}">
+<jsp:include page="layout/frontendBar3.jsp" />
+</c:when>
+<c:otherwise>
+<jsp:include page="layout/frontendBar.jsp" />
+</c:otherwise>
+</c:choose>
 <c:if test="${empty loginOK}">
-	<c:set var='target' value='${pageContext.request.requestURI}'
-		scope='session' />
 	<c:redirect url="/login" />
 </c:if>
-<jsp:include page="layout/frontendBar.jsp"></jsp:include>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 	<div
@@ -84,6 +89,8 @@
 		</div>
 	</div>
 </div>
+	<div style="height:100px"></div>
+<jsp:include page="layout/footer.jsp" />
 <!-- </div> -->
 
 

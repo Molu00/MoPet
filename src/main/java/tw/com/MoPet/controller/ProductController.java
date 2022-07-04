@@ -32,6 +32,24 @@ public class ProductController {
 	@Autowired
 	private CompanyService companyService;
 	
+	@GetMapping("offsold/product/{id}")
+	public String offSold(@PathVariable Integer id) {
+		Product product=pService.getById(id);
+		product.setSold(false);
+		pService.insertProduct(product);
+		return "redirect:/all/products";
+		
+	}
+	
+	@GetMapping("onsold/product/{id}")
+	public String onSold(@PathVariable Integer id) {
+		Product product=pService.getById(id);
+		product.setSold(true);
+		pService.insertProduct(product);
+		return "redirect:/all/products";
+		
+	}
+	
 	@GetMapping("add/products")
 	public ModelAndView returnSelectList(ModelAndView mvc) {
 		List<Category> cateList=cateService.findAll();
@@ -76,6 +94,7 @@ public class ProductController {
 	
 	@GetMapping("delete/product/{id}")
 	public String deleteProduct(@PathVariable Integer id) {
+		System.out.println("=========================================== ++ "+id);
 		pService.deleteProduct(id);
 		return "redirect:/all/products";
 	}
