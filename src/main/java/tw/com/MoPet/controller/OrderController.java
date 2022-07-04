@@ -207,9 +207,9 @@ public class OrderController {
 //			return form;
 			model.addAttribute("ecpay",form);}
 			
-			//暫時將訂單成功付款的資訊藏這裡
-			getOrder.setPaymentStatus(true);
-			oService.insertOrder(getOrder);
+//			//暫時將訂單成功付款的資訊藏這裡
+//			getOrder.setPaymentStatus(true);
+//			oService.insertOrder(getOrder);
 			
 			System.out.println("this order ========= "+getOrder.getOrderId());
 //			PrintWriter out = response.getWriter();
@@ -231,7 +231,7 @@ public class OrderController {
 
 			System.out.println("傳進來的 MerchantTradeNo "+MerchantTradeNo);
 			System.out.println("傳進來的 TradeAmt "+TradeAmt);
-//			String orderIdStr =MerchantTradeNo.substring(36);
+//			String orderIdStr =MerchantTradeNo.substring(14);
 //			System.out.println(MerchantTradeNo);
 //			//抓訂單id，用id搜尋訂單然後改狀態
 //			String orderIdStr = MerchantTradeNo.substring(8);
@@ -244,10 +244,16 @@ public class OrderController {
 		}
 	}
 	
-//	@RequestMapping(path = "/checkOut/showHistoryOrder", method = {RequestMethod.GET,RequestMethod.POST})
-	@PostMapping("showHistoryOrder")
-	public void showHistoryOrder(Model model, HttpSession session) {
-//		member member = (member) session.getAttribute("loginOK");
+//	@PostMapping("showHistoryOrder")
+	@RequestMapping(path = "/showHistoryOrder", method = {RequestMethod.GET,RequestMethod.POST})
+	public String showHistoryOrder(Model model, HttpSession session,@RequestParam("MerchantTradeNo") String MerchantTradeNo) {
+
+		String orderIdStr =MerchantTradeNo.substring(14);
+		Integer OrderId = Integer.parseInt(orderIdStr);
+		Order order =oService.getOrderById(OrderId);
+		order.setPaymentStatus(true);
+		oService.insertOrder(order);
+		//		member member = (member) session.getAttribute("loginOK");
 //		Integer memberId=member.getId();
 //		//回來寫一個OrderService的findBytwoKeys去找未付款單子
 //		Order thisOrder=oService.findBymIdAndcStatus(memberId, false);
@@ -261,7 +267,7 @@ public class OrderController {
 		
 		//透過使用者取得訂單資料並呈現，此處先用index代替
 		logger.info("test check out HistoryOrder");
-//		return "orderOK";
+		return "orderOK";
 	}
 	
 }
