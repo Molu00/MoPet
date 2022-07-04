@@ -36,7 +36,7 @@ public class Member {
 
 	@Autowired
 	private memberService mService;
-	
+
 	@Autowired
 	private employeeService eService;
 
@@ -62,64 +62,64 @@ public class Member {
 		}
 
 		member temp = mService.checkLogin(user, pwd);
-	
-		employee emp=eService.checkLogin(user, pwd);
+
+		employee emp = eService.checkLogin(user, pwd);
 		if (emp != null) {
-			employee emp2=eService.findByAccount(user);
+			employee emp2 = eService.findByAccount(user);
 			m.addAttribute("user", emp.getEmpEmail());
-			session.setAttribute("backloginOK",emp2);
+			session.setAttribute("backloginOK", emp2);
 			return "redirect:/members/all";
-			
-		}else if (temp != null) {
+
+		} else if (temp != null) {
 			member temp2 = mService.findByAccount(user);
 			m.addAttribute("user", temp.getMemberEmail());
-			session.setAttribute("loginOK",temp2);
+			session.setAttribute("loginOK", temp2);
 			session.setAttribute("cart_ID", temp2.getId());
-			String previous =(String)session.getAttribute("PrePage");
+			String previous = (String) session.getAttribute("PrePage");
 			if (previous == null) {
-			return "redirect:shop/products";
+				return "redirect:shop/products";
 			}
 			return previous;
-		}else {
-		errors.put("msg", "UserEmail or UserPwd is not correct.");
-		return "login";
+		} else {
+			errors.put("msg", "UserEmail or UserPwd is not correct.");
+			return "login";
 		}
 	}
 
 	@GetMapping(path = "member/verification")
 	public String verifyEmail(@RequestParam("id") Integer id, Model m) {
 		member mem = mService.findById(id);
-		Long time=mem.getMember_email_verify();
+		Long time = mem.getMember_email_verify();
 		Date date = new Date();
 		Long timeMilli = date.getTime();
-		if ((timeMilli-time)>10000) {
+		if ((timeMilli - time) > 10000) {
 			return "forgetPWD_nogood2";
 		}
 		m.addAttribute("member", mem);
 		return "setPassword";
 	}
-	
+
 	@GetMapping(path = "member/forgetpassword")
 	public String forgetPassword(@RequestParam("id") Integer id, Model m) {
 		member mem = mService.findById(id);
-		Long time=mem.getMember_email_verify();
+		Long time = mem.getMember_email_verify();
 		Date date = new Date();
 		Long timeMilli = date.getTime();
-		if ((timeMilli-time)>10000) {
+		if ((timeMilli - time) > 10000) {
 			return "forgetPWD_nogood";
 		}
 		m.addAttribute("member", mem);
 		return "setPassword2";
 	}
-	
+
 	@GetMapping(path = "member/forgetpassword2")
 	public String forgetPassword2() {
 		return "forgetPWD";
 	}
-	
+
 	@PostMapping(path = "member/forgetpassword")
 	public String forgetPWD(@RequestParam("userEmail") String account) throws Exception {
-		member tmem =mService.findByAccount(account);
+		member tmem = mService.findByAccount(account);
 		String toEmail = tmem.getMemberEmail();
 		mService.sendEmail2(toEmail, "請重新設定你的密碼", tmem);
 		return "setPassword3";
@@ -165,19 +165,28 @@ public class Member {
 	}
 
 	@GetMapping(path = "member/{id}")
-	public ModelAndView findById(ModelAndView mav, @PathVariable Integer id) {
+	public ModelAndView findById(ModelAndView mav, @PathVariable Integer id, HttpSession session) {
 		member mem = mService.findById(id);
-		mav.getModel().put("member", mem);
-		mav.setViewName("editMember");
-		return mav;
+		member mem2=(member)session.getAttribute("loginOK");
+		if (mem2 == null) {
+			mav.getModel().put("member", mem);
+			mav.setViewName("editMember");
+			return mav;
+		}
+		{
+			mav.getModel().put("member", mem);
+			mav.setViewName("editMember2");
+			return mav;
+		}
 
 	}
 
 	@PostMapping(path = "member/edit")
 	public String editMember(@RequestParam("id") Integer id, @RequestParam("email") String user,
 			@RequestParam("nickName") String name, @RequestParam("phonenNumber") String phone,
-			@RequestParam("shippingAddress") String address, @RequestParam("profile") MultipartFile file, @RequestParam("gender") String gender,@RequestParam("birth")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date birth)
-			throws IOException {
+			@RequestParam("shippingAddress") String address, @RequestParam("profile") MultipartFile file,
+			@RequestParam("gender") String gender,
+			@RequestParam("birth") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date birth, HttpSession session) throws IOException {
 
 		member temp = mService.findById(id);
 		if (file.isEmpty()) {
@@ -194,7 +203,11 @@ public class Member {
 		temp.setMemberGender(gender);
 		temp.setMemberBirth(birth);
 		mService.insert(temp);
+		member mem2=(member)session.getAttribute("loginOK");
+		if (mem2 == null) {
 		return "redirect:/members/all";
+		}
+		return "redirect:/member/"+temp.getId();
 	}
 
 	@GetMapping(path = "member/delete/{id}")
@@ -204,8 +217,8 @@ public class Member {
 	}
 
 	@GetMapping("members/all")
-	public ModelAndView viewMessages(ModelAndView mav,
-			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber, HttpSession session) {
+	public ModelAndView viewMessages(ModelAndView mav, @RequestParam(name = "p", defaultValue = "1") Integer pageNumber,
+			HttpSession session) {
 		Page<member> page = mService.findByPage(pageNumber);
 		Object m = mav.getModel().get("LoginOK");
 		if (m == null) {
@@ -225,6 +238,7 @@ public class Member {
 		session.removeAttribute("cart_ID");
 		return "login";
 	}
+
 	@GetMapping("shop/logout")
 	public String ShoptoLogout(HttpSession session) {
 		session.removeAttribute("loginOK");
@@ -232,6 +246,7 @@ public class Member {
 		session.removeAttribute("cart_ID");
 		return "redirect:/shop/products";
 	}
+
 	@GetMapping(path = "/question")
 	public String processQuestion() {
 		return "Question";
