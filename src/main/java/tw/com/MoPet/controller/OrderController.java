@@ -173,39 +173,40 @@ public class OrderController {
 			//嘗試一下
 			if(getOrder.getPaymentId().getPayId()==2) {
 				AllInOne aio=new AllInOne("");
-			AioCheckOutOneTime aoiCheck=new AioCheckOutOneTime();
+				AioCheckOutOneTime aoiCheck=new AioCheckOutOneTime();
+				
+				aoiCheck.setMerchantID("2000214");
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				sdf.setLenient(false);
+				aoiCheck.setMerchantTradeDate(sdf.format(new Date()));
+				
+				aoiCheck.setTotalAmount(getOrder.getOrderTotal().toString());
+				
+				aoiCheck.setTradeDesc("testOrder1");
+				
+				aoiCheck.setItemName(orderStr);
+				
+				SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMddHHmmss");
+				String nowStr = sdf1.format(new Date()).toString();
+				aoiCheck.setMerchantTradeNo(nowStr+getOrder.getOrderId());
+				
+				aoiCheck.setReturnURL("http://localhost:8080/MoPet/order/returnURL");
+				
+				aoiCheck.setOrderResultURL("http://localhost:8080/MoPet/showHistoryOrder");
+	
+				aoiCheck.setClientBackURL("http://localhost:8080/MoPet/shop/products");
+				
+				aoiCheck.setNeedExtraPaidInfo("N");
+				
+				aoiCheck.setRedeem("Y");
+				
+				System.out.println(aoiCheck.toString());
+				
+				String form=aio.aioCheckOut(aoiCheck, null);
+	//			return form;
+				model.addAttribute("ecpay",form);}
 			
-			aoiCheck.setMerchantID("2000214");
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			sdf.setLenient(false);
-			aoiCheck.setMerchantTradeDate(sdf.format(new Date()));
-			
-			aoiCheck.setTotalAmount(getOrder.getOrderTotal().toString());
-			
-			aoiCheck.setTradeDesc("testOrder1");
-			
-			aoiCheck.setItemName(orderStr);
-			
-			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMddHHmmss");
-			String nowStr = sdf1.format(new Date()).toString();
-			aoiCheck.setMerchantTradeNo(nowStr+getOrder.getOrderId());
-			
-			aoiCheck.setReturnURL("http://localhost:8080/MoPet/order/returnURL");
-			
-			aoiCheck.setOrderResultURL("http://localhost:8080/MoPet/showHistoryOrder");
-
-			aoiCheck.setClientBackURL("http://localhost:8080/MoPet/shop/products");
-			
-			aoiCheck.setNeedExtraPaidInfo("N");
-			
-			aoiCheck.setRedeem("Y");
-			
-			System.out.println(aoiCheck.toString());
-			
-			String form=aio.aioCheckOut(aoiCheck, null);
-//			return form;
-			model.addAttribute("ecpay",form);}
 			
 //			//暫時將訂單成功付款的資訊藏這裡
 //			getOrder.setPaymentStatus(true);

@@ -38,7 +38,7 @@
 			<table data-toggle="table">
 				<thead class="thead-dark">
 					<tr>
-						<th scope="col">訂單編號</th>
+						<th scope="col" data-sortable="true">訂單編號</th>
 						<th scope="col" data-sortable="true" class="text-center">訂單日期</th>
 						<th scope="col" data-sortable="true">顧客名稱</th>
 						<th scope="col">訂單金額</th>
@@ -63,13 +63,10 @@
 								<c:when test="${allOrder.paymentStatus}">
 									<td><a href="${contextRoot}/true/payment/${allOrder.orderId}">
 										<button class="btn btn-secondary" disabled>已付費</button></a> 
-									<a href="${contextRoot}/false/payment/${allOrder.orderId}">
-										<button class="btn btn-secondary">未付費</button></a></td>
+									</td>
 								</c:when>
 								<c:otherwise>
-									<td><a href="${contextRoot}/true/payment/${allOrder.orderId}">
-											<button class="btn btn-secondary">已付費</button></a> 
-										<a href="${contextRoot}/false/payment/${allOrder.orderId}">
+									<td><a href="${contextRoot}/false/payment/${allOrder.orderId}">
 											<button class="btn btn-secondary" disabled>未付費</button></a></td>
 								</c:otherwise>
 							</c:choose>

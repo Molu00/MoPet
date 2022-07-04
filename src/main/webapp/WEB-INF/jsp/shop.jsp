@@ -16,15 +16,10 @@
 
 
 <div class="container">
-
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
 <main role="main">
 
-<!--   <section class="jumbotron text-center"> -->
-<!--     <div class="container"> -->
-<!--       <h1>Mopet Store</h1> -->
-<!--       <p class="lead text-muted">歡迎來到Mopet商城，您可以在這裡找到數百種商品，總有一種適合您心愛的寵物</p> -->
-<!--     </div> -->
-<!--   </section> -->
+
 <br/>
   <a href="${contextRoot}/into/cart"><button type="button" class="btn btn-primary">購物車
   <%-- <span class="badge badge-light">${itemsAcount}</span> --%>
@@ -37,8 +32,8 @@
       
       <c:if test="${allProduct.sold==true}">
       
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
+        <div class="col-md-3">
+          <div class="card mb-1 shadow-sm">
             <img class="rounded-sm" alt="productImg" src="${allProduct.pImg}">
             <div class="card-body">
               <p class="card-text"><c:out value="${allProduct.pName}" /></p>
@@ -63,8 +58,8 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="${contextRoot}/js/jquery-3.6.0.slim.min.js"><\/script>')</script><script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
+<!--     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+<%--       <script>window.jQuery || document.write('<script src="${contextRoot}/js/jquery-3.6.0.slim.min.js"><\/script>')</script><script src="${contextRoot}/js/bootstrap.bundle.min.js"></script> --%>
 </div>
 <div style="height:100px"></div>
 <jsp:include page="layout/footer.jsp" />
