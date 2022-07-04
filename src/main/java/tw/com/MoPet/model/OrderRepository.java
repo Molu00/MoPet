@@ -1,5 +1,6 @@
 package tw.com.MoPet.model;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,4 +12,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 	
 	@Query(value = "select * from order_table where fk_member_id=?1 and paymentStatus=?2", nativeQuery = true)
 	public Optional<Order> findBymIdAndcStatus(Integer memberId,boolean paymentStatus);
+	
+	@Query(value = "select * from order_table where fk_member_id=?1", nativeQuery = true)
+	public List<Order> findAllByMid(Integer memberId);
 }

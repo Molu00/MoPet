@@ -17,6 +17,9 @@
 <link rel="stylesheet" href="${contextRoot}/css/bootstrap.css">
 <link rel="stylesheet" href="${contextRoot}/css/style.css">
 
+<link href="${contextRoot}/css/bootstrap-table.min.css" rel="stylesheet">
+<link href="${contextRoot}/css/all.css" rel="stylesheet">
+
 <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
@@ -86,7 +89,7 @@ img.card-img {
 					aria-expanded="false">你好</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<a class="dropdown-item" href="${contextRoot}/member/160">我的帳號</a> 
-					<a class="dropdown-item" href="">我的訂單</a>
+					<a class="dropdown-item" href="${contextRoot}/member/order">我的訂單</a>
 					<a class="dropdown-item" style="color:#642100" href="${contextRoot}/shop/logout">登出</a>
 				</div>
 			</div>
@@ -138,5 +141,7 @@ img.card-img {
 				class="sr-only">Next</span>
 		</button>
 	</div>
+	<script src="${contextRoot}/js/bootstrap-table.min.js"></script>
+<script src="${contextRoot}/js/popper.min.js"></script>
 </body>
 </html>

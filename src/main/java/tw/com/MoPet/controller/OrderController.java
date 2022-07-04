@@ -1,14 +1,9 @@
 package tw.com.MoPet.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ecpay.payment.integration.AllInOne;
-import ecpay.payment.integration.domain.AioCheckOutDevide;
 import ecpay.payment.integration.domain.AioCheckOutOneTime;
 import tw.com.MoPet.model.Cart;
 import tw.com.MoPet.model.CartItems;
@@ -269,6 +264,43 @@ public class OrderController {
 		//透過使用者取得訂單資料並呈現，此處先用index代替
 		logger.info("test check out HistoryOrder");
 		return "orderOK";
+	}
+	
+	
+	@GetMapping(path = "member/order")
+	public ModelAndView findMemberOrder(ModelAndView mvc, @RequestParam(value = "p",defaultValue = "1") Integer pageNumber,HttpSession session) {
+		
+//		member mem=(member)session.getAttribute("loginOK");
+//		System.out.println("memberId "+mem.getId()+" 名子 "+mem.getMemberName());
+//		
+//		
+//		Page<Order> page=oService.findByPage(pageNumber);
+//
+//		mvc.getModel().put("orderList",page);
+//		mvc.setViewName("orderMember");
+//		return mvc;
+		
+		member mem=(member)session.getAttribute("loginOK");
+		session.setAttribute("orderMmberId", mem.getId());
+		System.out.println("memberId "+mem.getId()+" 名子 "+mem.getMemberName());
+		
+		List<Order> orderList=oService.findAllByMid(mem.getId());
+		
+		mvc.getModel().put("orderList", orderList);
+		mvc.setViewName("orderMember");
+		return mvc;
+		
+//		if (mem == null) {
+//			mav.getModel().put("member", mem);
+//			mav.setViewName("memberCenter");
+//			return mav;
+//		}
+//		{
+//			mav.getModel().put("member", mem);
+//			mav.setViewName("editMember2");
+//			return mav;
+//		}
+
 	}
 	
 }
