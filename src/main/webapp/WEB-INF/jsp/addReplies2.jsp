@@ -31,7 +31,7 @@
 			<div class="card-body">
 
 				<form:form class="form" method="post"
-					action="${contextRoot}/replies/add23" modelAttribute="replies"
+					action="${contextRoot}/replies/add2" modelAttribute="replies"
 					enctype="multipart/form-data">
 
 

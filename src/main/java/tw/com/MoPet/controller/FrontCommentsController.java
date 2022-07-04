@@ -143,21 +143,20 @@ public class FrontCommentsController {
 	}
 	
 	@GetMapping("replies/add2")
-	public String addReplies(Model model) {
+	public String addReplies(Model model,@RequestParam("id")Integer id) {
 		
 		Replies replies = new Replies();
 		
-		Replies lastest = rService.getLastest();
+		replies.setFk_c_id(id);
 		
-		model.addAttribute("Replies", replies);
-		model.addAttribute("lastest", lastest);
-		
+		model.addAttribute("replies", replies); 
+	
 		return "addReplies2";
 		
 	}
 	
 	
-	@PostMapping("replies/add23") // post送出資料
+	@PostMapping("replies/add2") // post送出資料
 	public String addReplies(@ModelAttribute("replies") Replies replies, Model model,
 			@RequestParam("repimg") MultipartFile file, @RequestParam("id") Integer id) throws IOException {
 
@@ -173,6 +172,14 @@ public class FrontCommentsController {
 		replies.setComments(com);
 
 		rService.insertReplies(replies);
+		
+		Replies newReplies = new Replies();  
+
+		Replies lastest = rService.getLastest();
+
+		model.addAttribute("replies", newReplies);
+		model.addAttribute("lastest", lastest);
+
 
 		String url = "redirect:http://localhost:8080/MoPet/comments/page2?id=" + id;
 

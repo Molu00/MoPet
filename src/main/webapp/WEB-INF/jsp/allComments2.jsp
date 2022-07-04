@@ -140,14 +140,14 @@
 								</div>
 
 							</div>
-<!-- 							<div class="edit-link"> -->
-<%-- 								<a href="${contextRoot}/comments/edit2?id=${page.id}"><button --%>
-<!-- 										class="btn btn-info">編輯</button></a> <a -->
-<!-- 									onclick="return confirm('刪除')" -->
-<%-- 									href="${contextRoot}/comments/delete2?id=${page.id}"><button --%>
-<!-- 										class="btn btn-danger">刪除</button></a> -->
-<!-- 							</div> -->
-<!-- 							<br /> <br /> -->
+							<div class="edit-link">
+								<a href="${contextRoot}/comments/edit2?id=${page.id}"><button
+										class="btn btn-info">編輯</button></a> <a
+									onclick="return confirm('刪除')"
+									href="${contextRoot}/comments/delete2?id=${page.id}"><button
+										class="btn btn-danger">刪除</button></a>
+							</div>
+							<br /> <br />
 
 							<!-- 							<div> -->
 							<!-- 							<br /> <br /> -->

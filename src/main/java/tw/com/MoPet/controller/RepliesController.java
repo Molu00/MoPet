@@ -71,12 +71,12 @@ public class RepliesController {
 
 		rService.insertReplies(replies);
 
-//		Replies newReplies = new Replies();  如果留言後停在同一頁 需要再NEW一個新的空頁面 跳轉則不用
-//
-//		Replies lastest = rService.getLastest();
-//
-//		model.addAttribute("replies", newReplies);
-//		model.addAttribute("lastest", lastest);
+		Replies newReplies = new Replies(); 
+
+		Replies lastest = rService.getLastest();
+
+		model.addAttribute("replies", newReplies);
+		model.addAttribute("lastest", lastest);
 
 		String url = "redirect:http://localhost:8080/MoPet/comments/page?id=" + id;
 
@@ -96,8 +96,8 @@ public class RepliesController {
 			@RequestParam("repimg") MultipartFile file) throws IOException {
 
 		if (file.isEmpty()) {
-			replies.getId();
-			Replies com = rService.findById(replies.getId());
+			Integer id2 = replies.getId();
+			Replies com = rService.findById(id2);
 			replies.setRep_img(com.getRep_img());
 		} else {
 			String temp = new String(Base64.getEncoder().encode(file.getBytes()));

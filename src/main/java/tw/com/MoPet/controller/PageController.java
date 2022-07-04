@@ -84,10 +84,15 @@ public class PageController {
 		public String viewtext(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model) {
 			
 			Page<Comments> page = cService.findByPage(pageNumber);
+			
 			Map<Integer, Integer> map= new HashMap<>();
+			
 			for (int i = 0; i < page.getSize()-1; i++) {
+				
 			Integer number=rService.countReplies(page.getContent().get(i).getId());
+			
 			map.put(page.getContent().get(i).getId(), number);
+			
 			}
 			
 			model.addAttribute("map",map);
