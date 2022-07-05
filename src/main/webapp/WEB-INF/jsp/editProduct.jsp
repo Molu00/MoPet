@@ -9,7 +9,7 @@
 </c:if>
 <jsp:include page="layout/navbar2.jsp" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 	function preview() {
 		frame.src = URL.createObjectURL(event.target.files[0]);
@@ -34,7 +34,7 @@
 			</div>
 			<div class="form-group">
 				<select class="form-control" id="categoryjsp" name="catid">
-					<option value="" disabled selected>商品分類</option>
+					<option value="${product.catid.getCategoryid()}" selected>${product.catid.getCategoryName()}</option>
 					<c:forEach items="${catelist}" var="catelist">
 						<option value="${catelist.categoryid}">${catelist.categoryName}</option>
 					</c:forEach>
@@ -42,7 +42,7 @@
 			</div>
 			<div class="form-group">
 				<select class="form-control" id="companyjsp" name="companyid">
-					<option value="" disabled selected>公司名稱</option>
+					<option value="${product.companyid.getCompanyid()}" selected>${product.companyid.getCompany()}</option>
 					<c:forEach items="${companyList}" var="companyList">
 						<option value="${companyList.companyid}">${companyList.company}</option>
 					</c:forEach>
@@ -60,7 +60,13 @@
 				<input value="${product.pStock}" placeholder="商品庫存"
 					class="form-control" type="text" name="pStock" id="pStock" />
 			</div>
-			<div class="form-group"></div>
+			<div class="form-group">
+			<select class="form-control" id="sold" name="sold">
+							<option value="${product.sold}" selected>直接上架</option>
+							<option value=true>直接上架</option>
+							<option value=false>暫不上架</option>
+						</select>
+			</div>
 
 			<div class="input-group mb-3">
 				<input type="file" class="form-control" name="tempFile"
@@ -72,10 +78,9 @@
 					src="${product.pImg}" width="100px" height="100px">
 			</div>
 			<div class="btn-group d-flex" role="group">
-				<input class="btn btn-primary" type="submit" value="送出資料" />
+				<input id="send" class="btn btn-primary" type="submit" value="送出資料" />
 			</div>
 		</form:form>
-
 
 	</div>
 </div>

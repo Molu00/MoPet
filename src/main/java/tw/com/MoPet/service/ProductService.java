@@ -28,6 +28,10 @@ public class ProductService {
 		pDao.save(product);
 	}
 	
+	public List<Product> findByCategory(Integer integer){
+		return pDao.findByCategoryId(integer);
+	}
+	
 	public Product getById(Integer id) {
 		Optional<Product> option=pDao.findById(id);
 		if(option.isPresent()) {

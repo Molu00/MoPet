@@ -18,7 +18,6 @@
 			document.getElementById("pPrice").value = "200";
 			document.getElementById("pCost").value = "100";
 			document.getElementById("pStock").value = "30";
-			document.getElementById("sold").selectedIndex = "0";
 		});
 	});
 
@@ -27,9 +26,7 @@
 	}
 </script>
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-	<div
-		class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-		<h1 class="h2">新增商品</h1>
+	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 	</div>
 </main>
 <div
@@ -74,8 +71,7 @@
 					</div>
 					<div class="form-group">
 						<select class="form-control" id="sold" name="sold">
-							<option value="" disabled selected>是否直接上架</option>
-							<option value=true>直接上架</option>
+							<option value="true" selected>直接上架</option>
 							<option value=false>暫不上架</option>
 						</select>
 					</div>

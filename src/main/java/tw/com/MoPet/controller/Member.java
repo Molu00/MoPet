@@ -68,7 +68,7 @@ public class Member {
 			employee emp2 = eService.findByAccount(user);
 			m.addAttribute("user", emp.getEmpEmail());
 			session.setAttribute("backloginOK", emp2);
-			return "redirect:/members/all";
+			return "redirect:home";
 
 		} else if (temp != null) {
 			member temp2 = mService.findByAccount(user);
@@ -142,7 +142,7 @@ public class Member {
 	public String insertMem(@RequestParam("email") String user, @RequestParam("nickName") String name,
 			@RequestParam("phonenNumber") String phone, @RequestParam("shippingAddress") String address,
 			@RequestParam("profile") MultipartFile file, @RequestParam("gender") String gender,
-			@RequestParam("birth") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date birth) throws IOException {
+			@RequestParam("birth") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date birth, HttpSession session) throws IOException {
 		String temp = new String(Base64.getEncoder().encode(file.getBytes()));
 		String profile = "data:image/png;base64," + temp;
 		member mem = new member();
@@ -161,7 +161,11 @@ public class Member {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-		return "registerSuccess";
+		member mem2=(member)session.getAttribute("loginOK");
+		if (mem2 == null) {
+		return "redirect:/members/all";
+		}
+		return "redirect:/member/"+tmem.getId();
 	}
 
 	@GetMapping(path = "member/{id}")

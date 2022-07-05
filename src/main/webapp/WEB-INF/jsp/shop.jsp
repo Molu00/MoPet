@@ -9,10 +9,11 @@
 <jsp:include page="layout/frontendBar3.jsp" />
 </c:when>
 <c:otherwise>
-<jsp:include page="layout/frontendBar.jsp" />
+<jsp:include page="layout/frontendBar2.jsp" />
 </c:otherwise>
 </c:choose>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+
 <style type="text/css">
 .back-to-top {
 	display: none;
@@ -25,16 +26,15 @@
 	background-color: #fff;
 	color: #5cb85c;
 	cursor: pointer;
-	padding: 10px 15px 15px 15px;
+	padding: 5px 5px 11px 11px;
 	border-radius: 10px;
 }
+
 </style>
 
 <div class="container">
 <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
 <main role="main">
-
-<a href="${contextRoot}/into/cart"><button class="js-back-to-top back-to-top" title="購物車"><img alt="購物車" src="${contextRoot}/img/trolley.png" width="30px" height="30px"></button></a>
 
 			<script>
 				$(function() {
@@ -49,15 +49,40 @@
 					});
 				});
 			</script>
-
 <br/>
-	<button type="button" class="btn btn-outline-secondary">Secondary1</button>
-      <button type="button" class="btn btn-outline-secondary">Secondary2</button>
-      <button type="button" class="btn btn-outline-secondary">Secondary3</button>	
+<br/>
+<br/>
+		<div id="carouselExampleControlsNoTouching" class="carousel slide" data-touch="false" data-interval="false">
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <img src="${contextRoot}/img/makuProduct1.jpg" class="d-block w-100" alt="...">
+		    </div>
+		    <div class="carousel-item">
+		      <img src="${contextRoot}/img/makuProduct2.jpg" class="d-block w-100" alt="...">
+		    </div>
+		    <div class="carousel-item">
+		      <img src="${contextRoot}/img/makuProduct3.jpg" class="d-block w-100" alt="...">
+		    </div>
+		  </div>
+		  <button class="carousel-control-prev" type="button" data-target="#carouselExampleControlsNoTouching" data-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Previous</span>
+		  </button>
+		  <button class="carousel-control-next" type="button" data-target="#carouselExampleControlsNoTouching" data-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Next</span>
+		  </button>
+		</div>
+	<div>
+	  <a href="${contextRoot}/shop/category/1"><button type="button" class="btn btn-outline-secondary">美味食物</button></a>
+      <a href="${contextRoot}/shop/category/2"><button type="button" class="btn btn-outline-secondary">好玩玩具</button></a>
+      <a href="${contextRoot}/shop/category/3"><button type="button" class="btn btn-outline-secondary">就是愛美</button></a>
+      <a href="${contextRoot}/shop/category/4"><button type="button" class="btn btn-outline-secondary">營養補品</button></a>
+      <a href="${contextRoot}/shop/category/5"><button type="button" class="btn btn-outline-secondary">清潔用品</button></a>
+  	</div>
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
-      
       <c:forEach var="allProduct" items="${productList}">
       
       <c:if test="${allProduct.sold==true}">
@@ -69,7 +94,7 @@
               <p class="card-text"><c:out value="${allProduct.pName}" /></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="${contextRoot}/add/cartItems/${allProduct.pId}"><button type="button" class="btn btn-sm btn-outline-secondary">加入購物車</button></a>
+                  <a href="${contextRoot}/add/cartItems/${allProduct.pId}"><button type="button" class="btn btn-sm btn-outline-secondary">購物車</button></a>
                 </div>
                 <small class="text-muted"></small>
               </div>
@@ -84,12 +109,27 @@
       </div>
     </div>
   </div>
+ <a href="${contextRoot}/into/cart"><button class="js-back-to-top back-to-top" title="購物車">
+<c:choose>
+<c:when test="${haveOrNot==false}">
+<img id="cartImg" alt="購物車" src="${contextRoot}/img/trolley.png" width="50px" height="50px">
+</c:when>
+<c:otherwise>
+<img id="cartImg" alt="購物車" src="${contextRoot}/img/trolleyRed.png" width="50px" height="50px">
+</c:otherwise>
+</c:choose>
+</button></a>
+  
+  
 </main>
-
-
-
-<!--     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
-<%--       <script>window.jQuery || document.write('<script src="${contextRoot}/js/jquery-3.6.0.slim.min.js"><\/script>')</script><script src="${contextRoot}/js/bootstrap.bundle.min.js"></script> --%>
+<!-- <script>
+$(function() {
+	var send = document.getElementById("send_"+"${allProduct.pId}");
+	send.addEventListener('click',function(e){
+		e.preventDefault();
+	});
+});
+</script> -->
 </div>
 <div style="height:100px"></div>
 <jsp:include page="layout/footer.jsp" />

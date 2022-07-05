@@ -16,11 +16,7 @@
 		<h1 class="h2">商品管理</h1>
 		<div class="btn-toolbar mb-2 mb-md-0">
 			<a href="${contextRoot}/add/products"><button type="button"
-					class="btn btn-sm btn-outline-secondary">新增商品</button></a> <a
-				href="${contextRoot}/add/companys"><button type="button"
-					class="btn btn-sm btn-outline-secondary">新增廠商</button></a> <a
-				href="${contextRoot}/add/category"><button type="button"
-					class="btn btn-sm btn-outline-secondary">新增分類</button></a>
+					class="btn btn-sm btn-outline-secondary">新增商品</button></a>
 		</div>
 		
 	</div>

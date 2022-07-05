@@ -57,6 +57,20 @@ public class CartController {
 			} else {
 				ciService.deleteItem(item.getCartItemsId());
 			}
+			
+//			boolean haveOrNot;
+//			Integer memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
+//			if(memId!=null) {
+//			Cart getCart =  cartService.findBymIdAndcStatus(memId, false);
+//			if(getCart!=null) {
+//				haveOrNot=true;
+//				session.setAttribute("haveOrNot", haveOrNot);
+//			}else {
+//				haveOrNot=false;
+//				session.setAttribute("haveOrNot", haveOrNot);
+//			}}
+			
+			
 			return "redirect:/into/cart";
 		}
 	}
@@ -129,8 +143,6 @@ public class CartController {
 					item.setCartItemsAmount(item.getCartItemsAmount() + 1);
 					ciService.insertCartItems(item);
 					
-
-					
 				} else {
 					// 撈不到特定商品，new一個items
 					CartItems items = new CartItems();
@@ -174,74 +186,10 @@ public class CartController {
 				}
 			}
 			
-			
-//			Cart getCart2 = cService.findBymIdAndcStatus(memId, false);
-//			List<CartItems> itemsList=ciService.findItemByCart(getCart2.getCartId());
-//			Integer itemsAcount=0;
-//			
-//			if(itemsList.size()!=0) {
-//			
-//			for(CartItems items:itemsList) {
-//				itemsAcount+=items.getCartItemsAmount();
-//			}}else {itemsAcount=0;}
-//			
-//			session.setAttribute("itemsAcount", itemsAcount);
-//			model.addAttribute("itemsAcount",itemsAcount);
 			return "redirect:/shop/products";
 		}
 	}
 
-//			if (!cart.isEmpty() && cart.get().isCartStatus() == false) {
-//				CartItems item = ciService.findItemByTwoKeys(id, cart.get().getCartId());
-//				if (item != null) {
-//					item.setCartItemsAmount(item.getCartItemsAmount() + 1);
-//					ciService.insertCartItems(item);
-//				} else {
-//					// new一個items
-//					CartItems items = new CartItems();
-//					// 抓商品
-//					Product getProduct = pService.getById(id);
-//
-//					if (getProduct != null) {
-//						System.out.println("究竟商品有沒有抓到");
-//						// 塞值囉！
-//						items.setpId(getProduct);
-//						items.setCartId(cart.get());
-//						// 數量都先1
-//						items.setCartItemsAmount(1);
-//						// insert資料進清單裡！
-//						ciService.insertCartItems(items);
-//					}
-//				}
-//			}
-
-	// 如果照著欄位沒有撈到車車
-//			if (cart.isEmpty() || cart.get().isCartStatus() == true) {
-//				System.out.println("靠著memberid沒有抓到購到購物車，cart: " + cart.isEmpty());
-//				// 建立一個新車車，從memberService裡撈member資料出來
-//				Cart newCart = new Cart();
-//				member tempMember = mService.findById(memId);
-//
-//				// 如果member有資料，新車車塞member的值
-//				if (tempMember != null) {
-//					newCart.setFkMemberId(tempMember);
-//					// 存進新車車裡，回傳到最初建立的null車車
-//					tempCart = cService.insertCart(newCart);
-//
-//					// 有車車了
-//					// 車車的status如果是false，代表訂單還沒成立
-//					// new一個items
-//					CartItems items = new CartItems();
-//					Product getProduct = pService.getById(id);
-//
-//					// 塞值囉！
-//					items.setpId(getProduct);
-//					items.setCartId(tempCart);
-//					// 數量都先1
-//					items.setCartItemsAmount(1);
-//					// insert資料進清單裡！
-//					ciService.insertCartItems(items);
-//				}
 
 	@GetMapping("into/cart")
 	public ModelAndView seeCartItems(ModelAndView mvc, HttpSession session) {
@@ -252,6 +200,53 @@ public class CartController {
 			mvc.setViewName("redirect:/login");
 		} else {
 			int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
+			boolean haveOrNot;
+			Integer listSize=0;
+			
+			Object object = session.getAttribute("cart_ID");
+			if(object!=null) {
+				Integer membId=(Integer)object;
+				Cart getCart =  cService.findBymIdAndcStatus(membId, false);
+				List<CartItems> tempListItems=ciService.findItemByCart(getCart.getCartId());
+				
+				if(tempListItems.size()!=0) {
+					haveOrNot=true;
+					
+					for(CartItems items:tempListItems) {
+						listSize+=items.getCartItemsAmount();
+					}
+					
+					session.setAttribute("listSize", listSize);
+					session.setAttribute("haveOrNot", haveOrNot);
+					
+				}else {
+					listSize=0;
+					haveOrNot=false;
+					session.removeAttribute("listSize");
+					session.setAttribute("haveOrNot", haveOrNot);
+//					session.removeAttribute("haveOrNot");
+				}
+			}else {
+				listSize=0;
+				session.removeAttribute("listSize");
+				haveOrNot=false;
+				session.setAttribute("haveOrNot", haveOrNot);
+			}
+			
+//			boolean haveOrNot;
+//			Cart getCart =  cService.findBymIdAndcStatus(memId, false);
+//			List<CartItems> tempListItems=ciService.findItemByCart(getCart.getCartId());
+//			
+//			if(tempListItems.size()!=0) {
+//				haveOrNot=true;
+//				mvc.getModel().put("haveOrNot", haveOrNot);
+//				
+//			}else {
+//				haveOrNot=false;
+//				mvc.getModel().put("haveOrNot", haveOrNot);
+//			}
+//			System.out.println("籃子裡究竟有沒有放商品=============== "+haveOrNot);
+			
 			Optional<Cart> cart = cService.findByMemberId(memId);
 
 			if (cart.isEmpty()) {

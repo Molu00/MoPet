@@ -51,7 +51,7 @@
 
 	<nav
 		class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">毛胚
+		<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="${contextRoot}/home">毛胚
 			MoPet</a>
 		<button class="navbar-toggler position-absolute d-md-none collapsed"
 			type="button" data-toggle="collapse" data-target="#sidebarMenu"
@@ -72,8 +72,8 @@
 				class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
 				<div class="sidebar-sticky pt-3">
 					<ul class="nav flex-column">
-						<li class="nav-item"><a class="nav-link active" href="#">
-								<span data-feather="home"></span> Dashboard <span
+						<li class="nav-item"><a class="nav-link active" href="${contextRoot}/home">
+								<span data-feather="home"></span> 首頁 <span
 								class="sr-only">(current)</span>
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="${contextRoot}/orders/all"> <span

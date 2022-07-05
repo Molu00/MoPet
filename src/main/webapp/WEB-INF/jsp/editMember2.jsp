@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:choose>
-<c:when test="${empty loginOK}">
-<jsp:include page="layout/frontendBar3.jsp" />
-</c:when>
-<c:otherwise>
-<jsp:include page="layout/frontendBar2.jsp" />
-</c:otherwise>
+	<c:when test="${empty loginOK}">
+		<jsp:include page="layout/frontendBar3.jsp" />
+	</c:when>
+	<c:otherwise>
+		<jsp:include page="layout/frontendBar2.jsp" />
+	</c:otherwise>
 </c:choose>
 <c:if test="${empty loginOK}">
 	<c:redirect url="/login" />
@@ -18,25 +18,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-<br/>
-<br/>
-<br/>
-<br/>
+	<br />
+	<br />
+	<br />
+	<br />
 	<div>
-<!-- 		class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom"> -->
+		<!-- 		class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom"> -->
 		<div class="container">
 			<div class="row justify-content-center">
-				<form method="post" action="edit" enctype="multipart/form-data">
-					<input type="hidden" value=${member.id} name="id">
+				<form method="post" action="edit" enctype="multipart/form-data" id="test2">
+					<input type="hidden" value=${member.id } name="id">
 					<div class="row justify-content-center">
-						<img id="frame" src=${member.memberProfile} width="100px" height="100px" />
+						<img id="frame" src=${member.memberProfile } width="100px"
+							height="100px" />
 					</div>
 					<div class="form-group">
 						<label for="inputAddress">Email 帳號</label> <input type="text"
 							value="${member.memberEmail}" class="form-control"
-							id="inputAddress" placeholder="you@gmail.com" name="email" >
+							id="inputAddress" placeholder="you@gmail.com" name="email">
 					</div>
 					<div class="form-row">
 
@@ -51,9 +53,10 @@
 								id="inputPassword4" name="phonenNumber">
 						</div>
 					</div>
-					
+
 					<div class="form-group">
-						<label for="inputgender">性別</label> <select name="gender" value=${member.memberGender}>
+						<label for="inputgender">性別</label> <select name="gender"
+							value=${member.memberGender}>
 							<option value="男">男</option>
 							<option value="女">女</option>
 						</select>
@@ -61,7 +64,8 @@
 					</div>
 					<div class="form-group">
 						<label for="inputBirth">生日</label> <input type="date"
-							class="form-control" id="inputBirth" name="birth" value=${member.memberBirth}>
+							class="form-control" id="inputBirth" name="birth"
+							value=${member.memberBirth}>
 					</div>
 
 					<div class="form-group">
@@ -77,14 +81,30 @@
 					</div>
 					<div></div>
 					<br />
-					<button type="submit" class="btn btn-dark">更新</button>
+					<button type="submit" class="btn btn-dark" id="test">更新</button>
 				</form>
 			</div>
 		</div>
 	</div>
-<br/>
-<br/>
-<br/>
-<jsp:include page="layout/footer.jsp" />
+	<br />
+	<br />
+	<br />
+	<script>
+document.getElementById('test').addEventListener('click',function(){
+	event.preventDefault();
+	Swal.fire({
+		  position: 'center',
+		  icon: 'success',
+		  title: '帳號已更新',
+		  showConfirmButton: false,
+		  timer: 2000
+		}).then(function(isConfirm){
+            if(isConfirm){
+                $("#test2").submit();
+                    }
+})
+})
+</script>
+	<jsp:include page="layout/footer.jsp" />
 </body>
 </html>
