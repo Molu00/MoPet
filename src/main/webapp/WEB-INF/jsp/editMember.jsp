@@ -81,7 +81,7 @@
 	</div>
 <script>
 document.getElementById('test').addEventListener('click',function(){
-	event.preventDefault();
+//	event.preventDefault();
 	Swal.fire({
 		  position: 'center',
 		  icon: 'success',

@@ -2,6 +2,7 @@ package tw.com.MoPet.service;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -136,4 +137,7 @@ public class memberService {
 		return memDao.findByAccount(email);
 	}
 	
+	public List<member> getByBirthMonth(Integer month) {
+		return memDao.getByBirthMonth(month);
+	}
 }
