@@ -43,7 +43,7 @@ const myChart = new Chart(ctx, {
               'rgb(119, 68, 255)',
               'rgb(255, 200, 180)'
             ],
-            hoverOffset: 4
+            hoverOffset: 5
           }]
     },
 });
