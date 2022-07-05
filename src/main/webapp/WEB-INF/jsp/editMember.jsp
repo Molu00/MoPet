@@ -25,7 +25,7 @@
 		class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom">
 		<div class="container">
 			<div class="row justify-content-center">
-				<form method="post" action="edit" enctype="multipart/form-data">
+				<form method="post" action="edit" enctype="multipart/form-data" id="test2">
 					<input type="hidden" value=${member.id} name="id">
 					<div class="row justify-content-center">
 						<img id="frame" src=${member.memberProfile} width="100px" height="100px" />
@@ -50,9 +50,18 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="inputgender">性別</label> <select name="gender" value=${member.memberGender}>
-							<option value="男">男</option>
+						<label for="inputgender">性別</label> 
+						<select name="gender">
+						<c:choose>
+						<c:when test='"${member.memberGender}" == "男"'>
+							<option value="男" selected>男</option>
 							<option value="女">女</option>
+						</c:when>
+						<c:otherwise>
+							<option value="男">男</option>
+							<option value="女" selected>女</option>
+						</c:otherwise>
+						</c:choose>
 						</select>
 
 					</div>
@@ -81,14 +90,18 @@
 	</div>
 <script>
 document.getElementById('test').addEventListener('click',function(){
-//	event.preventDefault();
+	event.preventDefault();
 	Swal.fire({
 		  position: 'center',
 		  icon: 'success',
 		  title: '帳號已更新',
 		  showConfirmButton: false,
 		  timer: 2000
-		})
+		}).then(function(isConfirm){
+            if(isConfirm){
+                $("#test2").submit();
+                    }
+})
 })
 </script>
 </body>
