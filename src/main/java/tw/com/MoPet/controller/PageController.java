@@ -11,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,7 +21,6 @@ import tw.com.MoPet.model.Order;
 import tw.com.MoPet.model.Product;
 import tw.com.MoPet.model.Replies;
 import tw.com.MoPet.model.employee;
-import tw.com.MoPet.model.member;
 import tw.com.MoPet.service.CartService;
 import tw.com.MoPet.service.CartitemsService;
 import tw.com.MoPet.service.CommentsService;
@@ -187,11 +185,41 @@ public class PageController {
 		@GetMapping("shop/products")
 		public ModelAndView shopProductList(ModelAndView mvc,HttpSession session) {
 			List<Product> productList=pService.findAll();
+			boolean haveOrNot;
+			Object object = session.getAttribute("cart_ID");
+			if(object!=null) {
+				Integer membId=(Integer)object;
+				System.out.println("+++++++++++++++++"+membId);
+				Cart getCart =  cartService.findBymIdAndcStatus(membId, false);
+				
+				List<CartItems> tempListItems=ciService.findItemByCart(getCart.getCartId());
+				
+				if(tempListItems.size()!=0) {
+					haveOrNot=true;
+					System.out.println("這裡應該是有啊============= "+haveOrNot);
+					session.setAttribute("haveOrNot", haveOrNot);
+					
+				}else {
+					haveOrNot=false;
+					session.setAttribute("haveOrNot", haveOrNot);
+//					session.removeAttribute("haveOrNot");
+				}
+			}else {
+				haveOrNot=false;
+				session.setAttribute("haveOrNot", haveOrNot);
+			}
 //			Integer memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
-			
 //			if(memId!=null) {
 //			Cart getCart =  cartService.findBymIdAndcStatus(memId, false);
-//			List<CartItems> itemsList=ciService.findItemByCart(getCart.getCartId());
+//			if(getCart!=null) {
+//				haveOrNot=true;
+//				session.setAttribute("haveOrNot", haveOrNot);
+//			}else {
+//				haveOrNot=false;
+//				session.setAttribute("haveOrNot", haveOrNot);
+//			}}
+//			if(memId!=null) {
+//			
 //			Integer itemsAcount=0;
 //			
 //			if(itemsList.size()!=0) {
@@ -201,7 +229,6 @@ public class PageController {
 //			}}else {itemsAcount=0;}
 //			
 //			session.setAttribute("itemsAcount", itemsAcount);}
-			
 			mvc.getModel().put("productList",productList);
 			mvc.setViewName("shop");
 			return mvc;

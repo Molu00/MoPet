@@ -113,4 +113,13 @@ public class ProductController {
 		pService.insertProduct(pdt);
 		return "redirect:/all/products";
 	}
+	@GetMapping("shop/category/{id}")
+	public ModelAndView shopCategory(@PathVariable Integer id,ModelAndView mvc) {
+		List<Product> productList=pService.findByCategory(id);
+		
+		mvc.getModel().put("productList",productList);
+		mvc.setViewName("shop");
+		return mvc;
+	}
+	
 }
