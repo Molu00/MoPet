@@ -200,6 +200,38 @@ public class CartController {
 			mvc.setViewName("redirect:/login");
 		} else {
 			int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
+			boolean haveOrNot;
+			Integer listSize=0;
+			
+			Object object = session.getAttribute("cart_ID");
+			if(object!=null) {
+				Integer membId=(Integer)object;
+				Cart getCart =  cService.findBymIdAndcStatus(membId, false);
+				List<CartItems> tempListItems=ciService.findItemByCart(getCart.getCartId());
+				
+				if(tempListItems.size()!=0) {
+					haveOrNot=true;
+					
+					for(CartItems items:tempListItems) {
+						listSize+=items.getCartItemsAmount();
+					}
+					
+					session.setAttribute("listSize", listSize);
+					session.setAttribute("haveOrNot", haveOrNot);
+					
+				}else {
+					listSize=0;
+					haveOrNot=false;
+					session.removeAttribute("listSize");
+					session.setAttribute("haveOrNot", haveOrNot);
+//					session.removeAttribute("haveOrNot");
+				}
+			}else {
+				listSize=0;
+				session.removeAttribute("listSize");
+				haveOrNot=false;
+				session.setAttribute("haveOrNot", haveOrNot);
+			}
 			
 //			boolean haveOrNot;
 //			Cart getCart =  cService.findBymIdAndcStatus(memId, false);

@@ -186,25 +186,33 @@ public class PageController {
 		public ModelAndView shopProductList(ModelAndView mvc,HttpSession session) {
 			List<Product> productList=pService.findAll();
 			boolean haveOrNot;
+			Integer listSize=0;
 			Object object = session.getAttribute("cart_ID");
 			if(object!=null) {
 				Integer membId=(Integer)object;
-				System.out.println("+++++++++++++++++"+membId);
 				Cart getCart =  cartService.findBymIdAndcStatus(membId, false);
-				
 				List<CartItems> tempListItems=ciService.findItemByCart(getCart.getCartId());
 				
 				if(tempListItems.size()!=0) {
 					haveOrNot=true;
-					System.out.println("這裡應該是有啊============= "+haveOrNot);
+					
+					for(CartItems items:tempListItems) {
+						listSize+=items.getCartItemsAmount();
+					}
+					
+					session.setAttribute("listSize", listSize);
 					session.setAttribute("haveOrNot", haveOrNot);
 					
 				}else {
+					listSize=0;
 					haveOrNot=false;
+					session.removeAttribute("listSize");
 					session.setAttribute("haveOrNot", haveOrNot);
 //					session.removeAttribute("haveOrNot");
 				}
 			}else {
+				listSize=0;
+				session.removeAttribute("listSize");
 				haveOrNot=false;
 				session.setAttribute("haveOrNot", haveOrNot);
 			}

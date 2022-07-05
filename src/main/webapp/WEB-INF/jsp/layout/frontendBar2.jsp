@@ -87,7 +87,7 @@ img.card-img {
 				</div>
 			</div>
 					<div>
-			  <a href="${contextRoot}/into/cart"><button type="button" class="btn btn-outline-secondary">購物車
+			  <a href="${contextRoot}/into/cart"><button type="button" class="btn btn-outline-secondary">購物車<span class="badge badge-danger badge-pill">${listSize}</span>
   </button></a>	
 			</div>
 		</div>

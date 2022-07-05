@@ -9,7 +9,7 @@
 </c:if>
 <jsp:include page="layout/navbar2.jsp" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 	function preview() {
 		frame.src = URL.createObjectURL(event.target.files[0]);
@@ -78,10 +78,9 @@
 					src="${product.pImg}" width="100px" height="100px">
 			</div>
 			<div class="btn-group d-flex" role="group">
-				<input class="btn btn-primary" type="submit" value="送出資料" />
+				<input id="send" class="btn btn-primary" type="submit" value="送出資料" />
 			</div>
 		</form:form>
-
 
 	</div>
 </div>
