@@ -18,7 +18,6 @@
 			document.getElementById("pPrice").value = "200";
 			document.getElementById("pCost").value = "100";
 			document.getElementById("pStock").value = "30";
-			document.getElementById("sold").selectedIndex = "0";
 		});
 	});
 
@@ -72,8 +71,7 @@
 					</div>
 					<div class="form-group">
 						<select class="form-control" id="sold" name="sold">
-							<option value="" disabled selected>是否直接上架</option>
-							<option value=true>直接上架</option>
+							<option value="true" selected>直接上架</option>
 							<option value=false>暫不上架</option>
 						</select>
 					</div>

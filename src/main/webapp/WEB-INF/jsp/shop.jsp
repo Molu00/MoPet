@@ -80,7 +80,6 @@
       <a href="${contextRoot}/shop/category/4"><button type="button" class="btn btn-outline-secondary">營養補品</button></a>
       <a href="${contextRoot}/shop/category/5"><button type="button" class="btn btn-outline-secondary">清潔用品</button></a>
   	</div>
-	
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
@@ -95,7 +94,7 @@
               <p class="card-text"><c:out value="${allProduct.pName}" /></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="${contextRoot}/add/cartItems/${allProduct.pId}"><button type="button" class="btn btn-sm btn-outline-secondary">加入購物車</button></a>
+                  <a href="${contextRoot}/add/cartItems/${allProduct.pId}"><button type="button" class="btn btn-sm btn-outline-secondary">購物車</button></a>
                 </div>
                 <small class="text-muted"></small>
               </div>
@@ -120,8 +119,6 @@
 </c:otherwise>
 </c:choose>
 </button></a>
-  
-  
   
   
 </main>
