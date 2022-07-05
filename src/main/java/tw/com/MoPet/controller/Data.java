@@ -25,13 +25,12 @@ public class Data {
 		Integer numcl= pService.findByCategory(3).size();
 		Integer numS= pService.findByCategory(4).size();
 		Integer numC= pService.findByCategory(5).size();
-		
 		categoryDTO category=new categoryDTO();
 		category.setFoods(numF);
 		category.setToys(numT);
 		category.setClothing(numcl);
-		category.setClothing(numS);
-		category.setClothing(numC);
+		category.setSupplies(numS);
+		category.setCleaning(numC);
 		m.addAttribute("category",category);
 		return "BackHome";
 	}
