@@ -16,12 +16,32 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<div
-		class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3">
-<div style="width:300px;height:60px">
-<canvas id="myChart" width="100" height="100"></canvas>
-</div>
-<script>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+		<div
+			class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+			<h1 class="h2">你好 ${emp.empName }</h1>
+		</div>
+	</main>
+	<div style="height: 50px"></div>
+	<div class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3">
+		<div class="row" >
+			<div class="col">
+				<div style="width: 300px; height: 60px">
+					<canvas id="myChart" width="100" height="100"></canvas>
+					<br/>
+					<h5 style="text-align:center;">商品類別分布</h5>
+				</div>
+			</div>
+			<div class="col">
+				<div style="width: 300px; height: 60px">
+					<canvas id="myChart2" width="100" height="100"></canvas>
+					<br/>
+					<h5 style="text-align:center;">會員生日月份</h5>
+				</div>
+			</div>
+		</div>
+		
+		<script>
 const ctx = document.getElementById('myChart');
 const myChart = new Chart(ctx, {
     type: 'pie',
@@ -47,8 +67,61 @@ const myChart = new Chart(ctx, {
           }]
     },
 });
+
+const ctx2 = document.getElementById('myChart2');
+const myChart2 = new Chart(ctx2, {
+    type: 'pie',
+    data: {
+    	 labels: [
+    		    '一月',
+    		    '二月',
+    		    '三月',
+    		    '四月',
+    		    '五月',
+    		    '六月',
+    		    '七月',
+    		    '八月',
+    		    '九月',
+    		    '十月',
+    		    '十一月',
+    		    '十二月'
+    		  ],
+        datasets: [{
+            label: 'My Second Dataset',
+            data: [
+            	${birth.january},
+            	${birth.february},
+            	${birth.march},
+            	${birth.april},
+            	${birth.may},
+            	${birth.june},
+            	${birth.july},
+            	${birth.august},
+            	${birth.september},
+            	${birth.october},
+            	${birth.november},
+            	${birth.december}
+            ],
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)',
+              'rgb(119, 68, 255)',
+              'rgb(255, 200, 180)',              
+              'rgb(220, 220, 220)',
+              'rgb(193, 255, 193)',
+              'rgb(255, 250, 205)',
+              'rgb(176, 224, 230)',
+              'rgb(255, 236, 139)',
+              'rgb(205, 170, 125)',
+              'rgb(238, 224, 229)'
+            ],
+            hoverOffset: 12
+          }]
+    },
+});
 </script>
-</div>
+	</div>
 
 </body>
 
