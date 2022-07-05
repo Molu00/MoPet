@@ -34,7 +34,7 @@
 			</div>
 			<div class="form-group">
 				<select class="form-control" id="categoryjsp" name="catid">
-					<option value="" disabled selected>商品分類</option>
+					<option value="${catelist.categoryid}" disabled selected>${catelist.categoryName}</option>
 					<c:forEach items="${catelist}" var="catelist">
 						<option value="${catelist.categoryid}">${catelist.categoryName}</option>
 					</c:forEach>
@@ -42,7 +42,7 @@
 			</div>
 			<div class="form-group">
 				<select class="form-control" id="companyjsp" name="companyid">
-					<option value="" disabled selected>公司名稱</option>
+					<option value="${companyList.companyid}" disabled selected>${companyList.company}</option>
 					<c:forEach items="${companyList}" var="companyList">
 						<option value="${companyList.companyid}">${companyList.company}</option>
 					</c:forEach>
