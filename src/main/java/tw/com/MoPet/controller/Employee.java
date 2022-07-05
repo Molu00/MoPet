@@ -111,9 +111,6 @@ public class Employee {
 		return mav;
 	}
 	
-	@GetMapping(path = "home")
-	public String home() {
-		return "BackHome";
-	}
+
 	
 }

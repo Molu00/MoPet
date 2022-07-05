@@ -35,7 +35,7 @@ const myChart = new Chart(ctx, {
     		  ],
         datasets: [{
             label: 'My First Dataset',
-            data: [300, 50, 100, 50, 100],
+            data: [${category.foods}, ${category.toys},${category.clothing}, ${category.supplies}, ${category.cleaning}],
             backgroundColor: [
               'rgb(255, 99, 132)',
               'rgb(54, 162, 235)',
