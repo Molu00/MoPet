@@ -11,11 +11,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -47,6 +50,14 @@ public class Comments {
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="comments",cascade=CascadeType.ALL)
 	private Set<Replies> replies = new LinkedHashSet<Replies>();
+	
+	@Transient
+	@Column(name = "fk_member_id")
+	private Integer fk_member_id;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "fk_member_id")
+	private member member;
 
 //	private Integer count;
 	
@@ -122,8 +133,10 @@ public class Comments {
 		this.createondate = createondate;
 	}
 
+	
+
 	public Comments(Integer id, String title, String content, String name, String com_img, Date createondate,
-			Set<Replies> replies) {
+			Set<Replies> replies, Integer fk_member_id, tw.com.MoPet.model.member member) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -132,6 +145,36 @@ public class Comments {
 		this.com_img = com_img;
 		this.createondate = createondate;
 		this.replies = replies;
+		this.fk_member_id = fk_member_id;
+		this.member = member;
+	}
+
+	public Set<Replies> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(Set<Replies> replies) {
+		this.replies = replies;
+	}
+
+	public Integer getFk_member_id() {
+		return fk_member_id;
+	}
+
+	public void setFk_member_id(Integer fk_member_id) {
+		this.fk_member_id = fk_member_id;
+	}
+
+	public member getMember() {
+		return member;
+	}
+
+	public void setMember(member member) {
+		this.member = member;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	

@@ -35,6 +35,7 @@ public class Replies {
 
 	@Column(name = "rep_img")
 	private String rep_img;
+	
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -42,12 +43,20 @@ public class Replies {
 	private Date createondate;
 
 	@Transient
+	@Column(name = "fk_member_id")
+	private Integer fk_member_id;
+	
+	@Transient
 	@Column(name = "fk_c_id")
 	private Integer fk_c_id;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "fk_c_id")
 	private Comments comments;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "fk_member_id")
+	private member member;
 
 	@PrePersist
 	public void onTiome() {
@@ -107,16 +116,38 @@ public class Replies {
 		this.fk_c_id = fk_c_id;
 	}
 
-	public Replies(Integer id, String name, String content, String rep_img, Date createondate, Integer fk_c_id,
-			Comments comments) {
+	
+	
+	public Integer getFk_member_id() {
+		return fk_member_id;
+	}
+
+	public void setFk_member_id(Integer fk_member_id) {
+		this.fk_member_id = fk_member_id;
+	}
+
+	public member getMember() {
+		return member;
+	}
+
+	public void setMember(member member) {
+		this.member = member;
+	}
+
+
+
+	public Replies(Integer id, String name, String content, String rep_img, Date createondate, Integer fk_member_id,
+			Integer fk_c_id, Comments comments, tw.com.MoPet.model.member member) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.content = content;
 		this.rep_img = rep_img;
 		this.createondate = createondate;
+		this.fk_member_id = fk_member_id;
 		this.fk_c_id = fk_c_id;
 		this.comments = comments;
+		this.member = member;
 	}
 
 	public Comments getComments() {
