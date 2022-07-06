@@ -25,6 +25,7 @@
 		frame.src = URL.createObjectURL(event.target.files[0]);
 	}
 </script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 	</div>
@@ -36,7 +37,7 @@
 			<div class="col-9">
 				<h2>新增商品資訊</h2>
 				<form:form method="POST" action="${contextRoot}/insertProduct"
-					modelAttribute="Product" enctype="multipart/form-data">
+					modelAttribute="Product" enctype="multipart/form-data" id="test2">
 					<div class="form-group">
 						<input placeholder="商品名稱" class="form-control" type="text"
 							name="pName" id="pName" />
@@ -84,13 +85,29 @@
 						<img id="frame" class="rounded-sm" alt="productImg" src="${contextRoot}/img/defaultimg.jpg" width="100px" height="100px">
 					</div>
 					<div class="btn-group d-flex" role="group">
-						<input class="btn btn-primary" type="submit" value="送出資料" />
+						<input class="btn btn-primary" type="submit" value="送出資料" id="test"/>
 					</div>
 				</form:form>
 				<div class="btn-group d-flex" role="group">
 					<button id="autokeyin" class="btn btn-light" type="submit">Auto keyin</button>
 				</div>
 
+				<script>
+				document.getElementById('test').addEventListener('click',function(){
+					event.preventDefault();
+					Swal.fire({
+						  position: 'center',
+						  icon: 'success',
+						  title: '商品新增完成',
+						  showConfirmButton: false,
+						  timer: 2000
+						}).then(function(isConfirm){
+				            if(isConfirm){
+				                $("#test2").submit();
+				                    }
+				})
+				})
+				</script>
 			</div>
 		</div>
 	</div>

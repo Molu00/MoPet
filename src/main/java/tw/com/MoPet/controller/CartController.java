@@ -207,6 +207,9 @@ public class CartController {
 			if(object!=null) {
 				Integer membId=(Integer)object;
 				Cart getCart =  cService.findBymIdAndcStatus(membId, false);
+				
+				if(getCart!=null) {
+				
 				List<CartItems> tempListItems=ciService.findItemByCart(getCart.getCartId());
 				
 				if(tempListItems.size()!=0) {
@@ -231,7 +234,7 @@ public class CartController {
 				session.removeAttribute("listSize");
 				haveOrNot=false;
 				session.setAttribute("haveOrNot", haveOrNot);
-			}
+			}}
 			
 //			boolean haveOrNot;
 //			Cart getCart =  cService.findBymIdAndcStatus(memId, false);

@@ -3,6 +3,8 @@ package tw.com.MoPet.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -114,8 +116,11 @@ public class ProductController {
 		return "redirect:/all/products";
 	}
 	@GetMapping("shop/category/{id}")
-	public ModelAndView shopCategory(@PathVariable Integer id,ModelAndView mvc) {
+	public ModelAndView shopCategory(@PathVariable Integer id,ModelAndView mvc,HttpSession session) {
 		List<Product> productList=pService.findByCategory(id);
+		
+		String prePage = "redirect:/shop/category/"+id;
+		session.setAttribute("PrePage", prePage);
 		
 		mvc.getModel().put("productList",productList);
 		mvc.setViewName("shop");

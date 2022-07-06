@@ -33,8 +33,6 @@
 				<table data-toggle="table">
 				<thead class="thead-dark">
 					<tr>
-						<th scope="col" data-sortable="true">訂單編號</th>
-						<th scope="col" data-sortable="true" class="text-center">訂單日期</th>
 						<th scope="col">訂單金額</th>
 						<th scope="col">送貨地址</th>
 						<th scope="col">付費方式</th>
@@ -45,11 +43,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="allOrder" items="${orderList}">
-					<c:if test="${orderMmberId==allOrder.fkMemberId.getId()}">
+					<c:forEach var="allOrder" items="${oDetailList}">
 						<tr>
-							<th scope="row" class="text-center"><c:out value="${allOrder.orderId}" /></th>
-							<td ><fmt:formatDate pattern="yyyy-MM-dd EEE" value="${allOrder.orderAdded}" /></td>
 							<td class="text-center"><c:out value="${allOrder.orderTotal}" /></td>
 							<td><c:out value="${allOrder.shippingAddress}" /></td>
 							<td><c:out value="${allOrder.paymentId.getPaymentWay()}" /></td>
@@ -82,7 +77,6 @@
 							</td>
 							
 						</tr>
-					</c:if>
 					</c:forEach>
 				</tbody>
 			</table>

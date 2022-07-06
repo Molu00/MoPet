@@ -47,6 +47,7 @@
 						<th scope="col">送貨方式</th>
 						<th scope="col" class="text-center">付費狀態</th>
 						<th scope="col" class="text-center">送貨狀態</th>
+						<th scope="col" class="text-center">詳細清單</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -84,6 +85,8 @@
 											<button class="btn btn-secondary" disabled>未出貨</button></a></td>
 								</c:otherwise>
 							</c:choose>
+							<td><a href="${contextRoot}/background/orderDetail/${allOrder.orderId}">
+										<button class="btn btn-secondary">測試用</button></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

@@ -9,5 +9,6 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
 	
 	@Query(value="select * from order_Detail_temp where fk_order_id=?1", nativeQuery=true)
 	public List<OrderDetail> findOrderDetailByCart(Integer cartid);
+	
 
 }
