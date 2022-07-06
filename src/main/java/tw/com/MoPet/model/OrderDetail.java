@@ -30,6 +30,9 @@ public class OrderDetail {
 	@Column(name="amount")
 	private Integer productAmount;
 	
+	@Column(name="price")
+	private Integer productPrice;
+	
 	public OrderDetail() {
 		// TODO Auto-generated constructor stub
 	}
@@ -64,6 +67,14 @@ public class OrderDetail {
 
 	public void setProductAmount(Integer productAmount) {
 		this.productAmount = productAmount;
+	}
+
+	public Integer getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(Integer productPrice) {
+		this.productPrice = productPrice;
 	}
 
 }

@@ -14,15 +14,6 @@
 	<div
 		class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h1 class="h2">訂單管理</h1>
-		<div class="btn-toolbar mb-2 mb-md-0">
-			<a href="${contextRoot}/add/products"><button type="button"
-					class="btn btn-sm btn-outline-secondary">新增商品</button></a> <a
-				href="${contextRoot}/add/companys"><button type="button"
-					class="btn btn-sm btn-outline-secondary">新增廠商</button></a> <a
-				href="${contextRoot}/add/category"><button type="button"
-					class="btn btn-sm btn-outline-secondary">新增分類</button></a>
-		</div>
-		
 	</div>
 </main>
 <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom text-center">
@@ -86,7 +77,7 @@
 								</c:otherwise>
 							</c:choose>
 							<td><a href="${contextRoot}/background/orderDetail/${allOrder.orderId}">
-										<button class="btn btn-secondary">測試用</button></a></td>
+										<button class="btn btn-secondary">詳細清單</button></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
