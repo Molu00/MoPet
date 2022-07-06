@@ -34,8 +34,8 @@
 
 <div class="container">
 <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
-<main role="main">
 
+<main role="main">
 			<script>
 				$(function() {
 					var $win = $(window);

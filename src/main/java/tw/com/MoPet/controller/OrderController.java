@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,7 @@ import tw.com.MoPet.model.CartItems;
 import tw.com.MoPet.model.Order;
 import tw.com.MoPet.model.OrderDetail;
 import tw.com.MoPet.model.Payment;
+import tw.com.MoPet.model.Product;
 import tw.com.MoPet.model.Shipping;
 import tw.com.MoPet.model.member;
 import tw.com.MoPet.service.CartService;
@@ -198,21 +200,16 @@ public class OrderController {
 				System.out.println(aoiCheck.toString());
 				
 				String form=aio.aioCheckOut(aoiCheck, null);
-	//			return form;
-				model.addAttribute("ecpay",form);}
+				model.addAttribute("ecpay",form);
+				
+			return "checkOutECPay";
 			
-			
-//			//暫時將訂單成功付款的資訊藏這裡
-//			getOrder.setPaymentStatus(true);
-//			oService.insertOrder(getOrder);
+			}
 			
 			System.out.println("this order ========= "+getOrder.getOrderId());
-//			PrintWriter out = response.getWriter();
-//			response.setContentType("text/html;charset=UTF-8");
-//			out.print(aio.aioCheckOut(aoiCheck, null));
 		}
-//	return "orderOK";
-		return "checkOutECPay";
+	return "orderOK";
+		
 	}
 	
 	@PostMapping("order/returnURL")
@@ -226,15 +223,6 @@ public class OrderController {
 
 			System.out.println("傳進來的 MerchantTradeNo "+MerchantTradeNo);
 			System.out.println("傳進來的 TradeAmt "+TradeAmt);
-//			String orderIdStr =MerchantTradeNo.substring(14);
-//			System.out.println(MerchantTradeNo);
-//			//抓訂單id，用id搜尋訂單然後改狀態
-//			String orderIdStr = MerchantTradeNo.substring(8);
-//			int OrderId = Integer.parseInt(orderIdStr);
-//			Order order =oService.getOrderById(OrderId);
-//			order.setPaymentStatus(true);
-//			oService.insertOrder(order);
-//			//findById(OrderId)
 			logger.info("test check out ok");
 		}
 	}
@@ -248,19 +236,6 @@ public class OrderController {
 		Order order =oService.getOrderById(OrderId);
 		order.setPaymentStatus(true);
 		oService.insertOrder(order);
-		//		member member = (member) session.getAttribute("loginOK");
-//		Integer memberId=member.getId();
-//		//回來寫一個OrderService的findBytwoKeys去找未付款單子
-//		Order thisOrder=oService.findBymIdAndcStatus(memberId, false);
-////		Member member = memberService.findById(sessionUId);
-//		List<OrderDetail> orderDetailList=odService.findOrderDetailByCart(thisOrder.getOrderId());
-//		
-//		model.addAttribute("orderDetail"+orderDetailList);
-//		
-//		thisOrder.setPaymentStatus(true);
-//		oService.insertOrder(thisOrder);
-		
-		//透過使用者取得訂單資料並呈現，此處先用index代替
 		logger.info("test check out HistoryOrder");
 		return "orderOK";
 	}
@@ -268,16 +243,6 @@ public class OrderController {
 	
 	@GetMapping(path = "member/order")
 	public ModelAndView findMemberOrder(ModelAndView mvc, @RequestParam(value = "p",defaultValue = "1") Integer pageNumber,HttpSession session) {
-		
-//		member mem=(member)session.getAttribute("loginOK");
-//		System.out.println("memberId "+mem.getId()+" 名子 "+mem.getMemberName());
-//		
-//		
-//		Page<Order> page=oService.findByPage(pageNumber);
-//
-//		mvc.getModel().put("orderList",page);
-//		mvc.setViewName("orderMember");
-//		return mvc;
 		
 		member mem=(member)session.getAttribute("loginOK");
 		session.setAttribute("orderMmberId", mem.getId());
@@ -289,17 +254,18 @@ public class OrderController {
 		mvc.setViewName("orderMember");
 		return mvc;
 		
-//		if (mem == null) {
-//			mav.getModel().put("member", mem);
-//			mav.setViewName("memberCenter");
-//			return mav;
-//		}
-//		{
-//			mav.getModel().put("member", mem);
-//			mav.setViewName("editMember2");
-//			return mav;
-//		}
-
 	}
+	
+	@GetMapping("member/orderDetail/{id}")
+	public ModelAndView memberOrderDetail(@PathVariable Integer id,ModelAndView mvc,HttpSession session) {
+		
+		List<OrderDetail> oDetailList=odService.findOrderDetailByCart(id);
+		
+		mvc.getModel().put("oDetailList",oDetailList);
+		mvc.setViewName("viewMOrderDetail");
+		return mvc;
+	}
+	
+	
 	
 }

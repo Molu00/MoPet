@@ -167,11 +167,6 @@ public class PageController {
 			return "index";
 		}
 		
-		@GetMapping("/member/center")
-		public String memberCenter() {
-			return "memberCenter";
-		}
-		
 		@GetMapping("/testIndex")
 		public String testIndex() {
 			return "testIndex";
@@ -191,6 +186,9 @@ public class PageController {
 			if(object!=null) {
 				Integer membId=(Integer)object;
 				Cart getCart =  cartService.findBymIdAndcStatus(membId, false);
+				
+				if(getCart!=null) {
+				
 				List<CartItems> tempListItems=ciService.findItemByCart(getCart.getCartId());
 				
 				if(tempListItems.size()!=0) {
@@ -215,7 +213,7 @@ public class PageController {
 				session.removeAttribute("listSize");
 				haveOrNot=false;
 				session.setAttribute("haveOrNot", haveOrNot);
-			}
+			}}
 //			Integer memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
 //			if(memId!=null) {
 //			Cart getCart =  cartService.findBymIdAndcStatus(memId, false);

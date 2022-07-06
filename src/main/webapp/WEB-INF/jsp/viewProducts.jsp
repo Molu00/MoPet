@@ -9,7 +9,6 @@
 </c:if>
 <jsp:include page="layout/navbar2.jsp" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 	<div
 		class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -73,7 +72,7 @@
 							<td><a href="${contextRoot}/edit/product/${allProduct.pId}">
 								<button class="btn btn-primary">Edit</button></a></td>
 								<td><a href="${contextRoot}/delete/product/${allProduct.pId}">
-							<button class="btn btn-warning">Delete</button></a></td>
+							<button id="test" class="btn btn-warning">Delete</button></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -101,6 +100,7 @@
 						</ul>
 					</div>
 				</div>
+				
 			</nav>
 		</div>
 	</div>

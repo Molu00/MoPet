@@ -10,11 +10,7 @@
 <jsp:include page="layout/navbar2.jsp" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-	function preview() {
-		frame.src = URL.createObjectURL(event.target.files[0]);
-	}
-</script>
+
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 	<div
 		class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -26,7 +22,7 @@
 	<div class="container" align="center">
 		<h2>修改商品資訊</h2>
 		<form:form method="POST" action="${contextRoot}/editProduct"
-			var="product" modelAttribute="product" enctype="multipart/form-data">
+			var="product" modelAttribute="product" enctype="multipart/form-data" id="fromFrom">
 			<input type="hidden" value="${product.pId}" name="pId" id="pId">
 			<div class="form-group">
 				<input placeholder="商品名稱" class="form-control" type="text"
@@ -81,6 +77,21 @@
 				<input id="send" class="btn btn-primary" type="submit" value="送出資料" />
 			</div>
 		</form:form>
-
+				<script>
+				document.getElementById('send').addEventListener('click',function(){
+					event.preventDefault();
+					Swal.fire({
+						  position: 'center',
+						  icon: 'success',
+						  title: '商品更新完成',
+						  showConfirmButton: false,
+						  timer: 2000
+						}).then(function(isConfirm){
+				            if(isConfirm){
+				                $("#fromFrom").submit();
+				                    }
+						})
+				})
+				</script>
 	</div>
 </div>
