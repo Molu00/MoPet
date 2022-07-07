@@ -127,4 +127,14 @@ public class ProductController {
 		return mvc;
 	}
 	
+	@GetMapping("detail/product/{id}")
+	public ModelAndView detailProduct(@PathVariable Integer id,ModelAndView mvc) {
+		
+		Product product=pService.getById(id);
+		
+		mvc.getModel().put("product",product);
+		mvc.setViewName("viewDetailProduct");
+		return mvc;
+	}
+	
 }
