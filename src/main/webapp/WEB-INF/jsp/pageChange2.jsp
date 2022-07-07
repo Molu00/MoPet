@@ -80,7 +80,10 @@
 						<div class="card text-center ">
 							<div class="card-header text-white bg-secondary ">
 
-								<c:out value="${com.name}"></c:out>
+<%-- 								<c:forEach var="member" items="member"> --%>
+<%-- 									<img src="${member.memberProfile}" width="5%" height="5%"> --%>
+<%-- 								</c:forEach> --%>
+								<c:out value="${com.name}"></c:out><img src="${member.memberProfile}" width="5%" height="5%">
 							</div>
 							<div class="card-body">
 								<h1 class="display-5">
@@ -111,15 +114,19 @@
 				</div>
 			</form:form>
 
-
 			<c:forEach var="fk" items="${fk}">
 				<div class="row justify-content-center">
 					<div class="col-9">
 						<div class="card text-center">
 							<div class="card-header card-header text-white bg-secondary">
-								留言
+
+
+
 								<c:out value="${fk.name}"></c:out>
+
 							</div>
+
+
 							<span class="card-body"> <c:out value="${fk.content}"></c:out>
 								<c:choose>
 									<c:when test="${fk.rep_img !=null }">

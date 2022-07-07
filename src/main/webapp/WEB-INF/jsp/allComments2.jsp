@@ -79,7 +79,7 @@
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<a class="dropdown-item" href="${contextRoot}/comments/all2">最新</a>
 					<a class="dropdown-item" href="${contextRoot}/comments/all3">最舊</a>
-					<a class="dropdown-item" href="#">最熱門</a>
+<!-- 					<a class="dropdown-item" href="#">最熱門</a> -->
 				</div>
 			</div>
 			<br />
@@ -162,7 +162,6 @@
 										class="btn btn-danger">刪除</button></a>
 							</div>
 							
-
 							<!-- 							<div> -->
 							<!-- 							<br /> <br /> -->
 							<%-- 								<a href="${contextRoot}/comments/page?id=${page.id}"><button --%>
@@ -171,23 +170,15 @@
 							<!-- 							</div> -->
 
 						</div>
-
 					</div>
 				</div>
-				<br/>
+				
 			</c:forEach>
 			<div class="row justify-content-center">
 				<div class="col-9">
-
 					<nav aria-label="Page navigation example">
 						<ul class="pagination">
-							<!-- 							<li class="page-item"><a class="page-link" -->
-							<%-- 								href="${contextRoot}/comments/all?p=${pageNumber}" --%>
-							<!-- 								aria-label="Previous"> <span aria-hidden="true">&laquo;</span> -->
-							<!-- 							</a></li> -->
-
 							<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
-
 								<c:choose>
 									<c:when test="${page.number != pageNumber-1}">
 										<li class="page-item"><a class="page-link"
@@ -199,15 +190,7 @@
 													value="${pageNumber}" /></a></li>
 									</c:otherwise>
 								</c:choose>
-
-								<%-- 								<c:if test="${pageNumber != page.totalPages}"> --%>
-								<!-- 										| -->
-								<%-- 								</c:if> --%>
 							</c:forEach>
-							<!-- 							<li class="page-item"><a class="page-link" href="#" -->
-							<!-- 								aria-label="Next"> <span aria-hidden="true">&raquo;</span> -->
-							<!-- 							</a></li> -->
-
 						</ul>
 					</nav>
 				</div>

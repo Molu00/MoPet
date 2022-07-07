@@ -85,9 +85,11 @@ public class RepliesController {
 
 	@GetMapping("replies/edit")
 	public String editReplies(@RequestParam("id") Integer id, Model model) { // 回覆ID
+		
 		Replies replies = rService.findById(id);
 
 		model.addAttribute("replies", replies);
+		
 		return "editReplies";
 	}
 
@@ -143,5 +145,7 @@ public class RepliesController {
 
 		return url;
 	}
+	
+	
 
 }

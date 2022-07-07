@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -21,8 +23,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import tw.com.MoPet.model.Comments;
 import tw.com.MoPet.model.Replies;
+import tw.com.MoPet.model.member;
 import tw.com.MoPet.service.CommentsService;
 import tw.com.MoPet.service.RepliesService;
+import tw.com.MoPet.service.memberService;
 
 @Controller
 public class FrontCommentsController {
@@ -33,12 +37,17 @@ public class FrontCommentsController {
 	@Autowired
 	private RepliesService rService;
 	
+	@Autowired
+	private memberService mService;
 	
 	@GetMapping("comments/all2")
-	public String viewtext(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model) {
+	public String viewtext(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model,HttpSession session) {
 		
 		Page<Comments> page = cService.findByPage(pageNumber);
 				
+		member member = (member)session.getAttribute("loginOK");
+		
+		model.addAttribute("member", member);
 		model.addAttribute("page", page);
 		
 		return "allComments2";
@@ -58,9 +67,6 @@ public class FrontCommentsController {
 		
 		map.put(page.getContent().get(i).getId(), number);
 		
-		
-		System.out.println(map);
-		
 		}
 		
 		model.addAttribute("map",map);
@@ -70,16 +76,38 @@ public class FrontCommentsController {
 	}
 	
 	@GetMapping("comments/add2")
-	public String addComment(Model model) {
+	public String addComment(Model model,HttpSession session) {
+		
+		member member = (member)session.getAttribute("loginOK");
 		
 		Comments comments = new Comments();
 		
-		Comments lastest = cService.getLastest();
+//		Comments lastest = cService.getLastest();
 		
+		model.addAttribute("member", member);
 		model.addAttribute("comments", comments);
-		model.addAttribute("lastest", lastest);
+//		model.addAttribute("lastest", lastest);
 		
 		return "addComment2";
+		
+	}
+	
+	@PostMapping("comments/add2") // post送出資料
+	public String addComment(@ModelAttribute("comments") Comments comments,
+			@RequestParam("comimg") MultipartFile file,@RequestParam("name2")String name) throws IOException {
+
+		if (!file.isEmpty()) {
+			String temp = new String(Base64.getEncoder().encode(file.getBytes()));
+			String profile = "data:image/png;base64," + temp;
+
+			comments.setCom_img(profile);
+		}
+
+		comments.setName(name);
+		cService.insertComment(comments);
+
+		
+		return "redirect:/comments/all2";
 		
 	}
 	
@@ -119,14 +147,18 @@ public class FrontCommentsController {
 	}
 	
 	@GetMapping("comments/page2")
-	public String pagechange(@RequestParam("id")Integer id,Model model) {
+	public String pagechange(@RequestParam("id")Integer id,Model model,HttpSession session) {
+		
+		member member = (member)session.getAttribute("loginOK");
 		
 		Comments com = cService.findById(id);
 		List<Replies> fk = rService.findByFk(id);
 		Integer count = rService.countReplies(id);
+		mService.findById(id);
 		
 //		System.out.println(fk);
 		
+		model.addAttribute("member", member);
 		model.addAttribute("com", com);
 		model.addAttribute("fk", fk);
 		model.addAttribute("count", count);
@@ -135,21 +167,6 @@ public class FrontCommentsController {
 		
 	}
 	
-	@PostMapping("comments/add2") // post送出資料
-	public String addComment(@ModelAttribute("comments") Comments comments,
-			@RequestParam("comimg") MultipartFile file) throws IOException {
-
-		if (!file.isEmpty()) {
-			String temp = new String(Base64.getEncoder().encode(file.getBytes()));
-			String profile = "data:image/png;base64," + temp;
-
-			comments.setCom_img(profile);
-		}
-
-		cService.insertComment(comments);
-
-		return "redirect:/comments/all2";
-	}
 	
 	@GetMapping("comments/delete2")
 	public String deleteComment(@RequestParam("id") Integer id) {
@@ -160,12 +177,16 @@ public class FrontCommentsController {
 	}
 	
 	@GetMapping("replies/add2")
-	public String addReplies(Model model,@RequestParam("id")Integer id) {
+	public String addReplies(Model model,@RequestParam("id")Integer id,HttpSession session,HttpSession sessiom) {
+		
+		member member = (member)session.getAttribute("loginOK");
 		
 		Replies replies = new Replies();
 		
 		replies.setFk_c_id(id);
 		
+		
+		model.addAttribute("member", member);
 		model.addAttribute("replies", replies); 
 	
 		return "addReplies2";
@@ -174,8 +195,8 @@ public class FrontCommentsController {
 	
 	
 	@PostMapping("replies/add2") // post送出資料
-	public String addReplies(@ModelAttribute("replies") Replies replies, Model model,
-			@RequestParam("repimg") MultipartFile file, @RequestParam("id") Integer id) throws IOException {
+	public String addReplies(@ModelAttribute("replies") Replies replies, Model model,Replies replies2,
+			@RequestParam("repimg") MultipartFile file, @RequestParam("id") Integer id,@RequestParam("name2")String name) throws IOException {
 
 		if (!file.isEmpty()) {
 			String temp = new String(Base64.getEncoder().encode(file.getBytes()));
@@ -185,13 +206,16 @@ public class FrontCommentsController {
 		}
 
 		Comments com = cService.findById(id);
-
+		
+		replies2.setName(name);
 		replies.setComments(com);
+		
 
 		rService.insertReplies(replies);
 		
 		Replies newReplies = new Replies();  
-
+		
+		
 		Replies lastest = rService.getLastest();
 
 		model.addAttribute("replies", newReplies);

@@ -87,7 +87,7 @@
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<a class="dropdown-item" href="${contextRoot}/comments/all">最新</a>
 					<a class="dropdown-item" href="${contextRoot}/comments/all4">最舊</a>
-					<a class="dropdown-item" href="#">最熱門</a>
+<!-- 					<a class="dropdown-item" href="#">最熱門</a> -->
 				</div>
 			</div>
 

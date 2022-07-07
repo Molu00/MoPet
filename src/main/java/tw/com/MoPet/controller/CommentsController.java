@@ -70,9 +70,9 @@ public class CommentsController {
 	@GetMapping("comments/edit")
 	public String editComment(@RequestParam("id") Integer id, Model model) {
 
-		Comments comments = cService.findById(id);
+//		Comments comments = cService.findById(id);
 
-		model.addAttribute("commemts", comments);
+		model.addAttribute("commemts", cService.findById(id));
 
 		return "editComments";
 	}

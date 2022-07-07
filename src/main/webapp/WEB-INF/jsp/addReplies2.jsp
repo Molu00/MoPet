@@ -39,10 +39,13 @@
 
 						<input type="hidden" name="id" value="${replies.fk_c_id}" />
 
-						<div class="font-weight-bold">發文者</div>
-						<div class="form-group">
-							<form:input path="name" class="form-control" />
-						</div>
+
+						<input type="hidden" name="name2" value="${member.memberName}"  />
+						
+						<div class="form-group font-weight-bold ">
+							<img src="${member.memberProfile}" width="5%" height="5%"/><c:out value="${member.memberName}"/>
+						</div><br/>
+						
 
 
 						<div class="font-weight-bold">內容</div>
