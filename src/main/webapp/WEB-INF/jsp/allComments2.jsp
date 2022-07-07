@@ -134,8 +134,8 @@
 										</c:otherwise>
 									</c:choose>
 								</div>
-								<span>留言數 <c:out value="${count}"></c:out>
-								</span>
+<%-- 								<span>留言數 <c:out value="${count}"></c:out> --%>
+<!-- 								</span> -->
 								
 
 								<div class="card-body">
@@ -144,12 +144,12 @@
 								</div>
 								<c:forEach var="current" items="${map}">
 
-									<c:if test="${page.id == current.key}">
+								<c:if test="${page.id == current.key}">
 										 留言數 <c:out value="${current.value}" />
 
-									</c:if>
+								</c:if>
 
-								</c:forEach>
+							</c:forEach>
 								<br />
 								
 

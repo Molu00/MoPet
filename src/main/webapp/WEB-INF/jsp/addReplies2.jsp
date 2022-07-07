@@ -45,7 +45,10 @@
 						<div class="form-group font-weight-bold ">
 							<img src="${member.memberProfile}" width="5%" height="5%"/><c:out value="${member.memberName}"/>
 						</div><br/>
+<<<<<<< HEAD
 						
+=======
+>>>>>>> 202207071050
 
 
 						<div class="font-weight-bold">內容</div>

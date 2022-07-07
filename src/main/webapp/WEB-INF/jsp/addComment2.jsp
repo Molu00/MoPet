@@ -40,6 +40,13 @@
 						<input type="hidden" name="name2" value="${member.memberName}"  />
 						
 
+<<<<<<< HEAD
+=======
+
+						<input type="hidden" name="name2" value="${member.memberName}"  />
+						
+
+>>>>>>> 202207071050
 						<div class="form-group font-weight-bold ">
 							<img src="${member.memberProfile}" width="5%" height="5%"/><c:out value="${member.memberName}"/>
 						</div><br/>
