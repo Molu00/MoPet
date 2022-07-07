@@ -42,9 +42,9 @@ public class Replies {
 	@Column(name = "createondate")
 	private Date createondate;
 
-	@Transient
-	@Column(name = "fk_member_id")
-	private Integer fk_member_id;
+//	@Transient
+//	@Column(name = "fk_member_id")
+//	private Integer fk_member_id;
 	
 	@Transient
 	@Column(name = "fk_c_id")
@@ -54,9 +54,9 @@ public class Replies {
 	@JoinColumn(name = "fk_c_id")
 	private Comments comments;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "fk_member_id")
-	private member member;
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "fk_member_id")
+//	private member member;
 
 	@PrePersist
 	public void onTiome() {
@@ -118,21 +118,21 @@ public class Replies {
 
 	
 	
-	public Integer getFk_member_id() {
-		return fk_member_id;
-	}
-
-	public void setFk_member_id(Integer fk_member_id) {
-		this.fk_member_id = fk_member_id;
-	}
-
-	public member getMember() {
-		return member;
-	}
-
-	public void setMember(member member) {
-		this.member = member;
-	}
+//	public Integer getFk_member_id() {
+//		return fk_member_id;
+//	}
+//
+//	public void setFk_member_id(Integer fk_member_id) {
+//		this.fk_member_id = fk_member_id;
+//	}
+//
+//	public member getMember() {
+//		return member;
+//	}
+//
+//	public void setMember(member member) {
+//		this.member = member;
+//	}
 
 
 
@@ -144,10 +144,10 @@ public class Replies {
 		this.content = content;
 		this.rep_img = rep_img;
 		this.createondate = createondate;
-		this.fk_member_id = fk_member_id;
+//		this.fk_member_id = fk_member_id;
 		this.fk_c_id = fk_c_id;
 		this.comments = comments;
-		this.member = member;
+//		this.member = member;
 	}
 
 	public Comments getComments() {

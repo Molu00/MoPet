@@ -51,13 +51,13 @@ public class Comments {
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="comments",cascade=CascadeType.ALL)
 	private Set<Replies> replies = new LinkedHashSet<Replies>();
 	
-	@Transient
-	@Column(name = "fk_member_id")
-	private Integer fk_member_id;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "fk_member_id")
-	private member member;
+//	@Transient
+//	@Column(name = "fk_member_id")
+//	private Integer fk_member_id;
+//	
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "fk_member_id")
+//	private member member;
 
 //	private Integer count;
 	
@@ -145,8 +145,8 @@ public class Comments {
 		this.com_img = com_img;
 		this.createondate = createondate;
 		this.replies = replies;
-		this.fk_member_id = fk_member_id;
-		this.member = member;
+//		this.fk_member_id = fk_member_id;
+//		this.member = member;
 	}
 
 	public Set<Replies> getReplies() {
@@ -157,21 +157,21 @@ public class Comments {
 		this.replies = replies;
 	}
 
-	public Integer getFk_member_id() {
-		return fk_member_id;
-	}
-
-	public void setFk_member_id(Integer fk_member_id) {
-		this.fk_member_id = fk_member_id;
-	}
-
-	public member getMember() {
-		return member;
-	}
-
-	public void setMember(member member) {
-		this.member = member;
-	}
+//	public Integer getFk_member_id() {
+//		return fk_member_id;
+//	}
+//
+//	public void setFk_member_id(Integer fk_member_id) {
+//		this.fk_member_id = fk_member_id;
+//	}
+//
+//	public member getMember() {
+//		return member;
+//	}
+//
+//	public void setMember(member member) {
+//		this.member = member;
+//	}
 
 	public void setId(Integer id) {
 		this.id = id;
