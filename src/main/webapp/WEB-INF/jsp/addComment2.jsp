@@ -36,9 +36,12 @@
 						action="${contextRoot}/comments/add2" modelAttribute="comments"
 						enctype="multipart/form-data">
 
-						<div class="font-weight-bold">發文者</div>
-						<div class="form-group">
-							<form:input path="name" class="form-control" />
+
+						<input type="hidden" name="name2" value="${member.memberName}"  />
+						
+
+						<div class="form-group font-weight-bold ">
+							<img src="${member.memberProfile}" width="5%" height="5%"/><c:out value="${member.memberName}"/>
 						</div><br/>
 
 						<div class="font-weight-bold">標題</div>
