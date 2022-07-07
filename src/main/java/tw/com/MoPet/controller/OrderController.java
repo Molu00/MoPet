@@ -232,12 +232,14 @@ public class OrderController {
 	@RequestMapping(path = "/showHistoryOrder", method = {RequestMethod.GET,RequestMethod.POST})
 	public String showHistoryOrder(Model model, HttpSession session,@RequestParam("MerchantTradeNo") String MerchantTradeNo) {
 
+		member mem=(member)session.getAttribute("loginOK");
+		session.setAttribute("orderMmberId", mem.getId());
+		
 		String orderIdStr =MerchantTradeNo.substring(14);
 		Integer OrderId = Integer.parseInt(orderIdStr);
 		Order order =oService.getOrderById(OrderId);
 		order.setPaymentStatus(true);
 		oService.insertOrder(order);
-		logger.info("test check out HistoryOrder");
 		return "orderOK";
 	}
 	
