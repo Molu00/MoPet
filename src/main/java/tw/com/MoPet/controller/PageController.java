@@ -91,6 +91,7 @@ public class PageController {
 	}
 	
 	//取的分頁
+		@SuppressWarnings("unlikely-arg-type")
 		@GetMapping("comments/all")
 		public String viewtext(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model) {
 			
@@ -98,13 +99,16 @@ public class PageController {
 			
 			Map<Integer, Integer> map= new HashMap<>();
 			
-			for (int i = 0; i < page.getSize()-1; i++) {
+			if(page.equals(0)) {
+				for (int i = 0; i < page.getSize()-1; i++) {
 				
 			Integer number=rService.countReplies(page.getContent().get(i).getId());
 			
 			map.put(page.getContent().get(i).getId(), number);
 			
 			}
+			}
+			
 			
 			model.addAttribute("map",map);
 			model.addAttribute("page", page);
