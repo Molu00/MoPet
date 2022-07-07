@@ -95,17 +95,18 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="${contextRoot}/add/cartItems/${allProduct.pId}"><button type="button" class="btn btn-sm btn-outline-secondary">購物車</button></a>
+                  <a href="${contextRoot}/detail/product/${allProduct.pId}"><button type="button" class="btn btn-sm btn-outline-secondary">詳細頁面</button></a>
+                </div>
+                <div>
+                <p class="card-text">$ <c:out value="${allProduct.pPrice}" /></p>
                 </div>
                 <small class="text-muted"></small>
               </div>
             </div>
           </div>
         </div>
-        
         </c:if>
-        
         </c:forEach>
-        
       </div>
     </div>
   </div>
