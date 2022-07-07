@@ -152,6 +152,7 @@ public class OrderController {
 				orderDetail.setOrderId(getOrder);
 				orderDetail.setpId(content.getpId());
 				orderDetail.setProductAmount(content.getCartItemsAmount());
+				orderDetail.setProductPrice(content.getpId().getpPrice());
 				odService.insertOdDetail(orderDetail);
 				orderStr+=content.getpId().getpName()+" "+content.getpId().getpPrice()+"元 "+content.getCartItemsAmount()+" 個#";
 			}
@@ -266,6 +267,14 @@ public class OrderController {
 		return mvc;
 	}
 	
-	
+	@GetMapping("background/orderDetail/{id}")
+	public ModelAndView backgroundOrderDetail(@PathVariable Integer id,ModelAndView mvc,HttpSession session) {
+		
+		List<OrderDetail> oDetailList=odService.findOrderDetailByCart(id);
+		
+		mvc.getModel().put("oDetailList",oDetailList);
+		mvc.setViewName("viewBOrderDetail");
+		return mvc;
+	}
 	
 }
