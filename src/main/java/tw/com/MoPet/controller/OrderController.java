@@ -234,7 +234,7 @@ public class OrderController {
 
 		member mem=(member)session.getAttribute("loginOK");
 		session.setAttribute("orderMmberId", mem.getId());
-		
+		session.removeAttribute("haveOrNot");
 		String orderIdStr =MerchantTradeNo.substring(14);
 		Integer OrderId = Integer.parseInt(orderIdStr);
 		Order order =oService.getOrderById(OrderId);

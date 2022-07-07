@@ -73,13 +73,13 @@
 		    <span class="sr-only">Next</span>
 		  </button>
 		</div>
-	<div>
-	  <a href="${contextRoot}/shop/category/1"><button type="button" class="btn btn-outline-secondary">美味食物</button></a>
-      <a href="${contextRoot}/shop/category/2"><button type="button" class="btn btn-outline-secondary">好玩玩具</button></a>
-      <a href="${contextRoot}/shop/category/3"><button type="button" class="btn btn-outline-secondary">就是愛美</button></a>
-      <a href="${contextRoot}/shop/category/4"><button type="button" class="btn btn-outline-secondary">營養補品</button></a>
-      <a href="${contextRoot}/shop/category/5"><button type="button" class="btn btn-outline-secondary">清潔用品</button></a>
-  	</div>
+		<nav class="navbar navbar-light">
+		  <a class="nav-link" href="${contextRoot}/shop/category/1">美味食物</a>
+		  <a class="nav-link" href="${contextRoot}/shop/category/2">好玩玩具</a>
+		  <a class="nav-link" href="${contextRoot}/shop/category/3">就是愛美</a>
+		  <a class="nav-link" href="${contextRoot}/shop/category/4">營養補品</a>
+		  <a class="nav-link" href="${contextRoot}/shop/category/5">清潔用品</a>
+		</nav>
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
