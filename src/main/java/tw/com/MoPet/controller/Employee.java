@@ -101,7 +101,7 @@ public class Employee {
 			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber, HttpSession session) {
 		employee emp=(employee)session.getAttribute("backloginOK");
 		employee emp1=empService.findById(emp.getEmpId());
-		if (emp1.getEmpRole().equals("老闆")){
+		if (emp1.getEmpRole().equals("設計師")){
 			mav.setViewName("noOK");
 			return mav;
 		}
