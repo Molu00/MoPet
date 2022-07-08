@@ -143,6 +143,7 @@
 									<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
 										value="${page.createondate}" />
 								</div>
+								
 								<c:forEach var="current" items="${map}">
 
 								<c:if test="${page.id == current.key}">
