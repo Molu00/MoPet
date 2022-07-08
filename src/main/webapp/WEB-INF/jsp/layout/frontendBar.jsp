@@ -85,7 +85,7 @@ img.card-img {
 			<div class="btn-group dropleft"">
 				<button class="btn btn-secondary dropdown-toggle" type="button"
 					id="dropdownMenuButton" data-toggle="dropdown"
-					aria-expanded="false">你好</button>
+					aria-expanded="false">你好 Cindy Liang</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<a class="dropdown-item" href="${contextRoot}/member/160">我的帳號</a> 
 					<a class="dropdown-item" href="${contextRoot}/member/order">我的訂單</a>

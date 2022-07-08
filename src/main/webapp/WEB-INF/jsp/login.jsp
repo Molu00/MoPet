@@ -29,7 +29,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#info').click(function() {
-			$('#floatingPassword').val('123');
+			$('#floatingPassword').val('789!1qaz');
 			$('#floatingInput').val('cindy070814@gmail.com');
 			document.getElementById("123").innerText = ""
 			document.getElementById("456").innerText = ""
@@ -37,7 +37,14 @@
 		
 		$('#info2').click(function() {
 			$('#floatingPassword').val('MoPetisTheBest');
-			$('#floatingInput').val('aaa@gmail.com');
+			$('#floatingInput').val('cindy070814@mopet.com');
+			document.getElementById("123").innerText = ""
+			document.getElementById("456").innerText = ""
+		})
+		
+		$('#info3').click(function() {
+			$('#floatingPassword').val('MoPetisTheBest');
+			$('#floatingInput').val('andy789@mopet.com');
 			document.getElementById("123").innerText = ""
 			document.getElementById("456").innerText = ""
 		})
@@ -136,9 +143,13 @@ body {
 		</form>
 		<p></p>
 		<button class="w-100 btn btn-lg btn-light" type="submit"><a href="${contextRoot}/member/forgetpassword2">忘記密碼</a></button>
+		<br/>
+		<br/>
+		<a href="${contextRoot}/member">想變成MoPet會員?</a>
 			<p class="mt-5 mb-3 text-muted">© 2017–2021</p>
 		<button id="info" type="submit">前台帶入</button>
-		<button id="info2" type="submit">後台帶入</button>
+		<button id="info2" type="submit">Admin</button>
+		<button id="info3" type="submit">後台帶入</button>
 	</main>
 	</div>
 </body>

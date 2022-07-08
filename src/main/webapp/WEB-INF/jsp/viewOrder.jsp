@@ -20,11 +20,6 @@
 	<div class="container">
 		<div>
 			<h2 align="center"></h2>
-			<form class="d-flex" role="search">
-				<input class="form-control me-2" type="search" placeholder="訂單編號尋找"
-					aria-label="Search">
-				<button class="btn btn-dark" type="submit">Search</button>
-			</form>
 			<br />
 			<table data-toggle="table">
 				<thead class="thead-dark">
@@ -65,15 +60,15 @@
 							<c:choose>
 								<c:when test="${allOrder.shippingStatus}">
 									<td><a href="${contextRoot}/true/shipping/${allOrder.orderId}">
-										<button class="btn btn-secondary" disabled>已出貨</button></a> 
+										<button class="btn btn-secondary" disabled>出貨</button></a> 
 									<a href="${contextRoot}/false/shipping/${allOrder.orderId}">
-										<button class="btn btn-secondary">未出貨</button></a></td>
+										<button class="btn btn-secondary">未出</button></a></td>
 								</c:when>
 								<c:otherwise>
 									<td><a href="${contextRoot}/true/shipping/${allOrder.orderId}">
-											<button class="btn btn-secondary">已出貨</button></a> 
+											<button class="btn btn-secondary">出貨</button></a> 
 										<a href="${contextRoot}/false/shipping/${allOrder.orderId}">
-											<button class="btn btn-secondary" disabled>未出貨</button></a></td>
+											<button class="btn btn-secondary" disabled>未出</button></a></td>
 								</c:otherwise>
 							</c:choose>
 							<td><a href="${contextRoot}/background/orderDetail/${allOrder.orderId}">

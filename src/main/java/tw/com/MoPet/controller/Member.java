@@ -134,15 +134,20 @@ public class Member {
 	}
 
 	@GetMapping(path = "member")
-	public String member() {
-		return "Register";
+	public String member(HttpSession session) {
+		employee emp = (employee) session.getAttribute("backloginOK");
+		if (emp != null) {
+			return "Register";
+		}
+		return "Register2";
 	}
 
 	@PostMapping(path = "member/insert")
 	public String insertMem(@RequestParam("email") String user, @RequestParam("nickName") String name,
 			@RequestParam("phonenNumber") String phone, @RequestParam("shippingAddress") String address,
 			@RequestParam("profile") MultipartFile file, @RequestParam("gender") String gender,
-			@RequestParam("birth") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date birth, HttpSession session) throws IOException {
+			@RequestParam("birth") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date birth, HttpSession session)
+			throws IOException {
 		String temp = new String(Base64.getEncoder().encode(file.getBytes()));
 		String profile = "data:image/png;base64," + temp;
 		member mem = new member();
@@ -161,24 +166,24 @@ public class Member {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-		member mem2=(member)session.getAttribute("loginOK");
-		if (mem2 == null) {
-		return "redirect:/members/all";
+		member mem2 = (member) session.getAttribute("loginOK");
+		if (mem2 != null) {
+			return "redirect:/members/all";
 		}
-		return "redirect:/member/"+tmem.getId();
+		return "registerSuccess";
 	}
 
 	@GetMapping(path = "member/{id}")
 	public ModelAndView findById(ModelAndView mav, @PathVariable Integer id, HttpSession session) {
 		member mem = mService.findById(id);
-		member mem2=(member)session.getAttribute("loginOK");
+		member mem2 = (member) session.getAttribute("loginOK");
 		if (mem2 == null) {
-			mav.getModel().put("member", mem);
+			mav.getModel().put("member", mem2);
 			mav.setViewName("editMember");
 			return mav;
 		}
 		{
-			mav.getModel().put("member", mem);
+			mav.getModel().put("member", mem2);
 			mav.setViewName("editMember2");
 			return mav;
 		}
@@ -190,7 +195,8 @@ public class Member {
 			@RequestParam("nickName") String name, @RequestParam("phonenNumber") String phone,
 			@RequestParam("shippingAddress") String address, @RequestParam("profile") MultipartFile file,
 			@RequestParam("gender") String gender,
-			@RequestParam("birth") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date birth, HttpSession session) throws IOException {
+			@RequestParam("birth") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date birth, HttpSession session)
+			throws IOException {
 
 		member temp = mService.findById(id);
 		if (file.isEmpty()) {
@@ -207,11 +213,11 @@ public class Member {
 		temp.setMemberGender(gender);
 		temp.setMemberBirth(birth);
 		mService.insert(temp);
-		member mem2=(member)session.getAttribute("loginOK");
+		member mem2 = (member) session.getAttribute("loginOK");
 		if (mem2 == null) {
-		return "redirect:/members/all";
+			return "redirect:/members/all";
 		}
-		return "redirect:/member/"+temp.getId();
+		return "redirect:/member/" + temp.getId();
 	}
 
 	@GetMapping(path = "member/delete/{id}")
@@ -223,6 +229,14 @@ public class Member {
 	@GetMapping("members/all")
 	public ModelAndView viewMessages(ModelAndView mav, @RequestParam(name = "p", defaultValue = "1") Integer pageNumber,
 			HttpSession session) {
+		employee emp = (employee) session.getAttribute("backloginOK");
+		if (emp != null) {
+			employee emp1 = eService.findById(emp.getEmpId());
+			if (emp1.getEmpRole().equals("設計師")) {
+				mav.setViewName("noOK");
+				return mav;
+			}
+		}
 		Page<member> page = mService.findByPage(pageNumber);
 		Object m = mav.getModel().get("LoginOK");
 		if (m == null) {

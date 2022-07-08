@@ -74,7 +74,7 @@ public class memberService {
 	}
 	
 	public Page<member> findByPage(Integer pageNumber){
-		Pageable pgb = PageRequest.of(pageNumber-1, 10 ,Sort.Direction.ASC ,"id");
+		Pageable pgb = PageRequest.of(pageNumber-1, 10 ,Sort.Direction.DESC ,"id");
 		
 		Page<member> page = memDao.findAll(pgb);
 		

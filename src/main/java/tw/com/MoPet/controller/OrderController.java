@@ -69,6 +69,8 @@ public class OrderController {
 	@Autowired
 	private OrderDetailService odService;
 	
+	
+	
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
 	@GetMapping("checkIntoOrder")
@@ -232,9 +234,16 @@ public class OrderController {
 	@RequestMapping(path = "/showHistoryOrder", method = {RequestMethod.GET,RequestMethod.POST})
 	public String showHistoryOrder(Model model, HttpSession session,@RequestParam("MerchantTradeNo") String MerchantTradeNo) {
 
+		
+		
 		member mem=(member)session.getAttribute("loginOK");
+		
+		if(mem==null) {
+			mem=mService.findById(176);
+		}
 		session.setAttribute("orderMmberId", mem.getId());
 		session.removeAttribute("haveOrNot");
+		
 		String orderIdStr =MerchantTradeNo.substring(14);
 		Integer OrderId = Integer.parseInt(orderIdStr);
 		Order order =oService.getOrderById(OrderId);
