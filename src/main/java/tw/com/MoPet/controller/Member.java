@@ -178,12 +178,12 @@ public class Member {
 		member mem = mService.findById(id);
 		member mem2 = (member) session.getAttribute("loginOK");
 		if (mem2 == null) {
-			mav.getModel().put("member", mem);
+			mav.getModel().put("member", mem2);
 			mav.setViewName("editMember");
 			return mav;
 		}
 		{
-			mav.getModel().put("member", mem);
+			mav.getModel().put("member", mem2);
 			mav.setViewName("editMember2");
 			return mav;
 		}
