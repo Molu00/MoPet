@@ -24,20 +24,15 @@
 	<div class="container">
 		<div>
 			<h2 align="center"></h2>
-			<form class="d-flex" role="search">
-				<input class="form-control me-2" type="search" placeholder="輸入商品尋找"
-					aria-label="Search">
-				<button class="btn btn-dark" type="submit">Search</button>
-			</form>
 			<br />
 			<table data-toggle="table">
 				<thead class="thead-dark">
 					<tr>
-						<th scope="col">編號</th>
+						<th scope="col" data-sortable="true">編號</th>
 						<th scope="col">圖片</th>
 						<th scope="col">名稱</th>
 						<th scope="col" data-sortable="true">廠商</th>
-						<th scope="col">分類</th>
+						<th scope="col" data-sortable="true">分類</th>
 						<th scope="col">庫存</th>
 						<th scope="col">成本</th>
 						<th scope="col">訂價</th>
