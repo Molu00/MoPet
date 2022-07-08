@@ -79,11 +79,10 @@
 									<c:out value="${com.title}"></c:out>
 								</h1>
 							</div>
-<<<<<<< Updated upstream
-							<div style="padding: 10px ; font-size: 18px">
-=======
+
+
 							<div style="padding: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 18px;">
->>>>>>> Stashed changes
+
 								<c:out value="${com.content}"></c:out>
 							</div>
 							<div class="card-body">
@@ -116,21 +115,17 @@
 								留言
 								<c:out value="${fk.name}"></c:out>
 							</div>
-<<<<<<< Updated upstream
-							<span class="card-body "> <c:out value="${fk.content}"></c:out>
+
+
+							<span class="card-body"> <c:out value="${fk.content}"></c:out>
 								<c:choose>
 									<c:when test="${fk.rep_img !=null }">
-										<img alt="#" src="${fk.rep_img}" width="15%" height="10%">
+										<img alt="#" src="${fk.rep_img}" width="10%" height="5%">
 									</c:when>
 									<c:otherwise>
 
 									</c:otherwise>
 								</c:choose>
-=======
-							<span class="card-body" style="padding: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 18px;">
-								<c:out value="${fk.content}"></c:out>
-								
->>>>>>> Stashed changes
 							</span>
 							<!-- 							<div class="card-body"> -->
 							<!-- 							<h1 class="display-5"> -->
@@ -152,10 +147,10 @@
 									value="${fk.createondate}" />
 							</div>
 							<div class="edit-link">
-								<a href="${contextRoot}/replies/edit?id=${fk.id}"><button
+								<a href="${contextRoot}/replies/edit23?id=${fk.id}"><button
 										class="btn btn-info">編輯</button></a> <a
 									onclick="return confirm('刪除')"
-									href="${contextRoot}/replies/delete?id=${fk.id}&c_id=${com.id}"><button
+									href="${contextRoot}/replies/delete2?id=${fk.id}&c_id=${com.id}"><button
 										class="btn btn-danger">刪除</button></a> <br /> <br /> <br />
 							</div>
 						</div>
@@ -165,7 +160,6 @@
 		</div>
 	</div>
 
-	<h1>777</h1>
 </body>
 
 

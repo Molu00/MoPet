@@ -102,8 +102,10 @@
 						<div class="card text-center shadow-lg">
 							<div class="myMOUSE"
 								onclick="window.location.href='${contextRoot}/comments/page?id=${page.id}'">
+								
 								<div class="card-header text-white bg-secondary ">
 									<c:out value="${page.name}"></c:out>
+<%-- 									<img src="${member.memberProfile}" width="5%" height="5%"/> --%>
 								</div>
 
 								<div class="card-body">

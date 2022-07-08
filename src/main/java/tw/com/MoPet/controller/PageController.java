@@ -21,6 +21,7 @@ import tw.com.MoPet.model.Order;
 import tw.com.MoPet.model.Product;
 import tw.com.MoPet.model.Replies;
 import tw.com.MoPet.model.employee;
+import tw.com.MoPet.model.member;
 import tw.com.MoPet.service.CartService;
 import tw.com.MoPet.service.CartitemsService;
 import tw.com.MoPet.service.CommentsService;
@@ -64,12 +65,15 @@ public class PageController {
 //	}
 	
 	@GetMapping("comments/add")
-	public String addComment(Model model) {
+	public String addComment(Model model,HttpSession session) {
+		
+		member member = (member)session.getAttribute("loginOK");
 		
 		Comments comments = new Comments();
 		
 		Comments lastest = cService.getLastest();
 		
+		model.addAttribute("member", member);
 		model.addAttribute("comments", comments);
 		model.addAttribute("lastest", lastest);
 		
@@ -117,10 +121,13 @@ public class PageController {
 		}
 		
 		@GetMapping("comments/all4")
-		public String viewtext3(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model) {
+		public String viewtext3(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model,HttpSession session) {
+			
 			
 			Page<Comments> page = cService.findByPage2(pageNumber);
-					
+			member member = (member)session.getAttribute("backloginOK");
+				
+			model.addAttribute("member", member);
 			model.addAttribute("page", page);
 			
 			return "allComments";

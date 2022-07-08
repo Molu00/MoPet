@@ -103,8 +103,9 @@
 						<div class="card text-center shadow-lg p-3 mb-5 bg-white rounded font-italic " >
 							<div class="myMOUSE"
 								onclick="window.location.href='${contextRoot}/comments/page2?id=${page.id}'">
+								
 								<div class="card-header text-white bg-secondary ">
-									<c:out value="${page.name}"></c:out>
+									<img src="${member.memberProfile}" width="5%" height="5%"/><c:out value="${page.name}"></c:out>
 								</div>
 
 								<div class="card-body">
@@ -154,6 +155,8 @@
 								
 
 							</div>
+							<c:choose>
+							<c:when test="${page.name =='Cindy'}">
 							<div class="edit-link">
 								<a href="${contextRoot}/comments/edit2?id=${page.id}"><button
 										class="btn btn-info">編輯</button></a> <a
@@ -161,6 +164,13 @@
 									href="${contextRoot}/comments/delete2?id=${page.id}"><button
 										class="btn btn-danger">刪除</button></a>
 							</div>
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+							</c:choose>
+							
+							
+							
 							
 							<!-- 							<div> -->
 							<!-- 							<br /> <br /> -->

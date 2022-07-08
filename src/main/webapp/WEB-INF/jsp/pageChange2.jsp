@@ -83,7 +83,7 @@
 <%-- 								<c:forEach var="member" items="member"> --%>
 <%-- 									<img src="${member.memberProfile}" width="5%" height="5%"> --%>
 <%-- 								</c:forEach> --%>
-								<c:out value="${com.name}"></c:out><img src="${member.memberProfile}" width="5%" height="5%">
+								<img src="${member.memberProfile}" width="5%" height="5%"><c:out value="${com.name}"></c:out>
 							</div>
 							<div class="card-body">
 								<h1 class="display-5">
@@ -122,7 +122,7 @@
 
 
 
-								<c:out value="${fk.name}"></c:out>
+								<img src="${member.memberProfile}" width="4%" height="4%"><c:out value="${fk.name}"></c:out>
 
 							</div>
 
@@ -145,6 +145,9 @@
 								<fmt:formatDate pattern="yyyy 年 MM 月 dd 日 hh:mm:ss a EEEE"
 									value="${fk.createondate}" />
 							</div>
+							
+							<c:choose>
+							<c:when test="${fk.name == 'Cindy'}">
 							<div class="edit-link">
 								<a href="${contextRoot}/replies/edit23?id=${fk.id}"><button
 										class="btn btn-info">編輯</button></a> <a
@@ -152,6 +155,12 @@
 									href="${contextRoot}/replies/delete2?id=${fk.id}&c_id=${com.id}"><button
 										class="btn btn-danger">刪除</button></a> <br /> <br /> <br />
 							</div>
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+							</c:choose>
+							
+							
 						</div>
 					</div>
 				</div>
