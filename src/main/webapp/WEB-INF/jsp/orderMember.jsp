@@ -86,6 +86,9 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<div class="d-grid gap-2 d-md-block">
+				<a href="${contextRoot}/shop/products"><button type="button" class="btn btn-secondary">返回商城</button></a>
+		  </div>
 			</div>
 		</div>
 <!-- 	</div> -->
