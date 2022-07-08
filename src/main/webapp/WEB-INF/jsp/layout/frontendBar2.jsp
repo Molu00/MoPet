@@ -81,7 +81,7 @@ img.card-img {
 					id="dropdownMenuButton" data-toggle="dropdown"
 					aria-expanded="false">你好 Cindy Liang</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="${contextRoot}/member/196">我的帳號</a> 
+					<a class="dropdown-item" href="${contextRoot}/member/160">我的帳號</a> 
 					<a class="dropdown-item" href="${contextRoot}/member/order">我的訂單</a>
 					<a  class="dropdown-item" style="color:#642100" href="${contextRoot}/shop/logout">登出</a>
 				</div>
