@@ -200,7 +200,7 @@ public class CartController {
 			mvc.setViewName("redirect:/login");
 		} else {
 			int memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
-			boolean haveOrNot;
+			boolean haveOrNot=false;
 			Integer listSize=0;
 			
 			Object object = session.getAttribute("cart_ID");
@@ -222,7 +222,7 @@ public class CartController {
 					session.setAttribute("listSize", listSize);
 					session.setAttribute("haveOrNot", haveOrNot);
 					
-				}else {
+				}else if(tempListItems.size()==0) {
 					listSize=0;
 					haveOrNot=false;
 					session.removeAttribute("listSize");
@@ -235,20 +235,6 @@ public class CartController {
 				haveOrNot=false;
 				session.setAttribute("haveOrNot", haveOrNot);
 			}}
-			
-//			boolean haveOrNot;
-//			Cart getCart =  cService.findBymIdAndcStatus(memId, false);
-//			List<CartItems> tempListItems=ciService.findItemByCart(getCart.getCartId());
-//			
-//			if(tempListItems.size()!=0) {
-//				haveOrNot=true;
-//				mvc.getModel().put("haveOrNot", haveOrNot);
-//				
-//			}else {
-//				haveOrNot=false;
-//				mvc.getModel().put("haveOrNot", haveOrNot);
-//			}
-//			System.out.println("籃子裡究竟有沒有放商品=============== "+haveOrNot);
 			
 			Optional<Cart> cart = cService.findByMemberId(memId);
 
