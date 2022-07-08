@@ -58,12 +58,12 @@ public class Replies {
 //	@JoinColumn(name = "fk_member_id")
 //	private member member;
 
-	@PrePersist
-	public void onTiome() {
-		if (createondate == null) {
-			this.createondate = new Date();
-		}
-	}
+//	@PrePersist
+//	public void onTiome() {
+//		if (createondate == null) {
+//			this.createondate = new Date();
+//		}
+//	}
 
 	public Replies() {
 	}

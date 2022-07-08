@@ -46,7 +46,7 @@
 			<div class="btn-toolbar mb-2 mb-md-0">
 				<a href="${contextRoot}/comments/add"><button type="button"
 						class="btn btn-sm btn-outline-secondary">
-						<span data-feather="calendar"></span> 新增貼文
+						<span data-feather="calendar"></span> 新增公告
 					</button></a>
 			</div>
 		</div>

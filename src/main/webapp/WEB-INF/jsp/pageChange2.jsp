@@ -83,7 +83,7 @@
 <%-- 								<c:forEach var="member" items="member"> --%>
 <%-- 									<img src="${member.memberProfile}" width="5%" height="5%"> --%>
 <%-- 								</c:forEach> --%>
-								<img src="${member.memberProfile}" width="5%" height="5%"><c:out value="${com.name}"></c:out>
+<%-- 								<img src="${member.memberProfile}" width="5%" height="5%"><c:out value="${com.name}"></c:out> --%>
 							</div>
 							<div class="card-body">
 								<h1 class="display-5">

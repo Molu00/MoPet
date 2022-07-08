@@ -199,7 +199,9 @@ public class FrontCommentsController {
 
 		model.addAttribute("member", member);
 		model.addAttribute("replies", replies);
-
+		
+		System.out.println(replies.getCreateondate());
+		
 		return "addReplies2";
 
 	}
@@ -220,7 +222,11 @@ public class FrontCommentsController {
 
 		replies2.setName(name);
 		replies.setComments(com);
+		
+		Date now = rService.getTimeNow();
 
+		replies.setCreateondate(now);
+		
 		rService.insertReplies(replies);
 
 		Replies newReplies = new Replies();

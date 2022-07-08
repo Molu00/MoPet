@@ -1,5 +1,7 @@
 package tw.com.MoPet.service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -79,5 +81,9 @@ public class RepliesService {
 	public Integer findByUserId(Integer id) {
 		return rDao.findUserId(id);
 	}
+	
+	public Date getTimeNow() {
+		  return Calendar.getInstance().getTime();
+		 }
 	
 }

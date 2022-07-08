@@ -34,7 +34,7 @@
 							action="${contextRoot}/comments/add" modelAttribute="comments"
 							enctype="multipart/form-data">
 
-							<div class="font-weight-bold">發文者</div>
+							<div class="font-weight-bold">管理員</div>
 							<br />
 							<div class="form-group">
 								<form:input path="name" class="form-control" />
