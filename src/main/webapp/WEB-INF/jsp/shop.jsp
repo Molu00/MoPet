@@ -91,7 +91,9 @@
           <div class="card mb-1 shadow-sm">
             <img class="rounded-sm" alt="productImg" src="${allProduct.pImg}">
             <div class="card-body">
-              <p class="card-text"><c:out value="${allProduct.pName}" /></p>
+		         <div style="padding: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 18px; width:200px; height:80px">
+		          <c:out value="${allProduct.pName}"></c:out>
+		         </div>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="${contextRoot}/add/cartItems/${allProduct.pId}"><button type="button" class="btn btn-sm btn-outline-secondary">購物車</button></a>
