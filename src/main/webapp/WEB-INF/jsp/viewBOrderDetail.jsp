@@ -16,12 +16,12 @@
 		<h1 class="h2">訂單管理</h1>
 	</div>
 </main>
-<div class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom text-center">
+<div class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pt-3 pb-2 mb-3 border-bottom">
 	<div class="container">
 		<div>
 			<h2 align="center">詳細清單</h2>
 			<br />
-				<table data-toggle="table">
+				<table data-toggle="table" class=" text-center">
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col" class="text-center">編號</th>
@@ -45,6 +45,9 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<div class="d-grid gap-2 d-md-block text-right">
+				<a href="${contextRoot}/orders/all"><button type="button" class="btn btn-secondary">返回訂單</button></a>
+		  </div>
 			</div>
 		</div>
 </div> 
