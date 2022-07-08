@@ -12,7 +12,14 @@
 		${ecpay}
 	</c:when>
 	<c:otherwise>
-		<jsp:include page="layout/frontendBar3.jsp" />
+		<c:choose>
+			<c:when test="${empty loginOK}">
+			<jsp:include page="layout/frontendBar3.jsp" />
+			</c:when>
+			<c:otherwise>
+			<jsp:include page="layout/frontendBar2.jsp" />
+			</c:otherwise>
+			</c:choose>
 			<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 			<div class="card bg-dark text-white">
 			  <img src="${contextRoot}/img/gift.jpg" class="card-img" alt="gift_Jpg">

@@ -191,7 +191,7 @@ public class PageController {
 		@GetMapping("shop/products")
 		public ModelAndView shopProductList(ModelAndView mvc,HttpSession session) {
 			List<Product> productList=pService.findAll();
-			boolean haveOrNot;
+			boolean haveOrNot=false;
 			Integer listSize=0;
 			Object object = session.getAttribute("cart_ID");
 			if(object!=null) {
@@ -225,27 +225,6 @@ public class PageController {
 				haveOrNot=false;
 				session.setAttribute("haveOrNot", haveOrNot);
 			}}
-//			Integer memId = Integer.parseInt(session.getAttribute("cart_ID").toString());
-//			if(memId!=null) {
-//			Cart getCart =  cartService.findBymIdAndcStatus(memId, false);
-//			if(getCart!=null) {
-//				haveOrNot=true;
-//				session.setAttribute("haveOrNot", haveOrNot);
-//			}else {
-//				haveOrNot=false;
-//				session.setAttribute("haveOrNot", haveOrNot);
-//			}}
-//			if(memId!=null) {
-//			
-//			Integer itemsAcount=0;
-//			
-//			if(itemsList.size()!=0) {
-//			
-//			for(CartItems items:itemsList) {
-//				itemsAcount+=items.getCartItemsAmount();
-//			}}else {itemsAcount=0;}
-//			
-//			session.setAttribute("itemsAcount", itemsAcount);}
 			mvc.getModel().put("productList",productList);
 			mvc.setViewName("shop");
 			return mvc;
@@ -255,9 +234,6 @@ public class PageController {
 		public ModelAndView allProductList(ModelAndView mvc, @RequestParam(value = "p",defaultValue = "1") Integer pageNumber) {
 			
 			Page<Product> page=pService.findByPage(pageNumber);
-//			List<Product> productList=pService.findAll();
-			
-//			mvc.getModel().put("productList",productList);
 			mvc.getModel().put("productList",page);
 			mvc.setViewName("viewProducts");
 			return mvc;
