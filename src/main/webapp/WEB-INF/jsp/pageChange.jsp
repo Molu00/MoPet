@@ -81,7 +81,7 @@
 							</div>
 
 
-							<div style="padding: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 18px;">
+							<div style="padding: 10px; font-size: 18px">
 
 								<c:out value="${com.content}"></c:out>
 							</div>
@@ -112,7 +112,7 @@
 					<div class="col-9">
 						<div class="card text-center">
 							<div class="card-header card-header text-white bg-secondary">
-								留言
+								會員 
 								<c:out value="${fk.name}"></c:out>
 							</div>
 

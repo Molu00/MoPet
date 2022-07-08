@@ -47,12 +47,14 @@
 
 						<div class="font-weight-bold">標題</div>
 						<div class="form-group">
-							<form:input path="title" class="form-control" />
+							<form:input id="title" path="title" class="form-control" />
+
 						</div><br/>
 						
-						<div class="font-weight-bold">內容</div>
+						<div class="font-weight-bold">內容</div> 	
 						<div class="form-group">
-							<form:textarea path="content" class="form-control" />
+							<form:textarea id="content" path="content" class="form-control" />
+
 						</div><br/>
 						
 
@@ -67,7 +69,14 @@
 
 						<input onclick="return confirm('確認發布?')" type="submit"
 							name="submit" value="發文">
-					</form:form>
+					</form:form><br/><br/>
+					
+					
+					<div>
+					<button id="info" type="submit">一鍵輸入</button>
+					</div>
+					
+					
 				</div>
 			</div>
 		</div>
@@ -75,6 +84,7 @@
 </div>
 
 <script type="text/javascript">
+$(document).ready(function() {
 	$(function() {
 
 		function preView(preDIV) {
@@ -91,6 +101,15 @@
 			preView(this);
 		});
 	});
+	
+	
+		$('#info').click(function() {
+			$('#title').val('勤美附近的寵物餐廳❤️天使貓的聚集地');
+			$('#content').val('台中回憶錄第三篇就是這間森歐MORIOU寵物友善餐廳!!!!這間店於我而言的回憶比較近期沒有像國高中一樣這麼久遠,如果有跟我一樣想養貓、摸貓的朋友森歐的貓都是天使貓貓🥺');
+		})
+})
+		
+	
 </script>
 <div style="height: 100px"></div>
 <jsp:include page="layout/footer.jsp" />

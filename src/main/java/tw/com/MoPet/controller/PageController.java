@@ -35,10 +35,10 @@ public class PageController {
 
 	@Autowired
 	public CommentsService cService;
-	
+
 	@Autowired
 	public RepliesService rService;
-	
+
 	@Autowired
 	private employeeService empService;
 
@@ -47,13 +47,13 @@ public class PageController {
 
 	@Autowired
 	private CartitemsService ciService;
-	
+
 	@Autowired
 	private CartService cartService;
-	
+
 //	@Autowired
 //	public comments_count comments_count;
-	
+
 //	@GetMapping("/")
 //	public String index() {
 //		return"index";
@@ -63,103 +63,106 @@ public class PageController {
 //	public String allComments() {
 //		return"allComments";
 //	}
-	
+
 	@GetMapping("comments/add")
-	public String addComment(Model model,HttpSession session) {
-		
-		member member = (member)session.getAttribute("loginOK");
-		
+	public String addComment(Model model, HttpSession session) {
+
+		member member = (member) session.getAttribute("loginOK");
+
 		Comments comments = new Comments();
-		
+
 		Comments lastest = cService.getLastest();
-		
+
 		model.addAttribute("member", member);
 		model.addAttribute("comments", comments);
 		model.addAttribute("lastest", lastest);
-		
+
 		return "addComment";
-		
+
 	}
-	
+
 	@GetMapping("replies/add")
-	public String addReplies(Model model,@RequestParam("id")Integer id) {
-		
+	public String addReplies(Model model, @RequestParam("id") Integer id) {
+
 		Replies replies = new Replies();
-		
+
 		replies.setFk_c_id(id);
-		
-		model.addAttribute("replies", replies); 
-	
+
+		model.addAttribute("replies", replies);
+
 		return "addReplies";
-		
+
 	}
-	
-	//取的分頁
-		@SuppressWarnings("unlikely-arg-type")
-		@GetMapping("comments/all")
-		public String viewtext(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model) {
-			
-			Page<Comments> page = cService.findByPage(pageNumber);
-			
-			Map<Integer, Integer> map= new HashMap<>();
-			
-			if(page.equals(0)) {
-				for (int i = 0; i < page.getSize()-1; i++) {
-				
-			Integer number=rService.countReplies(page.getContent().get(i).getId());
-			
+
+	// 取的分頁
+
+	@GetMapping("comments/all")
+	public String viewtext(@RequestParam(name = "p", defaultValue = "1") Integer pageNumber, Model model) {
+
+		Page<Comments> page = cService.findByPage(pageNumber);
+
+		Map<Integer, Integer> map = new HashMap<>();
+
+		for (int i = 0; i < page.getSize() - 1; i++) {
+
+			Integer number = rService.countReplies(page.getContent().get(i).getId());
+
 			map.put(page.getContent().get(i).getId(), number);
-			
-			}
-			}
-			
-			
-			model.addAttribute("map",map);
-			model.addAttribute("page", page);
-			
-			return "allComments";
+
 		}
-		
-		@GetMapping("comments/all4")
-		public String viewtext3(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model,HttpSession session) {
-			
-			
-			Page<Comments> page = cService.findByPage2(pageNumber);
-			member member = (member)session.getAttribute("backloginOK");
-				
-			model.addAttribute("member", member);
-			model.addAttribute("page", page);
-			
-			return "allComments";
+
+		model.addAttribute("map", map);
+		model.addAttribute("page", page);
+
+		return "allComments";
+	}
+
+	@GetMapping("comments/all4")
+	public String viewtext3(@RequestParam(name = "p", defaultValue = "1") Integer pageNumber, Model model) {
+
+		Page<Comments> page = cService.findByPage2(pageNumber);
+		Map<Integer, Integer> map = new HashMap<>();
+
+		for (int i = 0; i < page.getSize() - 1; i++) {
+
+			Integer number = rService.countReplies(page.getContent().get(i).getId());
+
+			map.put(page.getContent().get(i).getId(), number);
+
 		}
-		
-		@GetMapping("replies/all")
-		public String viewtext2(@RequestParam(name="p" ,defaultValue="1") Integer pageNumber,Model model) {
-			Page<Replies> page = rService.findByPage(pageNumber);
-			
-			model.addAttribute("page", page);
-			
-			return "allReplies";
-		}
-		
-		@GetMapping("comments/page")
-		public String pagechange(@RequestParam("id")Integer id,Model model) {
-			
-			Comments com = cService.findById(id);
-			List<Replies> fk = rService.findByFk(id);
-			Integer count = rService.countReplies(id);
-			
+
+		model.addAttribute("map", map);
+		model.addAttribute("page", page);
+
+		return "allComments";
+	}
+
+	@GetMapping("replies/all")
+	public String viewtext2(@RequestParam(name = "p", defaultValue = "1") Integer pageNumber, Model model) {
+		Page<Replies> page = rService.findByPage(pageNumber);
+
+		model.addAttribute("page", page);
+
+		return "allReplies";
+	}
+
+	@GetMapping("comments/page")
+	public String pagechange(@RequestParam("id") Integer id, Model model) {
+
+		Comments com = cService.findById(id);
+		List<Replies> fk = rService.findByFk(id);
+		Integer count = rService.countReplies(id);
+
 //			System.out.println(fk);
-			
-			model.addAttribute("com", com);
-			model.addAttribute("fk", fk);
-			model.addAttribute("count", count);
-					
-			return "pageChange";
-			
-		}
-		
-	
+
+		model.addAttribute("com", com);
+		model.addAttribute("fk", fk);
+		model.addAttribute("count", count);
+
+		return "pageChange";
+
+	}
+
 //	@GetMapping("comments/all")
 //	public ModelAndView viewComments(ModelAndView mav, 
 //			@RequestParam(name="p", defaultValue = "1") Integer pageNumber) {
@@ -169,100 +172,101 @@ public class PageController {
 //		mav.setViewName("allComments");
 //		return mav;
 //	}
-	
-		@Autowired
-		private ProductService pService;
-		
-		@GetMapping("/")
-		public String index() {
-			return "index";
-		}
-		
-		@GetMapping("/testIndex")
-		public String testIndex() {
-			return "testIndex";
-		}
-		
-		@GetMapping("backend")
-		public String backend() {
-			return "background";
-		}
-		
-		@GetMapping("shop/products")
-		public ModelAndView shopProductList(ModelAndView mvc,HttpSession session) {
-			List<Product> productList=pService.findAll();
-			boolean haveOrNot=false;
-			Integer listSize=0;
-			Object object = session.getAttribute("cart_ID");
-			if(object!=null) {
-				Integer membId=(Integer)object;
-				Cart getCart =  cartService.findBymIdAndcStatus(membId, false);
-				
-				if(getCart!=null) {
-				
-				List<CartItems> tempListItems=ciService.findItemByCart(getCart.getCartId());
-				
-				if(tempListItems.size()!=0) {
-					haveOrNot=true;
-					
-					for(CartItems items:tempListItems) {
-						listSize+=items.getCartItemsAmount();
+
+	@Autowired
+	private ProductService pService;
+
+	@GetMapping("/")
+	public String index() {
+		return "index";
+	}
+
+	@GetMapping("/testIndex")
+	public String testIndex() {
+		return "testIndex";
+	}
+
+	@GetMapping("backend")
+	public String backend() {
+		return "background";
+	}
+
+	@GetMapping("shop/products")
+	public ModelAndView shopProductList(ModelAndView mvc, HttpSession session) {
+		List<Product> productList = pService.findAll();
+		boolean haveOrNot = false;
+		Integer listSize = 0;
+		Object object = session.getAttribute("cart_ID");
+		if (object != null) {
+			Integer membId = (Integer) object;
+			Cart getCart = cartService.findBymIdAndcStatus(membId, false);
+
+			if (getCart != null) {
+
+				List<CartItems> tempListItems = ciService.findItemByCart(getCart.getCartId());
+
+				if (tempListItems.size() != 0) {
+					haveOrNot = true;
+
+					for (CartItems items : tempListItems) {
+						listSize += items.getCartItemsAmount();
 					}
-					
+
 					session.setAttribute("listSize", listSize);
 					session.setAttribute("haveOrNot", haveOrNot);
-					
-				}else {
-					listSize=0;
-					haveOrNot=false;
+
+				} else {
+					listSize = 0;
+					haveOrNot = false;
 					session.removeAttribute("listSize");
 					session.setAttribute("haveOrNot", haveOrNot);
 //					session.removeAttribute("haveOrNot");
 				}
-			}else {
-				listSize=0;
+			} else {
+				listSize = 0;
 				session.removeAttribute("listSize");
-				haveOrNot=false;
+				haveOrNot = false;
 				session.setAttribute("haveOrNot", haveOrNot);
-			}}
-			mvc.getModel().put("productList",productList);
-			mvc.setViewName("shop");
-			return mvc;
-		}
-		
-		@GetMapping("all/products")
-		public ModelAndView allProductList(ModelAndView mvc, @RequestParam(value = "p",defaultValue = "1") Integer pageNumber) {
-			
-			Page<Product> page=pService.findByPage(pageNumber);
-			mvc.getModel().put("productList",page);
-			mvc.setViewName("viewProducts");
-			return mvc;
-		}
-		
-		@GetMapping("cart/ItemsEmpty")
-		public String cartItemEmpty() {
-			return "cartItemsEmpty";
-		}
-		
-
-		@GetMapping("staff/all")
-		public ModelAndView viewStaffs(ModelAndView mav,
-				@RequestParam(name = "p", defaultValue = "1") Integer pageNumber) {
-			Page<employee> page = empService.findByPage(pageNumber);
-
-			mav.getModel().put("page", page);
-			mav.setViewName("viewStaffs");
-			return mav;
 			}
-
-		@GetMapping("orders/all")
-		public ModelAndView allOrderList(ModelAndView mvc, @RequestParam(value = "p",defaultValue = "1") Integer pageNumber) {
-			
-			Page<Order> page=oService.findByPage(pageNumber);
-
-			mvc.getModel().put("orderList",page);
-			mvc.setViewName("viewOrder");
-			return mvc;
 		}
-		
+		mvc.getModel().put("productList", productList);
+		mvc.setViewName("shop");
+		return mvc;
+	}
+
+	@GetMapping("all/products")
+	public ModelAndView allProductList(ModelAndView mvc,
+			@RequestParam(value = "p", defaultValue = "1") Integer pageNumber) {
+
+		Page<Product> page = pService.findByPage(pageNumber);
+		mvc.getModel().put("productList", page);
+		mvc.setViewName("viewProducts");
+		return mvc;
+	}
+
+	@GetMapping("cart/ItemsEmpty")
+	public String cartItemEmpty() {
+		return "cartItemsEmpty";
+	}
+
+	@GetMapping("staff/all")
+	public ModelAndView viewStaffs(ModelAndView mav, @RequestParam(name = "p", defaultValue = "1") Integer pageNumber) {
+		Page<employee> page = empService.findByPage(pageNumber);
+
+		mav.getModel().put("page", page);
+		mav.setViewName("viewStaffs");
+		return mav;
+	}
+
+	@GetMapping("orders/all")
+	public ModelAndView allOrderList(ModelAndView mvc,
+			@RequestParam(value = "p", defaultValue = "1") Integer pageNumber) {
+
+		Page<Order> page = oService.findByPage(pageNumber);
+
+		mvc.getModel().put("orderList", page);
+		mvc.setViewName("viewOrder");
+		return mvc;
+	}
+
 }

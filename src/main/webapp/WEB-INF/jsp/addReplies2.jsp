@@ -49,7 +49,7 @@
 
 						<div class="font-weight-bold">內容</div>
 						<div class="form-group">
-							<form:textarea path="content" class="form-control" />
+							<form:textarea id="content" path="content" class="form-control" />
 						</div>
 						<br />
 
@@ -64,8 +64,15 @@
 						<input onclick="return confirm('確認發布?')" type="submit"
 							name="submit" value="確定發布">
 
-					</form:form>
+					</form:form><br/><br/>
+					
+					
+					<div>
+					<button id="info" type="submit">一鍵輸入</button>
+					</div>
+					
 					<script type="text/javascript">
+					$(document).ready(function() {
 						$(function() {
 
 							function preView(preDIV) {
@@ -82,6 +89,11 @@
 								preView(this);
 							});
 						});
+						
+						$('#info').click(function() {
+							$('#content').val('請問有地址跟連絡電話嗎??🥰🥰🥰🥰🥰🥰');
+						})
+				})
 					</script>
 
 				</div>
